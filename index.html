@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!--
+
+        Built as a response to:
+            - https://www.foundersandcoders.com/requirements/website
+            - https://learn.foundersandcoders.com/course/application/building-a-site/
+            - https://learn.foundersandcoders.com/course/application/objects/
+            - https://learn.foundersandcoders.com/course/application/feature/
+            - https://learn.foundersandcoders.com/course/application/debugging/
+
+    -->
+
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+        <title>Founders and Coders application: my World Wide Web site</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+        <link href="style.css" rel="stylesheet">
+        <script src="index.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+
+    <body>
+
+        <div id="everything">
+
+            <header>
+                <h1>Joe's Founders and Coders application website</h1>
+                <p>A short piece of text explaining what this website is and who made it.</p>
+            </header>
+
+
+            <nav>
+                <ol>
+                    <li><a href="#">Why am I applying?</a></li>
+                    <li><a href="#">Hyperlinks of note</a></li>
+                    <li><a href="#">The weekly prompts</a></li>
+                    <li><a href="#">Week 08: Objects</a></li>
+                    <li><a href="#week-09">Week 09: Build a feature</a></li>
+                </ol>
+            </nav>
+
+
+            <main>
+
+                <section>
+                    <h2>Why am I applying for this programme?</h2>
+                    <p>Reasons will be given.</p>
+                    <ul>
+                        <li>To learn</li>
+                        <li>To meet likeminded people</li>
+                        <li>To restart my dev career</li>
+                        <li>Because F&C seem like they care about things which are important to me</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Hyperlinks of note</h2>
+                    <ul>
+                        <li>The <a href="https://github.com/joe-dev-public/fac-application-website">Microsoft GitHub repository</a> that contains the code for this site</li>
+                        <li><a href="https://www.freecodecamp.org/joe-dev-public">My <em>public</em> freeCodeCamp profile</a></li>
+                        <li>The <a href="about:blank">many external libraries</a> used to produce this site</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>The weekly prompts</h2>
+                    <!-- todo: use a grid for this? cols: link, week, title, tools, source, notes? the funny thing is what I *actually* want is a _table_.. heh. -->
+                    <ul>
+                        <li><a href="https://replit.com/@joedevpublic/FandC-Prompts-Week-01-Functions"><strong>Week 01:</strong> Functions</a> (replit)</li>
+                        <li><a href="https://replit.com/@joedevpublic/FandC-Prompts-Week-02-Number-functions"><strong>Week 02:</strong> Number functions</a> (replit)</li>
+                        <li><a href="https://joe-dev-public.github.io/fac-prompts-week03-dom-manipulation/"><strong>Week 03:</strong> DOM Manipulation</a> (<a href="https://github.com/joe-dev-public/fac-prompts-week03-dom-manipulation">source</a> on Microsoft GitHub)</li>
+                        <li><a href="https://joe-dev-public.github.io/fac-prompts-week04-arrays-and-array-methods/"><strong>Week 04:</strong> Arrays and array methods</a> (<a href="https://github.com/joe-dev-public/fac-prompts-week04-arrays-and-array-methods">source</a> on Microsoft GitHub)</li>
+                        <li><a href="https://joe-dev-public.github.io/fac-prompts-week05-git-and-github/"><strong>Week 05:</strong> git and GitHub</a> (<a href="https://github.com/joe-dev-public/fac-prompts-week05-git-and-github">source</a> on Microsoft GitHub)</li>
+                        <li><a href="https://joe-dev-public.github.io/fac-prompts-week06-flexbox/"><strong>Week 06:</strong> Flexbox</a> (<a href="https://github.com/joe-dev-public/fac-prompts-week06-flexbox">source</a> on Microsoft GitHub)</li>
+                        <li><strong>Week 07-10:</strong> that's this page! :)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Week 08: Objects</h2>
+                    <p>Put stuff about objects here.</p>
+                </section>
+
+                <section id="week-09">
+                <h2>Week 09: Build a feature</h2>
+                <p>Put stuff about the feature here.</p>
+                <label><input id="squarify" type="checkbox" value="foo">Squarify</label>
+                    <ul class="gallery" id="gallery-square">
+                        <li>
+                            <img src="images/week01.png">
+                            <span>Week 01: Functions</span>
+                        </li>
+                        <li>
+                            <img src="images/week02.png">
+                            <span>Week 02: Number functions</span>
+                        </li>
+                        <li>
+                            <img src="images/week03.png">
+                            <span>Week 03: DOM Manipulation</span>
+                        </li>
+                        <li>
+                            <img src="images/week04.png">
+                            <span>Week 04: Arrays and array methods</span>
+                        </li>
+                        <li>
+                            <img src="images/1.jpg">
+                            <span>Dreamland</span>
+                        </li>
+                        <li>
+                            <img src="images/2.jpg">
+                            <span>Sunset</span>
+                        </li>
+                        <li>
+                            <img src="images/3.jpg">
+                            <span>Caution</span>
+                        </li>
+                        <li>
+                            <img src="images/4.jpg">
+                            <span>Harbour</span>
+                        </li>
+                        <li>
+                            <img src="images/5.jpg">
+                            <span>Coastline</span>
+                        </li>
+                        <li>
+                            <img src="images/6.jpg">
+                            <span>Crescent</span>
+                        </li>
+                        <li>
+                            <img src="images/7.jpg">
+                            <span>Cat</span>
+                        </li>
+                    </ul>
+                </section>
+
+            </main>
+
+            <footer>
+                <p>This is some text that will go in the footer.</p>
+            </footer>
+
+        </div>
+
+        <script>
+            window.onload = function() {
+                windowLoaded();
+            }
+        </script>
+
+    </body>
+
+</html>
