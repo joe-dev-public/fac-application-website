@@ -24,7 +24,7 @@ body {
     /* background-color: whitesmoke; */
     /* background-color: hsl(0, 0%, 90%); */
     background: linear-gradient(0deg, hsl(0, 0%, 90%) 0%, white 100%);
-    margin: 1rem;
+    margin: 0 1rem;
 }
 
 #everything {
@@ -97,11 +97,18 @@ nav li {
     margin-bottom: 0.5rem;
 }
 
+main {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    padding-left: 4rem;
+}
+
 /* 1024 is also kinda arbitrary. */
 @media screen and (max-width: 1024px) {
 
     #everything {
         display: block;
+        width: 90vw;
     }
 
     nav {
@@ -120,6 +127,10 @@ nav li {
 
     #main-nav-menu-button.show {
         display: inline-block;
+    }
+
+    main {
+        padding-left: 0;
     }
 
 }
@@ -150,12 +161,6 @@ a {
 
 a:hover {
     text-decoration: underline;
-}
-
-main {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    padding-left: 4rem;
 }
 
 section {
