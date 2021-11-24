@@ -3,6 +3,12 @@
 /*
 
     Todo:
+        - Tweak the squarify thing so that images take up as much width as they can? (i.e. they grow to fit the <li>, width-wise.)
+            - This isn't necessarily "trivial", you'll need to think about the approach in detail. Think of some cases:
+                - All images share the same width and height. They're not necessarily square, but can all get handled the same way.
+                - All images share the same width, but not the same height. One will be the tallest.
+                - Same height, but not the same width. One will be widest.
+                - Different widths and heights. One will be tallest, one will be widest (could be the same or different images).
         - Integrate the Objects (week 08 prompts) into the page somehow.
 
         Low priority:
@@ -149,6 +155,7 @@ function makeGallerySquare(event) {
     }
 
 }
+
 
 // Wee helper function to "stop things doing stuff".
 function doNothing(event) { event.preventDefault(); }

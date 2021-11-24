@@ -1,11 +1,13 @@
 /*
 
     Todo:
-        - Mobile!
-        - Do some @media stuff to apply a grid column layout if the viewport is wide enough. (The default should be mobile, probably?)
+        - Improve views on narrow screens (mobile). Bit too spaced out atm.
+        - Tweak little things to improve spacing, etc. slightly.
+            - e.g. give <h2> top margin so that the gap matches the sticky nav. (You'll need to adjust other margins if you do this, ofc.)
 
     Notes:
         - Don't forget the % symbols with hsl colour triplets :)
+        - position: sticky. How things have changed!
 
 */
 
@@ -87,10 +89,20 @@ nav {
     padding: 1rem;
 }
 
-nav ol {
+#main-nav-menu {
     /* list-style-type: none; */
     margin: 0;
     /* padding: 0; */
+}
+
+@media screen and (min-width: 1025px) {
+
+    #main-nav-menu {
+        /* You could apply sticky positioning to <nav>, but it's fine here for now. */
+        position: sticky;
+        top: 2rem;
+    }
+
 }
 
 nav li {
@@ -193,6 +205,33 @@ section {
 .gallery li span {
     display: none;
     padding: 0.25em;
+}
+
+.demo-container {
+    display: grid;
+}
+
+.demo-input, .demo-output {
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    padding: 0.5rem;
+}
+
+.demo-input {
+    background-color: linen;
+    border: 1px solid wheat;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    margin-right: 0.25rem;
+}
+
+.demo-output {
+    background-color: hsl(238, 32%, 23%);
+    border: 1px inset white;
+    color: rgb(216, 255, 179);
+    grid-column-start: 2;
+    grid-column-end: 3;
+    margin-left: 0.25rem;
 }
 
 footer {
