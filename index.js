@@ -8,6 +8,14 @@
         Low priority:
             - Tweak stringToObject, shoppingList string wrangling to handle ~less well-formed~ user input?
 
+
+    Notes:
+        - Why does HTMLElement.style.blah and dot notation like this in general work, and why am I struggling to find documentation for it?
+            - Is it just that you're literally accessing the object, using dot notation? (Would bracket notation work? Presumably.)
+            - And that you have access to whatever properties it has, in the DOM/CSSOM/whatever, regardless of what you can find documented?
+            - (Or, these properties will be documented somewhere, but not in the most "obvious" place?)
+        - Sigh. This just makes debugging a bit less fun, y'know? https://bugzilla.mozilla.org/show_bug.cgi?id=1615206
+
 */
 
 
@@ -142,6 +150,61 @@ function makeGallerySquare(event) {
 
 }
 
+// Wee helper function to "stop things doing stuff".
+function doNothing(event) { event.preventDefault(); }
+
+
+function makeMainNavCollapsible() {
+
+    const mainNavMenuElement = document.getElementById('main-nav-menu');
+    const mainNavMenuButtonElement = document.getElementById('main-nav-menu-button');
+
+    // Perhaps OTT for this little script ;¬)
+    const mainNavMenuElementHideClass = 'hide';
+    const mainNavMenuButtonElementShowClass = 'show';
+
+    // Make some markup and style changes that are only relevant if JS is active.
+    mainNavMenuButtonElement.innerHTML += `<span id="main-nav-menu-button-arrow">&darr;</span>`;
+
+    const mainNavMenuButtonArrowElement = document.getElementById('main-nav-menu-button-arrow');
+
+    // Apply classes that will only have an effect if the relevant @media query is active
+    mainNavMenuElement.classList.add(mainNavMenuElementHideClass);
+    mainNavMenuButtonElement.classList.add(mainNavMenuButtonElementShowClass);
+
+    function toggleMainNavMenuVisible(event) {
+
+        // I think el.style.blah gives you the inline style, and at load we're not using an inline style, we're using one from style.css.
+        // So we need a way to test the visibility of an element without checking its inline style (which may well be blank).
+
+        let classes = mainNavMenuElement.classList;
+
+        let hidden = false;
+
+        // If the main nav menu has the "hide" class (which is the mechanism we use to hide it), then set the flag to true and leave the loop.
+        for (let i = 0; i < classes.length; i++){
+            if (classes[i] === mainNavMenuElementHideClass){
+                hidden = true;
+                break;
+            }
+        }
+
+        // If the hidden flag is true, remove the hide class from the main nav menu. If it's false, add the class. Also change the button arrow ;)
+        if (hidden === true){
+            mainNavMenuElement.classList.remove(mainNavMenuElementHideClass);
+            mainNavMenuButtonArrowElement.innerHTML = "&uarr;";
+        } else if (hidden === false){
+            mainNavMenuElement.classList.add(mainNavMenuElementHideClass);
+            mainNavMenuButtonArrowElement.innerHTML = "&darr;";
+        }
+
+        doNothing(event);
+
+    }
+
+    mainNavMenuButtonElement.addEventListener('click', toggleMainNavMenuVisible);
+
+}
 
 
 function windowLoaded() {
@@ -157,11 +220,9 @@ function windowLoaded() {
     console.log(mapObject({ shout: 'hey u good?', yell: 'yeah just grand thanks' }, (s) => s.toUpperCase() ));
 */
 
+    makeMainNavCollapsible();
+
     const squarifyElement = document.getElementById('squarify');
-
     squarifyElement.addEventListener('input', makeGallerySquare);
-
-    //makeGallerySquare();
-
 
 } // end of function windowLoaded

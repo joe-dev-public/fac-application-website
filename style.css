@@ -1,6 +1,7 @@
 /*
 
     Todo:
+        - Mobile!
         - Do some @media stuff to apply a grid column layout if the viewport is wide enough. (The default should be mobile, probably?)
 
     Notes:
@@ -32,11 +33,93 @@ body {
     width: 60vw;
 }
 
+h1, h2 {
+    font-family: 'Zilla Slab', sans-serif;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+h2 {
+    font-size: 2.25rem;
+    font-weight: 400;
+    margin-top: 0;
+}
+
+#main-nav-menu-button span {
+    font-family: 'Zilla Slab', sans-serif;
+    font-weight: 700;
+    padding-left: 1rem;
+}
+
 /* 1680 is a somewhat arbitrary choice for now. */
 @media screen and (max-width: 1680px) {
 
     #everything {
         width: 95vw;
+    }
+
+}
+
+#main-nav-menu-button {
+    background-color: rgb(0, 102, 204);
+    color: whitesmoke;
+    display: none;
+    font-family: sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    /* margin: 0 0 2rem 0; */
+    padding: 0.5rem 1rem;
+}
+
+#main-nav-menu-button:hover {
+    text-decoration: none;
+}
+
+nav {
+    /* background-color: hsl(0, 0%, 90%); */
+    grid-column-start: 1;
+    grid-column-end: 2;
+    padding: 1rem;
+}
+
+nav ol {
+    /* list-style-type: none; */
+    margin: 0;
+    /* padding: 0; */
+}
+
+nav li {
+    margin-bottom: 0.5rem;
+}
+
+/* 1024 is also kinda arbitrary. */
+@media screen and (max-width: 1024px) {
+
+    #everything {
+        display: block;
+    }
+
+    nav {
+        border-bottom: 1px solid hsl(0, 0%, 90%);
+        margin-bottom: 2rem;
+        padding-bottom: 3rem;
+    }
+
+    #main-nav-menu {
+        margin-top: 1rem;
+    }
+
+    #main-nav-menu.hide {
+        display: none;
+    }
+
+    #main-nav-menu-button.show {
+        display: inline-block;
     }
 
 }
@@ -61,22 +144,6 @@ header p {
     display: none;
 }
 
-h1, h2 {
-    font-family: 'Zilla Slab', serif;
-}
-
-h1 {
-    font-size: 3.5rem;
-    font-weight: 500;
-    margin: 0;
-}
-
-h2 {
-    font-size: 2.25rem;
-    font-weight: 400;
-    margin-top: 0;
-}
-
 a {
     text-decoration: none;
 }
@@ -84,26 +151,6 @@ a {
 a:hover {
     text-decoration: underline;
 }
-
-nav {
-    /* background-color: hsl(0, 0%, 90%); */
-    grid-column-start: 1;
-    grid-column-end: 2;
-    padding: 1rem;
-}
-
-nav ol {
-    /* list-style-type: none; */
-    margin: 0;
-    /* padding: 0; */
-}
-
-nav li {
-    margin-bottom: 0.5rem;
-}
-
-/* nav ul li a {
-} */
 
 main {
     grid-column-start: 2;
