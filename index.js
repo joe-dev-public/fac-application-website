@@ -9,15 +9,16 @@
                 - All images share the same width, but not the same height. One will be the tallest.
                 - Same height, but not the same width. One will be widest.
                 - Different widths and heights. One will be tallest, one will be widest (could be the same or different images).
-        - Integrate the Objects (week 08 prompts) into the page somehow.
+        - Basic validation on the objects stuff inputs.
 
         Low priority:
             - Tweak stringToObject, shoppingList string wrangling to handle ~less well-formed~ user input?
+            - There may be unnecessary use of ".children" in prompts; remember you can use ELEMENT.getElementsByBlah, not just DOCUMENT.getElementsByBlah!
 
 
     Notes:
         - Why does HTMLElement.style.blah and dot notation like this in general work, and why am I struggling to find documentation for it?
-            - Is it just that you're literally accessing the object, using dot notation? (Would bracket notation work? Presumably.)
+            - Is it just that you're literally accessing the object, using dot notation? (Would bracket notation work? One test below suggests: yes!)
             - And that you have access to whatever properties it has, in the DOM/CSSOM/whatever, regardless of what you can find documented?
             - (Or, these properties will be documented somewhere, but not in the most "obvious" place?)
         - Sigh. This just makes debugging a bit less fun, y'know? https://bugzilla.mozilla.org/show_bug.cgi?id=1615206
@@ -114,7 +115,7 @@ function mapObject(obj, fn) {
 
 function makeGallerySquare(event) {
 
-    let enable = event.target.checked;
+    let enable = event["target"]["checked"]; // or dot notation: event.target.checked. Either works, it seems!
 
     const squareGalleryElement = document.getElementById('gallery-square');
 
@@ -214,6 +215,112 @@ function makeMainNavCollapsible() {
 }
 
 
+// Another little helper function :)
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#never_use_eval!
+// Use window.Function() to do something similar to eval() but MUCH safer/better (apparently). Not sure how safe this is really, but look into that later.
+function definitelyNotEval(string){
+    return Function('"use strict"; return ' + string + ';')();
+}
+
+
+function handleDemoInput(event) {
+
+    const functionToCall = event.target.value;
+
+    const outputElement = event.target.parentElement.parentElement.getElementsByClassName('demo-output')[0];
+
+    // todo: handle multiple lines, validation, etc.
+
+    let input = event.target.parentElement.getElementsByTagName('textarea')[0].value;
+
+    // It's a string.
+    //console.log(typeof input);
+
+    // Is this a reliable way to get each line of a <textarea>?
+    let lines = input.split(/\n/);
+
+    let html = '';
+
+    lines.forEach( element => {
+
+        if (functionToCall === 'capitaliseKeys'){
+
+            /*
+                Treat the string "literally" as an object, or an object + function, because that's what these functions expect as per FAC's spec. :¬)
+
+                We want to interpret the user-entered string "literally", i.e. we want to pretend it's JS code.
+                (Side-note: I'm pretty sure this isn't what "literals" are, I just can't think of a better word to describe this.)
+
+                Once upon a time I think this might've been done with "eval", but that's a huge security risk (and also performance hit, it turns out!).
+                So we use the window.Function() approach, implemented above.
+
+                This allows us to use literal (aka initializer) notation to initialise the Object from the user's text input.
+                (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer)
+
+                (Messing around with JSON.stringify and JSON.parse shouldn't be necessary.)
+
+                Todo: is there a way to catch any errors here and report them in the output, not just console?
+            */
+
+            element = definitelyNotEval(element); // Don't like doing this >:¬/
+
+        }
+
+        let returnedObject = {};
+
+        if (functionToCall === 'mapObject'){
+
+            let [obj, fn] = element.match(/}, /, $1 $2); // er write this properly, you get the gist -- return the } cos otherwise the object isn't formed right!
+
+            obj = definitelyNotEval(obj);
+            fn = definitelyNotEval(fn);
+
+            //console.log(obj);
+            //console.log(fn);
+
+            // todo: handle this differently. Passing a function in might require some extra fiddling...
+            returnedObject = window[functionToCall](obj, fn);
+
+        } else {
+            // Call a function where its name is a variable string by using bracket notation on the Window interface
+            returnedObject = window[functionToCall](element);
+        }
+
+        //console.log(returnedObject);
+
+        html += `Return type: ${typeof returnedObject}<br><br>`;
+
+        for (const [key, value] of Object.entries(returnedObject)) {
+            html += `${key}: ${value}<br>`;
+        }
+
+        html += '<br><br>';
+
+    });
+
+    outputElement.innerHTML = html;
+
+}
+
+
+function initWeek08() {
+
+    const demoInputElements = document.getElementsByClassName('demo-input');
+
+    for (let i = 0; i < demoInputElements.length; i++){
+
+        demoInputElements[i].addEventListener('submit', doNothing);
+
+        // Not best practice, as this could break if you add another button.
+        const submitButtonElement = demoInputElements[i].getElementsByTagName('button')[0];
+
+        submitButtonElement.addEventListener('click', handleDemoInput);
+
+    }
+
+}
+
+
 function windowLoaded() {
 
 /*
@@ -228,6 +335,8 @@ function windowLoaded() {
 */
 
     makeMainNavCollapsible();
+
+    initWeek08();
 
     const squarifyElement = document.getElementById('squarify');
     squarifyElement.addEventListener('input', makeGallerySquare);

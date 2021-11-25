@@ -1,27 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <!--
-
-        Built as a response to:
-            - https://www.foundersandcoders.com/requirements/website
-            - https://learn.foundersandcoders.com/course/application/building-a-site/
-            - https://learn.foundersandcoders.com/course/application/objects/
-            - https://learn.foundersandcoders.com/course/application/feature/
-            - https://learn.foundersandcoders.com/course/application/debugging/
-
-
-        Todo:
-            - Seeing as week 08 won't work at all without JS, maybe use JS to generate the HTML based on the functions that are there? That could be a "feature".
-
-            Low priority:
-                - Try Material icons if you want? <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> e.g.:
-                    - <span class="material-icons-outlined">menu</span>
-                    - <span class="material-icons-outlined">expand_more</span>
-
-
-    -->
-
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -38,6 +17,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
     </head>
+
+    <!--
+
+        Built as a response to:
+            - https://www.foundersandcoders.com/requirements/website
+            - https://learn.foundersandcoders.com/course/application/building-a-site/
+            - https://learn.foundersandcoders.com/course/application/objects/
+            - https://learn.foundersandcoders.com/course/application/feature/
+            - https://learn.foundersandcoders.com/course/application/debugging/
+
+
+        Todo:
+            - Seeing as week 08 won't work at all without JS, maybe use JS to generate the HTML based on the functions that are there? That could be a "feature".
+            - Feature idea: basic step sequencer? With sound?
+
+            Low priority:
+                - Try Material icons if you want? <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> e.g.:
+                    - <span class="material-icons-outlined">menu</span>
+                    - <span class="material-icons-outlined">expand_more</span>
+
+        Notes:
+            - Don't have this massive comment too early on in the HTML! The encoding declaration needs to be within the first 1024 bites, sez FF dev tools :¬)
+
+    -->
 
     <body>
 
@@ -109,26 +112,42 @@
 
                 <section id="week-08-objects">
                     <h2>Week 08: Objects</h2>
-                    <p>A response to <a href="https://learn.foundersandcoders.com/course/application/objects/">this Founders and Coders prompt</a>.</p>
+                    <p>A response to <a href="https://learn.foundersandcoders.com/course/application/objects/">this prompt</a>.</p>
                     <h3 id="week-08-capitalise-keys">Capitalise keys</h3>
                     <div class="demo-container">
-                        <div class="demo-input">Input</div>
-                        <div class="demo-output">Output</div>
+                        <p>Enter text that represents a JavaScript object. You can enter multiple objects by putting each one on a new line.</p>
+                        <form class="demo-input">
+                            <textarea required spellcheck="false" placeholder="e.g. { key1: value1, key2: value2 } etc."></textarea>
+                            <button type="submit" value="capitaliseKeys">Go</button><!-- todo: better to have JS populate this than maintain it separately! -->
+                        </form>
+                        <div class="demo-output">(output will appear here)</div>
                     </div>
                     <h3 id="week-08-string-to-object">String to object</h3>
                     <div class="demo-container">
-                        <div class="demo-input">Input</div>
-                        <div class="demo-output">Output</div>
+                        <p>Enter text in a specific format to be converted into an object. You can enter multiple strings by putting each one on a new line.</p>
+                        <form class="demo-input">
+                            <textarea required spellcheck="false" placeholder="e.g. key1:value1,key2:value2,key3:value3 etc."></textarea>
+                            <button type="submit" value="stringToObject">Go</button>
+                        </form>
+                        <div class="demo-output">(output will appear here)</div>
                     </div>
                     <h3 id="week-08-going-shopping">Going shopping</h3>
                     <div class="demo-container">
-                        <div class="demo-input">Input</div>
-                        <div class="demo-output">Output</div>
+                        <p>Enter a shopping list following this specific format: number item, number item, number item. See what breaks!</p>
+                        <form class="demo-input">
+                            <textarea required spellcheck="false" placeholder="e.g. 4 tomatoes, 3 pears, 1 onion, 12 carrots, 7 tangerines"></textarea>
+                            <button type="submit" value="shoppingList">Go</button>
+                        </form>
+                        <div class="demo-output">(output will appear here)</div>
                     </div>
                     <h3 id="week-08-map-object">Map Object</h3>
                     <div class="demo-container">
-                        <div class="demo-input">Input</div>
-                        <div class="demo-output">Output</div>
+                        <p>Enter an object and a function ...</p>
+                        <form class="demo-input">
+                            <textarea required spellcheck="false" placeholder="e.g. { ... }, (value) => value.method()"></textarea>
+                            <button type="submit" value="mapObject">Go</button>
+                        </form>
+                        <div class="demo-output">(output will appear here)</div>
                     </div>
                 </section>
 

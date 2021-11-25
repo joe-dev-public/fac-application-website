@@ -207,31 +207,66 @@ section {
     padding: 0.25em;
 }
 
+#week-08-objects h3 {
+    margin: 2.5rem 0 1rem 0;
+}
+
+/* todo: if mobile, get rid of the grid here */
 .demo-container {
     display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.demo-container p {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin-top: 0;
 }
 
 .demo-input, .demo-output {
     border-radius: 4px;
-    font-family: 'Space Mono', monospace;
     padding: 0.5rem;
 }
 
+.demo-input textarea, .demo-output {
+    font-family: 'Space Mono', monospace;
+}
+
 .demo-input {
+    align-self: flex-start;
     background-color: linen;
     border: 1px solid wheat;
+    display: flex;
     grid-column-start: 1;
     grid-column-end: 2;
+    justify-content: space-between;
     margin-right: 0.25rem;
 }
 
+.demo-input button {
+    align-self: center;
+    /* display: inline-block; */
+    width: 8%;
+}
+
+.demo-input textarea {
+    height: 8rem;
+    resize: vertical;
+    width: 90%;
+
+    /* Apparently non-standard? */
+    /* wrap: off; */
+}
+
 .demo-output {
+    align-self: flex-start;
     background-color: hsl(238, 32%, 23%);
     border: 1px inset white;
     color: rgb(216, 255, 179);
     grid-column-start: 2;
     grid-column-end: 3;
     margin-left: 0.25rem;
+    min-height: 8rem;
 }
 
 footer {
