@@ -270,15 +270,13 @@ function handleDemoInput(event) {
 
         if (functionToCall === 'mapObject'){
 
-            let [obj, fn] = element.match(/}, /, $1 $2); // er write this properly, you get the gist -- return the } cos otherwise the object isn't formed right!
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+            // (via https://stackoverflow.com/questions/34628763/what-is-the-equivalent-of-pythons-in-javascript)
+            let [, obj, fn] = element.match(/^(.*}), (.*)$/);
 
             obj = definitelyNotEval(obj);
             fn = definitelyNotEval(fn);
 
-            //console.log(obj);
-            //console.log(fn);
-
-            // todo: handle this differently. Passing a function in might require some extra fiddling...
             returnedObject = window[functionToCall](obj, fn);
 
         } else {
