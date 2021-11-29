@@ -25,6 +25,10 @@
     line-height: 1.5;
 }
 
+.hidden {
+    display: none !important;
+}
+
 body {
     /* background-color: whitesmoke; */
     /* background-color: hsl(0, 0%, 90%); */
@@ -293,6 +297,7 @@ footer {
 .step {
     border: 1px solid black;
     /* height: 2rem; */
-    padding: 1rem;
+    padding: 0.5rem;
+    text-align: center;
     /* width: 1rem; */
 }

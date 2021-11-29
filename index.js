@@ -5,6 +5,8 @@
     Todo:
         - Step seq:
             - Should we allow different numbers of steps per track? (But that all play back at an even rate of one step length = total time/number of steps? Polyrhythm fun.)
+            - Careful with scrolling when changing number of tracks.
+            - Implement multiple inputs for changing pattern length, e.g. one that is a slider with 4, 8, 12, 16, 32 marked off on a scale.
 
         - Add buttons to "load (multi-line) examples" for the week 08 demos?
         - Tweak the squarify thing so that images take up as much width as they can? (i.e. they grow to fit the <li>, width-wise.)
@@ -338,17 +340,26 @@ let numberOfTracksElement;
 
 let stepGridElement;
 
+const maxNumberOfTracks = 8;
+const minNumberOfTracks = 1;
+
+const maxNumberOfSteps = 32;
+const minNumberOfSteps = 1;
 
 function initTracks() {
 
     // getAttribute isn't live but that's fine cos we want to use what's coded in the markup as our default
-    let defaultNumberOfTracks = numberOfTracksElement.getAttribute('value');
+    const defaultNumberOfVisibleTracks = numberOfTracksElement.getAttribute('value');
 
     let html = '';
 
-    for (let i = 1; i <= defaultNumberOfTracks; i++) {
+    for (let i = 1; i <= maxNumberOfTracks; i++) {
 
-        html += `<div class="track"></div>`;
+        if (i <= defaultNumberOfVisibleTracks) {
+            html += `<div class="track"></div>`;
+        } else {
+            html += `<div class="track hidden"></div>`;
+        }
 
     }
 
@@ -359,44 +370,81 @@ function initTracks() {
 
 function initSteps() {
 
-    let defaultNumberOfSteps = numberOfStepsElement.getAttribute('value');
+    const defaultNumberOfVisibleSteps = numberOfStepsElement.getAttribute('value');
 
     let html = '';
 
-    for (let i = 1; i <= defaultNumberOfSteps; i++) {
-
-        html += `<div class="step">${i}</div>`;
-
+    for (let i = 1; i <= maxNumberOfSteps; i++) {
+        if (i <= defaultNumberOfVisibleSteps) {
+            html += `<div class="step">${i}</div>`;
+        } else {
+            html += `<div class="step hidden">${i}</div>`;
+        }
     }
 
+    // todo: DRY
+    let trackElements = document.getElementsByClassName('track');
+
+    for (let i = 0; i < trackElements.length; i++) {
+        trackElements[i].innerHTML = html;
+    }
+
+}
+
+
+function updateNumberOfVisibleTracks(event) {
+
+    let targetNumberOfVisibleTracks = event.target.value;
+
+    if (targetNumberOfVisibleTracks > maxNumberOfTracks) {
+        return false;
+    } else if (targetNumberOfVisibleTracks < minNumberOfTracks) {
+        return false;
+    }
+
+    // todo: DRY
+    let trackElements = document.getElementsByClassName('track');
+
+    for (let i = 0; i < trackElements.length; i++) {
+        if (i < targetNumberOfVisibleTracks){
+            trackElements[i].classList.remove('hidden');
+        } else {
+            trackElements[i].classList.add('hidden');
+        }
+    }
+
+}
+
+
+function updateNumberOfVisibleSteps(event) {
+
+    // Just show or hide, that way user-entered sequences aren't lost if the pattern length is changed.
+    // Hopefully this won't affect performance in any noticeable way!
+
+    let targetNumberOfVisibleSteps = event.target.value;
+
+    if (targetNumberOfVisibleSteps > maxNumberOfSteps) {
+        return false;
+    } else if (targetNumberOfVisibleSteps < minNumberOfSteps) {
+        return false;
+    }
+
+    // todo: DRY
     let trackElements = document.getElementsByClassName('track');
 
     for (let i = 0; i < trackElements.length; i++) {
 
-        trackElements[i].innerHTML = html;
+        let stepElements = trackElements[i].getElementsByClassName('step');
+
+        for (let j = 0; j < stepElements.length; j++) {
+            if (j < targetNumberOfVisibleSteps){
+                stepElements[j].classList.remove('hidden');
+            } else {
+                stepElements[j].classList.add('hidden');
+            }
+        }
 
     }
-
-}
-
-
-function updateNumberOfSteps(event) {
-
-    // Just show or hide steps, that way user-entered sequences aren't lost if the pattern length is changed.
-    // Hopefully this won't affect performance in any noticeable way!
-
-    let numberOfSteps = event.target.value;
-
-
-
-}
-
-
-function updateNumberOfTracks(event) {
-
-    let numberOfTracks = event.target.value;
-
-
 
 }
 
@@ -411,8 +459,8 @@ stepGridElement = document.getElementById('stepgrid');
     initTracks();
     initSteps();
 
-    numberOfStepsElement.addEventListener('input', updateNumberOfSteps);
-    numberOfTracksElement.addEventListener('input', updateNumberOfTracks);
+    numberOfStepsElement.addEventListener('input', updateNumberOfVisibleSteps);
+    numberOfTracksElement.addEventListener('input', updateNumberOfVisibleTracks);
 
     // Is this really the best way to do this? (It seems to work!)
     // Trigger built-in event:
