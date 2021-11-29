@@ -11,6 +11,7 @@
             - If you show a number inside a step cell, make sure it can't be selected. Assuming 4/4, make all numbers dim except 1st, 5th, etc.
                 - You could also show numbers outside the grid.
             - (I've accidentally made a pixel art grid with limited zooming at this stage, too :)
+            - Make the steps check boxes that are styles properly, probably!
 
         - Add buttons to "load (multi-line) examples" for the week 08 demos?
         - Tweak the squarify thing so that images take up as much width as they can? (i.e. they grow to fit the <li>, width-wise.)
@@ -24,6 +25,7 @@
         Low priority:
             - Tweak stringToObject, shoppingList string wrangling to handle ~less well-formed~ user input?
             - There may be unnecessary use of ".children" in prompts; remember you can use ELEMENT.getElementsByBlah, not just DOCUMENT.getElementsByBlah!
+                - Also querySelectorAll, and maybe other things :)
 
 
     Notes:
@@ -421,7 +423,7 @@ function initSteps() {
 
 function updateNumberOfVisibleTracks(event) {
 
-    let targetNumberOfVisibleTracks = event.target.value;
+    let targetNumberOfVisibleTracks = Number(event.target.value);
 
     if (targetNumberOfVisibleTracks > maxNumberOfTracks) {
         return false;
@@ -443,12 +445,14 @@ function updateNumberOfVisibleTracks(event) {
 }
 
 
+let targetNumberOfVisibleSteps;
+
 function updateNumberOfVisibleSteps(event) {
 
     // Just show or hide, that way user-entered sequences aren't lost if the pattern length is changed.
     // Hopefully this won't affect performance in any noticeable way!
 
-    let targetNumberOfVisibleSteps = event.target.value;
+    targetNumberOfVisibleSteps = Number(event.target.value);
 
     if (targetNumberOfVisibleSteps > maxNumberOfSteps) {
         return false;
@@ -476,6 +480,103 @@ function updateNumberOfVisibleSteps(event) {
 }
 
 
+
+    // Lots of below pieced together from:
+    // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Advanced_techniques ->
+    // https://www.html5rocks.com/en/tutorials/audio/scheduling/
+
+
+    // create web audio api context
+
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+let volume = 0.1;
+
+function makeNoise(time) {
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode
+
+    var gainNode = audioContext.createGain();
+
+    gainNode.gain.value = volume;
+
+    // create Oscillator node
+    const osc = audioContext.createOscillator();
+
+    osc.type = 'sine';
+    osc.frequency.value = 880;
+    osc.connect(gainNode).connect(audioContext.destination);
+    osc.start(time);
+    osc.stop(time + 0.1); // note length being specified here, but it should be configurable and precisely timed...
+
+}
+
+
+
+let tempo = 120.0;
+
+let stepLength = 0.0625; // 1/16
+
+const lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
+const scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
+
+let currentNote = 0;
+let nextNoteTime = 0.0; // when the next note is due.
+
+function nextNote() {
+
+    //const secondsPerStep = 60.0 / tempo;
+    // x BPM at 1/1 => x steps/min. x BPM at 1/4 => 4x steps/min. i.e. x BPM at 1/y => 1/(1/y) steps/min => y steps/min.
+    // 1 min = 60s, so x BPM = y steps/60 => x BPM = 60y steps per second, 
+
+    // todo: either this or another bit of the code is broken, so fix it :)
+    const secondsPerStep = stepLength * (60 / tempo);
+
+    nextNoteTime += secondsPerStep; // Add step length to last step time
+
+    // Advance the step number, wrap to zero
+    currentNote++;
+
+    if (currentNote === targetNumberOfVisibleSteps) {
+            currentNote = 0;
+    }
+}
+
+const notesInQueue = [];
+
+let timerID;
+
+function scheduleNote(stepNumber, time) {
+
+    // push the note on the queue, even if we're not playing.
+    notesInQueue.push({ note: stepNumber, time: time });
+
+    let trackElements = document.getElementsByClassName('track');
+
+    let classlist = trackElements[0].querySelectorAll('.step')[stepNumber].classList;
+    let re = new RegExp(/step-active/);
+
+    if (re.test(classlist) === true) {
+        makeNoise(time)
+    }
+
+}
+
+
+function scheduler() {
+    // while there are notes that will need to play before the next interval, schedule them and advance the pointer.
+    while (nextNoteTime < audioContext.currentTime + scheduleAheadTime) {
+        scheduleNote(currentNote, nextNoteTime);
+        nextNote();
+    }
+    timerID = window.setTimeout(scheduler, lookahead);
+}
+
+
+
+
+
+
 function initStepSequencer() {
 
 numberOfStepsElement = document.getElementById('number-of-steps');
@@ -497,6 +598,57 @@ stepGridElement = document.getElementById('stepgrid');
     const inputEvent = new InputEvent('input');
     numberOfStepsElement.dispatchEvent(inputEvent);
     numberOfTracksElement.dispatchEvent(inputEvent);
+
+    //makeNoise();
+
+    const volumeControl = document.getElementById('volume');
+    volumeControl.addEventListener('input', function() {
+        volume = Number(this.value);
+    }, false);
+
+    const tempoReadout = document.getElementById('tempo-readout');
+
+    const bpmControl = document.getElementById('bpm');
+    bpmControl.addEventListener('input', function() {
+        tempo = Number(this.value);
+        tempoReadout.innerHTML = tempo; // todo: make this not a quick hack :)
+    }, false);
+
+    const stepLengthElement = document.getElementById('step-length');
+    stepLengthElement.addEventListener('input', function() {
+        stepLength = Number(this.value);
+    }, false);
+
+    const playButton = document.getElementById('play-button');
+
+    let isPlaying = false;
+
+    playButton.addEventListener('click', function() {
+
+        isPlaying = !isPlaying;
+
+        if (isPlaying) { // start playing
+
+            // check if context is in suspended state (autoplay policy)
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+
+            currentNote = 0;
+            nextNoteTime = audioContext.currentTime;
+            scheduler(); // kick off scheduling
+            //requestAnimationFrame(draw); // start the drawing loop.
+            this.dataset.playing = 'true';
+
+        } else {
+
+            window.clearTimeout(timerID);
+            this.dataset.playing = 'false';
+
+        }
+    })
+
+
 
 }
 

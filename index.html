@@ -157,11 +157,32 @@
                     <div id="sequencer">
 
                         <form>
+                            <button type="button" id="play-button">play/pause</button>
+                            <label>
+                                Volume:
+                                <input type="range" id="volume" min="0" max="0.5" step="0.01" value="0.1"><!-- safe max vol of 0.5 for now... -->
+                            </label>
+                            <label>
+                                Tempo in BPM:
+                                <input type="range" id="bpm" min="30" max="250" step="1">
+                                <span id="tempo-readout"></span>
+                            </label>
+                            <label>
+                                Step length:
+                                <select id="step-length">
+                                    <option value="0.25">1/4</option>
+                                    <option value="0.125">1/8</option>
+                                    <option value="0.0625" selected>1/16</option>
+                                    <option value="0.03125">1/32</option>
+                                </select>
+                            </label>
                             <label>
                                 Number of steps:
-                                <input id="number-of-steps" type="number" min="1" max="32" value="16" step="1"></input>
+                                <input id="number-of-steps" type="number" min="1" max="32" value="16" step="1">
+                            </label>
+                            <label>
                                 Number of tracks:
-                                <input id="number-of-tracks" type="number" min="1" max="8" value="4" step="1"></input>
+                                <input id="number-of-tracks" type="number" min="1" max="8" value="4" step="1">
                             </label>
                         </form>
 
