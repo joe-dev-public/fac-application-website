@@ -152,9 +152,24 @@
                 </section>
 
                 <section id="week-09-feature">
-                <h2>Week 09: Build a feature</h2>
-                <p>Put stuff about the feature here.</p>
-                <label><input id="squarify" type="checkbox" value="foo">Squarify</label>
+                    <h2>Week 09: Build a feature</h2>
+                    <p>Put stuff about the feature here.</p>
+                    <div id="sequencer">
+
+                        <form>
+                            <label>
+                                Number of steps:
+                                <input id="number-of-steps" type="number" min="1" max="32" value="16" step="1"></input>
+                                Number of tracks:
+                                <input id="number-of-tracks" type="number" min="1" max="8" value="4" step="1"></input>
+                            </label>
+                        </form>
+
+                        <div id="stepgrid"></div>
+
+                    </div>
+                    <!--
+                    <label><input id="squarify" type="checkbox" value="foo">Squarify</label>
                     <ul class="gallery" id="gallery-square">
                         <li>
                             <img src="images/week01.png">
@@ -201,6 +216,7 @@
                             <span>Cat</span>
                         </li>
                     </ul>
+                -->
                 </section>
 
             </main>

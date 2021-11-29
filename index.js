@@ -3,6 +3,10 @@
 /*
 
     Todo:
+        - Step seq:
+            - Should we allow different numbers of steps per track? (But that all play back at an even rate of one step length = total time/number of steps? Polyrhythm fun.)
+
+        - Add buttons to "load (multi-line) examples" for the week 08 demos?
         - Tweak the squarify thing so that images take up as much width as they can? (i.e. they grow to fit the <li>, width-wise.)
             - This isn't necessarily "trivial", you'll need to think about the approach in detail. Think of some cases:
                 - All images share the same width and height. They're not necessarily square, but can all get handled the same way.
@@ -270,8 +274,11 @@ function handleDemoInput(event) {
 
         if (functionToCall === 'mapObject'){
 
+            // split the user-entered string at the "}, " between the object and the function.
+            // "throwaway variable" (in Lua I've used _, which might also be used in Python)
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
             // (via https://stackoverflow.com/questions/34628763/what-is-the-equivalent-of-pythons-in-javascript)
+            // note: because match groups are 1-indexed, you don't need the 0th item here:
             let [, obj, fn] = element.match(/^(.*}), (.*)$/);
 
             obj = definitelyNotEval(obj);
@@ -319,6 +326,113 @@ function initWeek08() {
 }
 
 
+/*
+    -------------------------------------------------------
+    Start of step sequencer stuff
+    -------------------------------------------------------
+*/
+
+// todo: fix scoping etc. to be best-practice :)
+let numberOfStepsElement;
+let numberOfTracksElement;
+
+let stepGridElement;
+
+
+function initTracks() {
+
+    // getAttribute isn't live but that's fine cos we want to use what's coded in the markup as our default
+    let defaultNumberOfTracks = numberOfTracksElement.getAttribute('value');
+
+    let html = '';
+
+    for (let i = 1; i <= defaultNumberOfTracks; i++) {
+
+        html += `<div class="track"></div>`;
+
+    }
+
+    stepGridElement.innerHTML = html;
+
+}
+
+
+function initSteps() {
+
+    let defaultNumberOfSteps = numberOfStepsElement.getAttribute('value');
+
+    let html = '';
+
+    for (let i = 1; i <= defaultNumberOfSteps; i++) {
+
+        html += `<div class="step">${i}</div>`;
+
+    }
+
+    let trackElements = document.getElementsByClassName('track');
+
+    for (let i = 0; i < trackElements.length; i++) {
+
+        trackElements[i].innerHTML = html;
+
+    }
+
+}
+
+
+function updateNumberOfSteps(event) {
+
+    // Just show or hide steps, that way user-entered sequences aren't lost if the pattern length is changed.
+    // Hopefully this won't affect performance in any noticeable way!
+
+    let numberOfSteps = event.target.value;
+
+
+
+}
+
+
+function updateNumberOfTracks(event) {
+
+    let numberOfTracks = event.target.value;
+
+
+
+}
+
+
+function initStepSequencer() {
+
+numberOfStepsElement = document.getElementById('number-of-steps');
+numberOfTracksElement = document.getElementById('number-of-tracks');
+
+stepGridElement = document.getElementById('stepgrid');
+
+    initTracks();
+    initSteps();
+
+    numberOfStepsElement.addEventListener('input', updateNumberOfSteps);
+    numberOfTracksElement.addEventListener('input', updateNumberOfTracks);
+
+    // Is this really the best way to do this? (It seems to work!)
+    // Trigger built-in event:
+    // https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events
+    // https://developer.mozilla.org/en-US/docs/Web/API/InputEvent
+    // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent
+    const inputEvent = new InputEvent('input');
+    numberOfStepsElement.dispatchEvent(inputEvent);
+    numberOfTracksElement.dispatchEvent(inputEvent);
+
+}
+
+/*
+    -------------------------------------------------------
+    End of step sequencer stuff
+    -------------------------------------------------------
+*/
+
+
+
 function windowLoaded() {
 
 /*
@@ -336,7 +450,9 @@ function windowLoaded() {
 
     initWeek08();
 
-    const squarifyElement = document.getElementById('squarify');
-    squarifyElement.addEventListener('input', makeGallerySquare);
+    initStepSequencer();
+
+    //const squarifyElement = document.getElementById('squarify');
+    //squarifyElement.addEventListener('input', makeGallerySquare);
 
 } // end of function windowLoaded
