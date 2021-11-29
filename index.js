@@ -7,6 +7,10 @@
             - Should we allow different numbers of steps per track? (But that all play back at an even rate of one step length = total time/number of steps? Polyrhythm fun.)
             - Careful with scrolling when changing number of tracks.
             - Implement multiple inputs for changing pattern length, e.g. one that is a slider with 4, 8, 12, 16, 32 marked off on a scale.
+            - Click and drag across steps to activate many (with pref for always-toggle, always-activate, etc.)
+            - If you show a number inside a step cell, make sure it can't be selected. Assuming 4/4, make all numbers dim except 1st, 5th, etc.
+                - You could also show numbers outside the grid.
+            - (I've accidentally made a pixel art grid with limited zooming at this stage, too :)
 
         - Add buttons to "load (multi-line) examples" for the week 08 demos?
         - Tweak the squarify thing so that images take up as much width as they can? (i.e. they grow to fit the <li>, width-wise.)
@@ -346,6 +350,22 @@ const minNumberOfTracks = 1;
 const maxNumberOfSteps = 32;
 const minNumberOfSteps = 1;
 
+
+function toggleStepActive(event) {
+
+    let clickedStepElement = event.target;
+
+    let re = new RegExp(/step-active/);
+
+    if (re.test(clickedStepElement.classList) === true) {
+        clickedStepElement.classList.remove('step-active');
+    } else {
+        clickedStepElement.classList.add('step-active');
+    }
+
+}
+
+
 function initTracks() {
 
     // getAttribute isn't live but that's fine cos we want to use what's coded in the markup as our default
@@ -387,6 +407,13 @@ function initSteps() {
 
     for (let i = 0; i < trackElements.length; i++) {
         trackElements[i].innerHTML = html;
+    }
+
+    let allStepElements = document.getElementsByClassName('step');
+
+    for (let i = 0; i < allStepElements.length; i++) {
+        // mousedown feels a lot more responsive than click
+        allStepElements[i].addEventListener('mousedown', toggleStepActive);
     }
 
 }

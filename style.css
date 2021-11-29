@@ -285,19 +285,26 @@ footer {
 
 #stepgrid {
     display: grid;
+    gap: 0.25rem;
     margin-top: 1rem;
 }
 
 /* A grid in a grid. Is that the best way of doing this? Does that make best use of grids? */
 .track {
     display: grid;
+    gap: 0.25rem;
     grid-auto-flow: column;
 }
 
 .step {
     border: 1px solid black;
+    cursor: default;
     /* height: 2rem; */
     padding: 0.5rem;
     text-align: center;
     /* width: 1rem; */
+}
+
+.step-active {
+    background-color: cyan;
 }
