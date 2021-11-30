@@ -385,7 +385,21 @@ function initTracks() {
             html += ` hidden`; // is this necessary given the updatevisible thing is called below?
         }
 
-        html += `"><label>Pitch<input type="range" class="pitch-slider" min="440" max="4400" value="880" step="100"></label><label>Sustain<input type="range" class="sustain-slider" min="0.01" max="0.5" value="0.05" step="0.01"></label><div class="track-step-area"></div></div>`;
+        html += `
+">
+    <form class="track-controls">
+        <label>
+            Pitch
+            <input type="range" class="pitch-slider" min="440" max="4400" value="880" step="100">
+        </label>
+        <label>
+            Sustain
+            <input type="range" class="sustain-slider" min="0.01" max="0.5" value="0.05" step="0.01">
+        </label>
+    </form>
+    <div class="track-step-area"></div>
+</div>
+`;
 
     }
 
@@ -645,6 +659,11 @@ let lastNoteDrawn = 3;
 let trackStepAreas = document.getElementsByClassName('track-step-area');
 
 function draw() {
+
+    // todo: this will unnecessarily affect hidden steps/tracks. stop that (hopefully improves performance)
+    // when you stop, the highlight will stop in the current position, but when you start playing, it's always from the beginning.
+    // easiest fix is to call it play/stop(reset), and just remove all highlights upon stopping.
+
     let drawNote = lastNoteDrawn;
     let currentTime = audioContext.currentTime;
 
@@ -656,8 +675,8 @@ function draw() {
     // We only need to draw if the note has moved.
     if (lastNoteDrawn != drawNote) {
         for (let i = 0; i < trackStepAreas.length; i++) {
-            trackStepAreas[i].children[lastNoteDrawn].style.borderColor = 'hsla(0, 0%, 10%, 1)';
-            trackStepAreas[i].children[drawNote].style.borderColor = 'hsla(49, 99%, 50%, 1)';
+            trackStepAreas[i].children[lastNoteDrawn].classList.remove('highlight');
+            trackStepAreas[i].children[drawNote].classList.add('highlight');
         }
 
         lastNoteDrawn = drawNote;
@@ -747,10 +766,14 @@ stepGridElement = document.getElementById('stepgrid');
             requestAnimationFrame(draw); // start the drawing loop.
             this.dataset.playing = 'true';
 
+            this.classList.add('playing');
+
         } else {
 
             window.clearTimeout(timerID);
             this.dataset.playing = 'false';
+
+            this.classList.remove('playing');
 
         }
     })
