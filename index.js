@@ -640,6 +640,31 @@ function scheduler() {
 }
 
 
+let lastNoteDrawn = 3;
+
+let trackStepAreas = document.getElementsByClassName('track-step-area');
+
+function draw() {
+    let drawNote = lastNoteDrawn;
+    let currentTime = audioContext.currentTime;
+
+    while (notesInQueue.length && notesInQueue[0].time < currentTime) {
+        drawNote = notesInQueue[0].note;
+        notesInQueue.splice(0,1);   // remove note from queue
+    }
+
+    // We only need to draw if the note has moved.
+    if (lastNoteDrawn != drawNote) {
+        for (let i = 0; i < trackStepAreas.length; i++) {
+            trackStepAreas[i].children[lastNoteDrawn].style.borderColor = 'hsla(0, 0%, 10%, 1)';
+            trackStepAreas[i].children[drawNote].style.borderColor = 'hsla(49, 99%, 50%, 1)';
+        }
+
+        lastNoteDrawn = drawNote;
+    }
+    // set up to draw again
+    requestAnimationFrame(draw);
+}
 
 
 
@@ -719,7 +744,7 @@ stepGridElement = document.getElementById('stepgrid');
             currentNote = 0;
             nextNoteTime = audioContext.currentTime;
             scheduler(); // kick off scheduling
-            //requestAnimationFrame(draw); // start the drawing loop.
+            requestAnimationFrame(draw); // start the drawing loop.
             this.dataset.playing = 'true';
 
         } else {
