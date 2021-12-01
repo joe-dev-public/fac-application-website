@@ -1,6 +1,7 @@
 /*
 
     Todo:
+        - MOBILE! Step seq basically won't work. Completely change layout on mobile?
         - Highlight every 4th step in seq.
         - Stop the step sequencer width from growing too wide.
         - Improve views on narrow screens (mobile). Bit too spaced out atm.
@@ -282,17 +283,43 @@ footer {
 }
 
 #sequencer {
-    background-color: hsl(25, 46%, 21%);
+    /* background-color: hsl(25, 46%, 21%); */
+    /* background-color: hsl(25, 0%, 21%); */
+    background-color: hsl(25, 0%, 61%);
+    /* background: linear-gradient(0deg, hsl(25, 0%, 41%) 0%, hsl(25, 0%, 61%) 100%); */
     border-radius: 1rem;
-    color: whitesmoke;
+    /* color: whitesmoke; */
     padding: 1rem;
 }
 
 #sequencer-controls {
-    background-color: hsl(25, 56%, 31%);
+    /* background-color: hsl(25, 56%, 31%); */
+    /* background-color: hsl(0, 0%, 31%); */
+    background-color: hsl(0, 0%, 71%);
     border-radius: 0.5rem;
+    color: #000;
+    /* display: none; */
     /* margin: 0; */
     padding: 0.5rem;
+}
+
+#sequencer-controls label {
+    /* background-color: hsl(0, 0%, 80%); */
+    border-right: 2px solid hsl(25, 0%, 41%);
+    display: inline-block;
+    margin-right: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+/* #step-length {
+} */
+
+#number-of-tracks {
+    width: 3rem;
+}
+
+#number-of-steps {
+    width: 3rem;
 }
 
 #stepgrid {
@@ -302,7 +329,9 @@ footer {
 }
 
 .track {
-    background-color: hsl(25, 46%, 31%);
+    /* background-color: hsl(25, 46%, 31%); */
+    /* background-color: hsl(25, 0%, 31%); */
+    background-color: hsl(25, 0%, 71%);
     border-radius: 0.25rem;
     margin: 0.5rem 0 0 0;
     padding: 0.25rem;
@@ -310,8 +339,9 @@ footer {
 
 .track-controls {
     /* border: 1px solid black; */
-    color: hsl(25, 36%, 91%);
-    padding: 0.25rem;
+    /* color: hsl(25, 36%, 91%); */
+    /* color: hsl(25, 0%, 91%); */
+    padding: 0 0.25rem 0.25rem 0.25rem;
 }
 
 .track-controls label {
@@ -320,7 +350,9 @@ footer {
     /* padding: 0.25rem; */
 }
 
-.track-controls input[type=range] {
+#sequencer input[type=range] {
+    margin: 0 0 0 0.5rem;
+    padding: 0;
     position: relative;
     top: 0.3rem;
 }
@@ -333,8 +365,14 @@ footer {
 }
 
 .step {
-    border: 1px solid black;
-    color: hsl(25, 36%, 41%);
+    /* border: 3px outset hsl(25, 36%, 41%); */
+    border-color: hsl(25, 0%, 41%);
+    border-style: solid;
+    border-width: 2px;
+    /* border-style: outset; */
+    /* border-width: 3px; */
+    /* color: hsl(25, 36%, 41%); */
+    color: hsl(25, 0%, 51%);
     cursor: pointer;
     /* height: 2rem; */
     padding: 0.5rem;
@@ -343,14 +381,23 @@ footer {
     /* width: 1rem; */
 }
 
+.step:nth-child(4n+1) {
+    /* color: hsl(25, 36%, 51%); */
+    color: hsl(25, 0%, 41%);
+}
+
 .step-active {
-    background-color: hsl(180, 80%, 60%);
-    color: hsl(180, 80%, 40%);
+    /* background-color: hsl(180, 80%, 60%); */
+    background-color: hsl(46, 100%, 74%);
+    /* border-style: inset; */
+    /* color: hsl(180, 80%, 40%); */
+    /* color: hsl(46, 100%, 44%); */
 }
 
 .step.highlight {
-    background-color: hsl(33, 100%, 50%);
-    color: hsl(33, 100%, 70%);
+    background-color: hsl(180, 80%, 60%);
+    /* background-color: hsl(33, 100%, 50%); */
+    /* color: hsl(33, 100%, 70%); */
 }
 
 .step-active.highlight {
@@ -366,6 +413,14 @@ footer {
     padding: 0.5rem 1rem;
 }
 
-#play-button.playing {
+/* #play-button:hover {
     background-color: greenyellow;
+} */
+
+#play-button.playing {
+    background-color: hsl(84, 100%, 59%);
+}
+
+#play-button.playing:hover {
+    background-color: hsl(84, 100%, 49%);
 }

@@ -153,7 +153,11 @@
 
                 <section id="week-09-feature">
                     <h2>Week 09: Build a feature</h2>
-                    <p>Put info about the feature here. A basic step sequencer making use of the WebAudio API.</p>
+                    <p>The design below represents a simple step sequencer, like you might find in a (software) drum machine, etc.</p>
+                    <p>It won't make any sound ??(unless you click the button to load <em>evil, derivative code</em>)??, but is intended as an experiment in UI design.</p>
+                    <p>There are a number of options for ways to interact with it, which are based on mouse input.</p>
+                    <p>The purpose of this is to let you work out what combination of mouse inputs feels most fluid and natural for you.</p>
+                    <p>Some of the controls present won't do anything, but it's important to have a bit of extra chrome thrown in so that the UI feels more like a real-world example.</p>
                     <div id="sequencer">
 
                         <form id="sequencer-controls">
@@ -202,12 +206,12 @@
                                 </select>
                             </label>
                             <label>
-                                Number of steps:
-                                <input id="number-of-steps" type="number" min="1" max="32" value="16" step="1">
-                            </label>
-                            <label>
                                 Number of tracks:
                                 <input id="number-of-tracks" type="number" min="1" max="8" value="4" step="1">
+                            </label>
+                            <label>
+                                Number of steps:
+                                <input id="number-of-steps" type="number" min="1" max="32" value="16" step="1">
                             </label>
                         </form>
 
