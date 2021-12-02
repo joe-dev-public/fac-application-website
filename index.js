@@ -17,6 +17,7 @@
                 - (Would need to handle that with some other kind of intentional storage method, I guess?)
             - Maybe write a constructor or whatever to generate new oscillators on the fly for each track?
             - Hijack right click on step to erase, or do a different note velocity, etc?
+                - suppress right-click context menu *ONLY* if the mousedown originates in a step. (but regardless of where the mouse up event occurs)
 
         - Add buttons to "load (multi-line) examples" for the week 08 demos?
         - Tweak the squarify thing so that images take up as much width as they can? (i.e. they grow to fit the <li>, width-wise.)
@@ -39,6 +40,13 @@
             - And that you have access to whatever properties it has, in the DOM/CSSOM/whatever, regardless of what you can find documented?
             - (Or, these properties will be documented somewhere, but not in the most "obvious" place?)
         - Sigh. This just makes debugging a bit less fun, y'know? https://bugzilla.mozilla.org/show_bug.cgi?id=1615206
+
+        - It's not intuitive at first, but if you want to call a function with parameters when adding an event listener, this is one way to do it:
+            element.addEventListener('mouseenter', function(e) {
+                myFunction(e, param1, param2, etc);
+            });
+          An important downside being that you can't easily removeEventListener? (I mean, there's probably a way..)
+
 
 */
 
@@ -358,30 +366,37 @@ const maxNumberOfSteps = 32;
 const minNumberOfSteps = 1;
 
 
-function dragToggleThing(event) {
+function dragOverSteps(event) {
 
     // todo: add ui behaviour options so that dragging will always-on or toggle. also consider what mouse button is being used.
 
     if (event.buttons === 1){
-        // left-drag to activate
-        event.target.classList.add('step-active');
+
+        // left-drag
+
+        if (event.target.stepClickedActive === false){
+
+            // the step that the click-drag started from wasn't active, so the dragging will activate other steps (if that setting is enabled)
+
+            event.target.classList.add('step-active');
+
+        }
+
     } else if (event.buttons === 2){
-        // right drag to deactivate
-        event.target.classList.remove('step-active');
-        event.preventDefault(); // todo: stop default right-click context menu. code will belong in the mouseup/click bit, not here!
+
+        // right-drag
+
+        if (event.target.stepClickedActive === true){
+
+            // the step that the right-click-drag started from was active, so the dragging will deactivate other steps (if that setting is enabled)
+
+            event.target.classList.remove('step-active');
+
+        }
+
     }
 
-    // this is all "toggle" stuff:
-/*
-    // todo: DRY
-    let re1 = new RegExp(/step-active/);
-
-    if (re1.test(event.target.classList) === true) {
-        event.target.classList.remove('step-active');
-    } else {
-        event.target.classList.add('step-active');
-    }
-*/
+    // todo: middle-drag?
 
 }
 
@@ -399,28 +414,49 @@ function toggleStepActive(event) {
 
     let re1 = new RegExp(/step-active/);  // todo: DRY
 
+
+    let allStepElementsOnSameTrack = event.target.parentElement.children;
+
+    let re2 = new RegExp(/hidden/); // todo: DRY, this is repeated a lot!
+
+    // Set the active flag to false by default (arbitrary).
+    let active = false;
+
     // todo: add an option for not changing state of clicked step until mouse up.
     // to me, it feels weird if you mousedown on one, it changes, but then the DRAG will always-on the others. still, that's what this tool is for, working out what feels weird :)
     //
     // how about: mousedown to on, mousedown+up to off? that should def be an option.
     // I'm not sure if this is possible, logically! (maybe it does if you test for the current stage? it's like a latching physical switch?)
     if (re1.test(clickedStepElement.classList) === true) {
+
+        // The step that was clicked is currently active.
+        // Deactivate it, and change the active flag to true.
+
         clickedStepElement.classList.remove('step-active');
+        active = true;
+
     } else {
+
+        // The step that was clicked isn't currently active.
+        // Make it active (and leave the active flag at its default value of false).
+
         clickedStepElement.classList.add('step-active');
     }
 
     // Add listener for mouseenter on other visible steps on same track only, and act on them too
     // todo: make this "same track only" restriction optional. Some people might want to drag across multiple tracks...
 
-    let allStepElementsOnSameTrack = event.target.parentElement.children;
-
-    let re2 = new RegExp(/hidden/); // todo: DRY, this is repeated a lot!
-
     for (let i = 0; i < allStepElementsOnSameTrack.length; i++) {
+
         if (re2.test(allStepElementsOnSameTrack[i].classList) === false && allStepElementsOnSameTrack[i] != event.target){
-            allStepElementsOnSameTrack[i].addEventListener('mouseenter', dragToggleThing);
+
+            allStepElementsOnSameTrack[i].addEventListener('mouseenter', dragOverSteps);
+            // vintage SE stuff. https://stackoverflow.com/questions/256754/how-to-pass-arguments-to-addeventlistener-listener-function
+            // is using a parameter like this best practice? any downsides?
+            allStepElementsOnSameTrack[i].stepClickedActive = active;
+
         }
+
     }
 
 }
@@ -432,7 +468,7 @@ function removeDragStepToggleThing(event) {
 
     for (let i = 0; i < allStepElements.length; i++) {
 
-        allStepElements[i].removeEventListener('mouseenter', dragToggleThing);
+        allStepElements[i].removeEventListener('mouseenter', dragOverSteps);
 
     }
 
@@ -588,7 +624,7 @@ function makeNoise(time, pitch, sustain) {
 
     // https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode
 
-    var gainNode = audioContext.createGain();
+    let gainNode = audioContext.createGain();
 
     gainNode.gain.value = volume;
 
@@ -840,6 +876,7 @@ stepGridElement = document.getElementById('stepgrid');
     })
 
     // I don't know if this is best practice, but it works. (Would "window" be better? Does the lack of specificity of either cause a problem?)
+    // I don't think this approach has bad side-effects, but we'd have to be smarter to suppress right-click context menu *ONLY* if the mousedown originates in a step.
     document.addEventListener('mouseup', removeDragStepToggleThing);
 
 }
