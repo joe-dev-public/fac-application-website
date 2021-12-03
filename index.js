@@ -3,6 +3,10 @@
 /*
 
     Todo:
+    =====
+
+        - Code cleanup! DRY, function and variable names, etc.
+
         - Maybe add a checkbox to "load/unload code that 'was written by me', but was derived from example code written by someone else", with a note about how it affects functionality?
 
         - Step seq:
@@ -29,12 +33,18 @@
         - Basic validation on the objects stuff inputs.
 
         Low priority:
+        -------------
             - Tweak stringToObject, shoppingList string wrangling to handle ~less well-formed~ user input?
             - There may be unnecessary use of ".children" in prompts; remember you can use ELEMENT.getElementsByBlah, not just DOCUMENT.getElementsByBlah!
                 - Also querySelectorAll, and maybe other things :)
 
+            - Step seq accessibility: consider keyboard use?
+
+
 
     Notes:
+    ======
+
         - Why does HTMLElement.style.blah and dot notation like this in general work, and why am I struggling to find documentation for it?
             - Is it just that you're literally accessing the object, using dot notation? (Would bracket notation work? One test below suggests: yes!)
             - And that you have access to whatever properties it has, in the DOM/CSSOM/whatever, regardless of what you can find documented?
@@ -47,6 +57,14 @@
             });
           An important downside being that you can't easily removeEventListener? (I mean, there's probably a way..)
 
+        - For the contextmenu event, event.target seems to tell us where the mouseup occurs.
+            Is there any way to find out where the mouse *down* occured? (I'm guessing not.)
+
+        - For some reason, event.buttons will sometimes be 0 regardless of the button(s) pressed.
+            - If that happens, try event.button - hopefully it'll give the right values.
+            - There's big blue notes here: https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button
+            - and here: https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons
+            - which attempt to explain why, but I can't quite unpack it right now!
 
 */
 
@@ -365,6 +383,17 @@ const minNumberOfTracks = 1;
 const maxNumberOfSteps = 32;
 const minNumberOfSteps = 1;
 
+let isDragging = false;
+
+function activateStep(target) {
+    target.classList.add('step-active');
+}
+
+function deactivateStep(target) {
+    target.classList.remove('step-active');
+}
+
+
 
 function dragOverSteps(event) {
 
@@ -378,7 +407,7 @@ function dragOverSteps(event) {
 
             // the step that the click-drag started from wasn't active, so the dragging will activate other steps (if that setting is enabled)
 
-            event.target.classList.add('step-active');
+            activateStep(event.target);
 
         }
 
@@ -390,7 +419,7 @@ function dragOverSteps(event) {
 
             // the step that the right-click-drag started from was active, so the dragging will deactivate other steps (if that setting is enabled)
 
-            event.target.classList.remove('step-active');
+            deactivateStep(event.target);
 
         }
 
@@ -401,11 +430,22 @@ function dragOverSteps(event) {
 }
 
 
-function deactivateStep(event) {
 
-    event.target.classList.remove('step-active');
+function removeDragStepToggleThing(event) {
+
+    let allStepElements = document.getElementsByClassName('step');
+
+    for (let i = 0; i < allStepElements.length; i++) {
+
+        allStepElements[i].removeEventListener('mouseenter', dragOverSteps);
+
+    }
+
+    // This seems to work, but is it good practice?
+    document.removeEventListener('mouseup', removeDragStepToggleThing);
 
 }
+
 
 
 function toggleStepActive(event) {
@@ -422,25 +462,47 @@ function toggleStepActive(event) {
     // Set the active flag to false by default (arbitrary).
     let active = false;
 
+
     // todo: add an option for not changing state of clicked step until mouse up.
     // to me, it feels weird if you mousedown on one, it changes, but then the DRAG will always-on the others. still, that's what this tool is for, working out what feels weird :)
     //
     // how about: mousedown to on, mousedown+up to off? that should def be an option.
     // I'm not sure if this is possible, logically! (maybe it does if you test for the current stage? it's like a latching physical switch?)
-    if (re1.test(clickedStepElement.classList) === true) {
 
-        // The step that was clicked is currently active.
-        // Deactivate it, and change the active flag to true.
+    // todo: rejig logic here so you DRY
+    if (event.buttons === 1) {
 
-        clickedStepElement.classList.remove('step-active');
-        active = true;
+        // Primary button mousedown (usually left)
 
-    } else {
+        if (re1.test(clickedStepElement.classList) === true) {
 
-        // The step that was clicked isn't currently active.
-        // Make it active (and leave the active flag at its default value of false).
+            // The step that was clicked is currently active.
+            // Deactivate it, and change the active flag to true.
 
-        clickedStepElement.classList.add('step-active');
+            deactivateStep(clickedStepElement);
+
+            active = true;
+
+        } else {
+
+            // The step that was clicked isn't currently active.
+            // Make it active (and leave the active flag at its default value of false).
+
+            activateStep(clickedStepElement);
+
+        }
+
+    } else if (event.buttons === 2) {
+
+        // Secondary button mousedown (usually right)
+
+        // By default: an active step can be deactivated by right-clicking, and a deactivated step will be unaffected,
+        // *but* a right-drag to deactivate multiple steps at once can begin from a deactivated step.
+        if (re1.test(clickedStepElement.classList) === true) {
+            deactivateStep(clickedStepElement);
+            active = true;
+        }
+
     }
 
     // Add listener for mouseenter on other visible steps on same track only, and act on them too
@@ -459,20 +521,22 @@ function toggleStepActive(event) {
 
     }
 
+    /*  mousedown has already occured.
+        We want to ensure that the context menu won't appear on mouseup.
+        So, set an appropriate flag:
+    */
+    isDragging = true;
+
+    /*  Finally, add an event listener for mouseup on the document. We do this rather than just listen for mouseup on a step element because
+        the user could release the mouse when not over a step element (they could release it anywhere, and covering "document" covers every case?).
+
+        I don't know if using "document." is best practice, but it works. (Would "window." be better? Does the lack of specificity of either cause a problem?)
+        Note: there might be a simpler approach to this, similar to the isDragging approach above.
+    */
+    document.addEventListener('mouseup', removeDragStepToggleThing);
+
 }
 
-
-function removeDragStepToggleThing(event) {
-
-    let allStepElements = document.getElementsByClassName('step');
-
-    for (let i = 0; i < allStepElements.length; i++) {
-
-        allStepElements[i].removeEventListener('mouseenter', dragOverSteps);
-
-    }
-
-}
 
 
 function initTracks() {
@@ -537,11 +601,29 @@ function initSteps() {
     let allStepElements = document.getElementsByClassName('step');
 
     for (let i = 0; i < allStepElements.length; i++) {
-        // mousedown feels a lot more responsive than click
+
+        // todo: mousedown feels a lot more responsive than click, but make this configurable?
         allStepElements[i].addEventListener('mousedown', toggleStepActive);
-        //allStepElements[i].addEventListener('click', deactivateStep);
-        // todo: we can't just have the mouseup listen here, cos if you release the mouse OUTSIDE of one of these elements we still need to stop the drag thing from happening!
-        //allStepElements[i].addEventListener('mouseup', removeDragStepToggleThing);
+
+        /*  We are implementing a kind of drag interaction here.
+            (Might there might be a built in way to do it using https://developer.mozilla.org/en-US/docs/Web/API/DragEvent ? I haven't checked yet!)
+
+            In addition to the event listener for mousedown, we'll need one for mouseup, so that the dragging interaction can stop!
+            However, we can't add the mouseup listen here, because the user might release the mouse *outside* of a step element.
+            So we need a more general method that listens for the mouseup everywhere. That's currently implemented in the mousedown listener function.
+        */
+
+        /*
+            We don't want the context menu to appear if a user secondary-clicks a step, or if they secondary-drag from a step (and mouseup anywhere).
+            We *could* stop the context menu appearing when any step element is secondary-clicked by putting this here:
+
+            allStepElements[i].addEventListener('contextmenu', doNothing);
+
+            But that wouldn't stop the context menu opening if the user released the mouse (i.e. stopped dragging) *outside* of a step element.
+            So, we have a more general method in place to handle that case.
+            And as it also handles the mouseup-on-a-step-element case, we don't bother adding an event listener for contextmenu here.
+        */
+
     }
 
 }
@@ -606,6 +688,12 @@ function updateNumberOfVisibleSteps(event) {
 }
 
 
+
+/*
+    -------------------------------------------------------
+    Start of step seq playback stuff
+    -------------------------------------------------------
+*/
 
     // Lots of below pieced together from:
     // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Advanced_techniques ->
@@ -781,7 +869,26 @@ function draw() {
     requestAnimationFrame(draw);
 }
 
+/*
+    -------------------------------------------------------
+    End of step seq playback stuff
+    -------------------------------------------------------
+*/
 
+
+function conditionallyDisableContextMenu(event) {
+
+    // Note: this won't disable the context menu if the user releases a secondary-drag in certain parts of the browser, e.g. the window title bar! (But I think that's fine for now. :)
+
+    if (isDragging === true){
+
+        event.preventDefault();
+
+        isDragging = false;
+
+    }
+
+}
 
 
 function initStepSequencer() {
@@ -875,9 +982,7 @@ stepGridElement = document.getElementById('stepgrid');
         }
     })
 
-    // I don't know if this is best practice, but it works. (Would "window" be better? Does the lack of specificity of either cause a problem?)
-    // I don't think this approach has bad side-effects, but we'd have to be smarter to suppress right-click context menu *ONLY* if the mousedown originates in a step.
-    document.addEventListener('mouseup', removeDragStepToggleThing);
+    document.addEventListener('contextmenu', conditionallyDisableContextMenu);
 
 }
 
