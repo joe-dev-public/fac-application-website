@@ -188,6 +188,100 @@ section {
     margin-bottom: 4rem;
 }
 
+
+#about-me-timeline {
+    display: grid;
+    gap: 0.2rem;
+    grid-template-columns: repeat(22, 2rem);
+}
+
+#about-me-timeline div {
+    background-color: lightslategrey;
+    overflow: hidden;
+}
+
+#about-me-timeline .row-1 {
+    background-color: lightblue;
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#about-me-timeline .row-2 {
+    background-color: lightcoral;
+    grid-column-start: 4;
+    grid-column-end: 6;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+#about-me-timeline .row-3 {
+    background-color: lightcyan;
+    grid-column-start: 5;
+    grid-column-end: 7;
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+
+#about-me-timeline .row-4 {
+    background-color: lightgoldenrodyellow;
+    grid-column-start: 6;
+    grid-column-end: 9;
+    grid-row-start: 5;
+    grid-row-end: 6;
+}
+
+#about-me-timeline .row-5 {
+    background-color: lightgreen;
+    grid-column-start: 7;
+    grid-column-end: 14;
+    grid-row-start: 6;
+    grid-row-end: 7;
+}
+
+#about-me-timeline .row-6 {
+    background-color: lightgrey;
+    grid-column-start: 11;
+    grid-column-end: 15;
+    grid-row-start: 7;
+    grid-row-end: 8;
+}
+
+#about-me-timeline .row-7 {
+    background-color: lightpink;
+    grid-column-start: 14;
+    grid-column-end: 16;
+    grid-row-start: 8;
+    grid-row-end: 9;
+}
+
+#about-me-timeline .row-7-part-2 {
+    background-color: lightpink;
+    grid-column-start: 18;
+    grid-column-end: 22;
+    grid-row-start: 8;
+    grid-row-end: 9;
+}
+
+#about-me-timeline .row-8 {
+    background-color: lightsalmon;
+    grid-column-start: 15;
+    grid-column-end: 18;
+    grid-row-start: 9;
+    grid-row-end: 10;
+}
+
+#about-me-timeline .row-9 {
+    background-color: lightseagreen;
+    grid-column-start: 21;
+    grid-column-end: 23;
+    grid-row-start: 10;
+    grid-row-end: 11;
+}
+
+
+
 .gallery {
     display: flex;
     flex-wrap: wrap;
