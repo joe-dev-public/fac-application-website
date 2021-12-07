@@ -40,6 +40,8 @@
 
             - Step seq accessibility: consider keyboard use?
 
+            - Split this script into 3 different scripts, perhaps? "general stuff", "week 08", and "week 09"?
+
 
 
     Notes:
@@ -377,13 +379,20 @@ let numberOfTracksElement;
 
 let stepGridElement;
 
+// Declare objects to store settings elements and values
+let settingsElements = {};
+let settingsValues = {};
+
+// Hard-coding these for now
 const maxNumberOfTracks = 8;
 const minNumberOfTracks = 1;
-
 const maxNumberOfSteps = 32;
 const minNumberOfSteps = 1;
 
 let isDragging = false;
+
+const regexActiveStep = new RegExp(/step-active/);
+const regexHiddenStep = new RegExp(/hidden/);
 
 function activateStep(target) {
     target.classList.add('step-active');
@@ -393,21 +402,86 @@ function deactivateStep(target) {
     target.classList.remove('step-active');
 }
 
-
+function toggleStep(target) {
+    if (regexActiveStep.test(target.classList) === true){
+        deactivateStep(target);
+    } else {
+        activateStep(target);
+    }
+}
 
 function dragOverSteps(event) {
 
     // todo: add ui behaviour options so that dragging will always-on or toggle. also consider what mouse button is being used.
 
+    // todo: there might be a way to reduce duplicated code here, for where the actions to take are identical. Maybe later.
+
     if (event.buttons === 1){
 
-        // left-drag
+        // Primary-drag
 
-        if (event.target.stepClickedActive === false){
+        // todo: we potentially have a slightly tricky thing to handle here, which is that I might have created options which could sorta conflict with one another!
+        // e.g. the "single click" action could conflict with the "click-drag" action
+        // theoretically it's OK, but it relies on possibly modifying the state of the clicked step during the dragging process, which could look weird.
+        // Keep an eye out for this!
 
-            // the step that the click-drag started from wasn't active, so the dragging will activate other steps (if that setting is enabled)
+        if (event.target.stepClickedActive === true){
 
-            activateStep(event.target);
+            // The step that the click-drag started from *was* active
+
+            // Check settings to see what action to take.
+            switch (settingsValues['primary-button-active-drag']) {
+
+                case '1':
+                    // todo: This is *kinda* the same as "do nothing". Remove this option? Wait and see.
+                    // OK yeah, this is weird! it works nicely, but just feels very odd.
+                    // Technically you should combine the right click option with the right drag option to get the interaction you want
+                    // Great learning experience!
+                    deactivateStep(event.target.clickedStepElement);
+                    break;
+                case '2':
+                    deactivateStep(event.target.clickedStepElement);
+                    deactivateStep(event.target);
+                    break;
+                case '3':
+                    deactivateStep(event.target.clickedStepElement);
+                    activateStep(event.target);
+                    break;
+                case '4':
+                    deactivateStep(event.target.clickedStepElement);
+                    toggleStep(event.target);
+                case '5':
+                    // Do nothing
+                    break;
+
+            }
+
+        } else {
+
+            // The step that the click-drag started from *wasn't* active
+
+            switch (settingsValues['primary-button-inactive-drag']) {
+
+                case '1':
+                    activateStep(event.target.clickedStepElement);
+                    break;
+                case '2':
+                    activateStep(event.target.clickedStepElement);
+                    activateStep(event.target);
+                    break;
+                case '3':
+                    activateStep(event.target.clickedStepElement);
+                    deactivateStep(event.target);
+                    break;
+                case '4':
+                    activateStep(event.target.clickedStepElement);
+                    toggleStep(event.target);
+                case '5':
+                    // Do nothing
+                    break;
+
+            }
+
 
         }
 
@@ -417,15 +491,58 @@ function dragOverSteps(event) {
 
         if (event.target.stepClickedActive === true){
 
-            // the step that the right-click-drag started from was active, so the dragging will deactivate other steps (if that setting is enabled)
+            // the step that the right-click-drag started from was active
 
-            deactivateStep(event.target);
+            switch (settingsValues['secondary-button-active-drag']) {
+
+                case '1':
+                    deactivateStep(event.target.clickedStepElement);
+                    break;
+                case '2':
+                    deactivateStep(event.target.clickedStepElement);
+                    deactivateStep(event.target);
+                    break;
+                case '3':
+                    deactivateStep(event.target.clickedStepElement);
+                    activateStep(event.target);
+                    break;
+                case '4':
+                    deactivateStep(event.target.clickedStepElement);
+                    toggleStep(event.target);
+                case '5':
+                    // Do nothing
+                    break;
+
+            }
+
+        } else {
+
+            switch (settingsValues['secondary-button-inactive-drag']) {
+
+                case '1':
+                    deactivateStep(event.target.clickedStepElement);
+                    break;
+                case '2':
+                    deactivateStep(event.target.clickedStepElement);
+                    deactivateStep(event.target);
+                    break;
+                case '3':
+                    deactivateStep(event.target.clickedStepElement);
+                    activateStep(event.target);
+                    break;
+                case '4':
+                    deactivateStep(event.target.clickedStepElement);
+                    toggleStep(event.target);
+                case '5':
+                    // Do nothing
+                    break;
+
+            }
 
         }
 
     }
 
-    // todo: middle-drag?
 
 }
 
@@ -448,47 +565,47 @@ function removeDragStepToggleThing(event) {
 
 
 
-function toggleStepActive(event) {
+function mousedownOnStep(event) {
 
     let clickedStepElement = event.target;
 
-    let re1 = new RegExp(/step-active/);  // todo: DRY
-
-
     let allStepElementsOnSameTrack = event.target.parentElement.children;
 
-    let re2 = new RegExp(/hidden/); // todo: DRY, this is repeated a lot!
-
-    // Set the active flag to false by default (arbitrary).
+    // Set the active flag to false by default (it's arbitrary whether to default to true or false and check for the opposite).
     let active = false;
 
+    // First, check to see if the clicked step was active, and if so, set the active flag to true.
+    // This is checked by the mouseenter event listener on all the steps that weren't clicked, and can be set regardless of what action to take.
+    if (regexActiveStep.test(clickedStepElement.classList) === true) {
+        active = true;
+    }
 
+    // out of date notes to sort:
     // todo: add an option for not changing state of clicked step until mouse up.
     // to me, it feels weird if you mousedown on one, it changes, but then the DRAG will always-on the others. still, that's what this tool is for, working out what feels weird :)
     //
     // how about: mousedown to on, mousedown+up to off? that should def be an option.
-    // I'm not sure if this is possible, logically! (maybe it does if you test for the current stage? it's like a latching physical switch?)
+    // I think this is logically possible, if you test for the current stage? it's like a latching physical switch?
 
-    // todo: rejig logic here so you DRY
+    // ? todo: rejig logic here so you DRY
     if (event.buttons === 1) {
 
-        // Primary button mousedown (usually left)
+        // Primary button (usually left) mousedown 
 
-        if (re1.test(clickedStepElement.classList) === true) {
+        // Check settings to see what action to take.
+        switch (settingsValues['primary-button-single-click']) {
 
-            // The step that was clicked is currently active.
-            // Deactivate it, and change the active flag to true.
-
-            deactivateStep(clickedStepElement);
-
-            active = true;
-
-        } else {
-
-            // The step that was clicked isn't currently active.
-            // Make it active (and leave the active flag at its default value of false).
-
-            activateStep(clickedStepElement);
+            case '1':
+                toggleStep(clickedStepElement);
+                break;
+            case '2':
+                activateStep(clickedStepElement);
+                break;
+            case '3':
+                deactivateStep(clickedStepElement);
+                break;
+            case '4':
+                break;
 
         }
 
@@ -496,11 +613,21 @@ function toggleStepActive(event) {
 
         // Secondary button mousedown (usually right)
 
-        // By default: an active step can be deactivated by right-clicking, and a deactivated step will be unaffected,
-        // *but* a right-drag to deactivate multiple steps at once can begin from a deactivated step.
-        if (re1.test(clickedStepElement.classList) === true) {
-            deactivateStep(clickedStepElement);
-            active = true;
+        // As above: check settings to determine what action to take.
+        switch (settingsValues['secondary-button-single-click']) {
+
+            case '1':
+                toggleStep(clickedStepElement);
+                break;
+            case '2':
+                activateStep(clickedStepElement);
+                break;
+            case '3':
+                deactivateStep(clickedStepElement);
+                break;
+            case '4':
+                break;
+
         }
 
     }
@@ -510,12 +637,16 @@ function toggleStepActive(event) {
 
     for (let i = 0; i < allStepElementsOnSameTrack.length; i++) {
 
-        if (re2.test(allStepElementsOnSameTrack[i].classList) === false && allStepElementsOnSameTrack[i] != event.target){
+        if (regexHiddenStep.test(allStepElementsOnSameTrack[i].classList) === false && allStepElementsOnSameTrack[i] != clickedStepElement){
 
             allStepElementsOnSameTrack[i].addEventListener('mouseenter', dragOverSteps);
             // vintage SE stuff. https://stackoverflow.com/questions/256754/how-to-pass-arguments-to-addeventlistener-listener-function
             // is using a parameter like this best practice? any downsides?
             allStepElementsOnSameTrack[i].stepClickedActive = active;
+
+            // todo: the main downside to this approach is that we act on the originally-clicked step for EVERY mouseenter that follows.
+            // Really we want to do this once at mousedown, and stop. Possible?
+            allStepElementsOnSameTrack[i].clickedStepElement = clickedStepElement;
 
         }
 
@@ -554,9 +685,12 @@ function initTracks() {
             html += ` hidden`; // is this necessary given the updatevisible thing is called below?
         }
 
+
         html += `
 ">
     <form class="track-controls">
+        Track ${i}
+        <!--
         <label>
             Pitch
             <input type="range" class="pitch-slider" min="440" max="4400" value="880" step="100">
@@ -565,10 +699,12 @@ function initTracks() {
             Sustain
             <input type="range" class="sustain-slider" min="0.01" max="0.5" value="0.05" step="0.01">
         </label>
+        -->
     </form>
     <div class="track-step-area"></div>
 </div>
 `;
+
 
     }
 
@@ -603,7 +739,7 @@ function initSteps() {
     for (let i = 0; i < allStepElements.length; i++) {
 
         // todo: mousedown feels a lot more responsive than click, but make this configurable?
-        allStepElements[i].addEventListener('mousedown', toggleStepActive);
+        allStepElements[i].addEventListener('mousedown', mousedownOnStep);
 
         /*  We are implementing a kind of drag interaction here.
             (Might there might be a built in way to do it using https://developer.mozilla.org/en-US/docs/Web/API/DragEvent ? I haven't checked yet!)
@@ -696,8 +832,7 @@ function updateNumberOfVisibleSteps(event) {
 */
 
     // Lots of below pieced together from:
-    // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Advanced_techniques ->
-    // https://www.html5rocks.com/en/tutorials/audio/scheduling/
+
 
 
     // create web audio api context
@@ -891,12 +1026,62 @@ function conditionallyDisableContextMenu(event) {
 }
 
 
-function initStepSequencer() {
+function updateStepSeqSettings(event) {
 
-numberOfStepsElement = document.getElementById('number-of-steps');
-numberOfTracksElement = document.getElementById('number-of-tracks');
+    // We're not allowing multiple selections, so [0] should be OK. Is there another reason it might be bad to use?
+    settingsValues[event.target.id] = event.target.selectedOptions[0].value;
 
-stepGridElement = document.getElementById('stepgrid');
+}
+
+
+function initStepSeqSettings() {
+
+    // Keep settings element names and IDs in an array for ease of writing and maintenance.
+    // Todo: the end game here is an object that has all the settings and their possible states stored in one place, for populating the HTML. Much easier to maintain!
+    let settings = [
+        'primary-button-single-click',
+        'primary-button-active-drag',
+        'primary-button-inactive-drag',
+        'secondary-button-single-click',
+        'secondary-button-active-drag',
+        'secondary-button-inactive-drag'
+    ];
+
+
+    // Keep the elements themselves in another object.
+    // Currently set up to handle <select> settings only!
+    // Todo: change this so it can handle other kinds of settings inputs?
+    settings.forEach( element => {
+
+        settingsElements[element] = document.getElementById(element);
+
+        settingsElements[element].addEventListener('input', updateStepSeqSettings);
+
+    });
+
+
+    for (const [key, val] of Object.entries(settingsElements)) {
+
+        for (let i = 0; i < val.selectedOptions.length; i++){
+
+            settingsValues[key] = val.selectedOptions[i].value;
+
+        }
+
+    }
+
+
+}
+
+
+function initStepSeq() {
+
+    initStepSeqSettings();
+
+    numberOfStepsElement = document.getElementById('number-of-steps');
+    numberOfTracksElement = document.getElementById('number-of-tracks');
+
+    stepGridElement = document.getElementById('stepgrid');
 
     initTracks();
     initSteps();
@@ -912,75 +1097,6 @@ stepGridElement = document.getElementById('stepgrid');
     const inputEvent = new InputEvent('input');
     numberOfStepsElement.dispatchEvent(inputEvent);
     numberOfTracksElement.dispatchEvent(inputEvent);
-
-    //makeNoise();
-
-    const volumeControl = document.getElementById('volume');
-    volumeControl.addEventListener('input', function() {
-        volume = Number(this.value);
-    }, false);
-
-    const tempoReadout = document.getElementById('tempo-readout');
-
-    const bpmControl = document.getElementById('bpm');
-    bpmControl.addEventListener('input', function() {
-        tempo = Number(this.value);
-        tempoReadout.innerHTML = tempo; // todo: make this not a quick hack :)
-    }, false);
-
-    const stepLengthElement = document.getElementById('step-length');
-    stepLengthElement.addEventListener('input', function() {
-        stepLength = Number(this.value);
-    }, false);
-
-
-    // todo: don't hard code this to one track. 
-    let pitchSliderElement = trackElements[0].getElementsByClassName('pitch-slider')[0];
-    pitchSliderElement.addEventListener('input', function() {
-        pitch = Number(this.value);
-    }, false);
-
-    let sustainSliderElement = trackElements[0].getElementsByClassName('sustain-slider')[0];
-    sustainSliderElement.addEventListener('input', function() {
-        sustain = Number(this.value);
-    }, false);
-
-    bpmControl.dispatchEvent(inputEvent);
-    pitchSliderElement.dispatchEvent(inputEvent);
-    sustainSliderElement.dispatchEvent(inputEvent);
-
-    const playButton = document.getElementById('play-button');
-
-    let isPlaying = false;
-
-    playButton.addEventListener('click', function() {
-
-        isPlaying = !isPlaying;
-
-        if (isPlaying) { // start playing
-
-            // check if context is in suspended state (autoplay policy)
-            if (audioContext.state === 'suspended') {
-                audioContext.resume();
-            }
-
-            currentNote = 0;
-            nextNoteTime = audioContext.currentTime;
-            scheduler(); // kick off scheduling
-            requestAnimationFrame(draw); // start the drawing loop.
-            this.dataset.playing = 'true';
-
-            this.classList.add('playing');
-
-        } else {
-
-            window.clearTimeout(timerID);
-            this.dataset.playing = 'false';
-
-            this.classList.remove('playing');
-
-        }
-    })
 
     document.addEventListener('contextmenu', conditionallyDisableContextMenu);
 
@@ -1011,7 +1127,7 @@ function windowLoaded() {
 
     initWeek08();
 
-    initStepSequencer();
+    initStepSeq();
 
     //const squarifyElement = document.getElementById('squarify');
     //squarifyElement.addEventListener('input', makeGallerySquare);

@@ -1,14 +1,20 @@
 /*
 
     Todo:
-        - MOBILE! Step seq basically won't work. Completely change layout on mobile?
-        - Highlight every 4th step in seq.
+    =====
+        - MOBILE! Step seq won't work in current form. Completely change layout on mobile, or just hide it?
         - Stop the step sequencer width from growing too wide.
         - Improve views on narrow screens (mobile). Bit too spaced out atm.
         - Tweak little things to improve spacing, etc. slightly.
             - e.g. give <h2> top margin so that the gap matches the sticky nav. (You'll need to adjust other margins if you do this, ofc.)
 
-    Notes:
+        Low priority:
+        -------------
+            - Improve highlight of every 4th seq step?
+
+
+    Notes/what I learned:
+    =====================
         - Don't forget the % symbols with hsl colour triplets :)
         - position: sticky. How things have changed!
 
@@ -187,6 +193,20 @@ a:hover {
 section {
     margin-bottom: 4rem;
 }
+
+/* a.footnote strong {
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+a.footnote:hover {
+    color: red;
+    text-decoration: none;
+}
+
+a.footnote:hover strong {
+    content: "\29EB";
+} */
 
 
 #about-me-timeline {
@@ -372,8 +392,50 @@ section {
     min-height: 8rem;
 }
 
-footer {
-    border-top: 1px solid hsl(0, 0%, 80%);
+#week-09-feature {
+    /* overflow: scroll; */
+}
+
+
+/*
+
+    ----------------------------------------------------------------
+    Sequencer stuff
+    ----------------------------------------------------------------
+
+*/
+
+#sequencer-settings {
+    background-color: whitesmoke;
+    border-radius: 0.5rem;
+    display: flex;
+    margin: 0 0 1rem 0;
+    padding: 0;
+}
+
+#sequencer-settings fieldset {
+    background-color: lightsteelblue;
+    border: none;
+    border-radius: 0.25rem;
+    display: block;
+    margin: 0.5rem 0 0.5rem 0.5rem;
+    padding: 0.5rem;
+}
+
+#sequencer-settings fieldset .setting-section {
+    display: block;
+    font-weight: bold;
+    margin: 0;
+}
+
+#sequencer-settings label {
+    display: block;
+    margin: 0.75rem 0 0 0;
+}
+
+#sequencer-settings label select {
+    /* display: block; */
+    /* margin: 0 0 0.5rem 0; */
 }
 
 #sequencer {
@@ -405,16 +467,22 @@ footer {
     padding-right: 0.5rem;
 }
 
-/* #step-length {
-} */
+#sequencer-controls input[type=number] {
+    border: none;
+    font-family: 'Space Mono', monospace;
+    margin: 0;
+    /* padding: 0 0 0 0.5rem; */
+    text-align: center;
+    width: 3rem;
+}
 
-#number-of-tracks {
+/* #number-of-tracks {
     width: 3rem;
 }
 
 #number-of-steps {
     width: 3rem;
-}
+} */
 
 #stepgrid {
     display: grid;
@@ -518,3 +586,17 @@ footer {
 #play-button.playing:hover {
     background-color: hsl(84, 100%, 49%);
 }
+
+/*
+
+    ----------------------------------------------------------------
+    End of sequencer stuff
+    ----------------------------------------------------------------
+
+*/
+
+
+footer {
+    border-top: 1px solid hsl(0, 0%, 80%);
+}
+

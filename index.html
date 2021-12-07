@@ -47,7 +47,8 @@
         <div id="everything">
 
             <header>
-                <h1>Joe's Founders and Coders application website</h1>
+                <h2><em>Will</em> the "world wide web" be a big deal?</h2>
+                <h1><strong>Joe</strong> is applying to <strong>Founders and Coders</strong> to find out</h1>
                 <p>A short piece of text explaining what this website is and who made it.</p>
             </header>
 
@@ -138,6 +139,25 @@
                 <section id="the-weekly-prompts">
                     <h2>The weekly prompts</h2>
                     <!-- todo: use a grid for this? cols: link, week, title, tools, source, notes? the funny thing is what I *actually* want is a _table_.. heh. -->
+                    <!-- todo: add images? -->
+                    <!--
+                        <li>
+                            <img src="images/week01.png">
+                            <span>Week 01: Functions</span>
+                        </li>
+                        <li>
+                            <img src="images/week02.png">
+                            <span>Week 02: Number functions</span>
+                        </li>
+                        <li>
+                            <img src="images/week03.png">
+                            <span>Week 03: DOM Manipulation</span>
+                        </li>
+                        <li>
+                            <img src="images/week04.png">
+                            <span>Week 04: Arrays and array methods</span>
+                        </li>
+                    -->
                     <ul>
                         <li><a href="https://replit.com/@joedevpublic/FandC-Prompts-Week-01-Functions"><strong>Week 01:</strong> Functions</a> (replit)</li>
                         <li><a href="https://replit.com/@joedevpublic/FandC-Prompts-Week-02-Number-functions"><strong>Week 02:</strong> Number functions</a> (replit)</li>
@@ -190,85 +210,121 @@
                     </div>
                 </section>
 
+
                 <section id="week-09-feature">
+
                     <h2>Week 09: Build a feature</h2>
+
                     <p>The design below represents a simple step sequencer, like you might find in a (software) drum machine, etc.</p>
-                    <p>It won't make any sound<a>[footnote link]</a>, but is intended as a simple exploration of UI design.</p>
+                    <p>It won't make any sound<a href="#footnote-1-text" id="footnote-1" class="footnote"><sup><strong>&loz;</strong></sup></a>, but is intended as a simple exploration of UI design.</p>
                     <p>There are some options for ways to interact with it, which are based on mouse input.</p>
                     <p>The purpose of this is to let you work out what combination of mouse inputs feels most fluid and natural for you.</p>
+                    <p>The default options selected below are what the author likes, but you might like something else! :)</p>
                     <p>It won't work with a touchscreen device yet, as that's outside the scope of this feature for now.</p>
-                    <p>Try clicking a step to toggle it on or off.</p>
+                    <p>Try clicking a step to toggle it on or off. Steps toggled on are considered "active", and off are considered "inactive".</p>
                     <!-- <p>Some of the controls present won't do anything, but it's important to have a bit of extra chrome thrown in so that the UI feels more like a real-world example.</p> -->
+
                     <form id="sequencer-settings">
+
+                        <!-- primary mouse button section -->
                         <fieldset>
-                            <label>Primary mouse button</label>
-                            <label>Single click</label>
-                            <select><!-- populate these options from JS? -->
-                                <option>Toggles step on/off</option>
-                                <option>Always turns step on</option>
-                                <option>Always turns step off</option>
-                                <option>Does nothing</option>
+                            <label class="setting-section">Primary mouse button</label>
+                            <label>
+                                Single click:
+                            </label>
+                            <select id="primary-button-single-click"><!-- todo? populate these options from JS? -->
+                                <option value="1" selected>Toggle step on/off</option>
+                                <option value="2">Always turn step on</option>
+                                <option value="3">Always turn step off</option>
+                                <option value="4">Do nothing</option>
                             </select>
-                            <label>Click-drag</label>
-                            <select><!-- populate these options from JS? -->
-                                <option>Toggles steps on/off</option>
-                                <option>Always turns steps on</option>
-                                <option>Always turns steps off</option>
-                                <option>Does nothing</option>
+                            <label>
+                                Click-drag from an active step:
+                            </label>
+                            <select id="primary-button-active-drag">
+                                <!-- todo: we're theoretically missing options here, but they're really bad! e.g. "ignore clicked step and do ... to dragged steps" -->
+                                <option value="1" selected>Turn off clicked step only</option><!-- Remove this?! See JS for comments -->
+                                <option value="2">Turn off clicked step and any other active steps</option>
+                                <optgroup label="These might feel unusual!">
+                                    <option value="3">Turn off clicked step and turn on any inactive steps</option>
+                                    <option value="4">Turn off clicked step and toggle other steps</option>
+                                </optgroup>
+                                <option value="5">Do nothing</option>
                             </select>
-                            <input type="checkbox">Primary click-drag works across tracks
+                            <label>
+                                Click-drag from an inactive step:
+                            </label>
+                            <select id="primary-button-inactive-drag">
+                                <option value="1">Turn on clicked step only</option>
+                                <option value="2" title='aka "left-drag to paint"' selected>Turn on clicked step and any other inactive steps</option>
+                                <optgroup label="These might feel unusual!">
+                                    <option value="3">Turn on clicked step and turn off any active steps</option>
+                                    <option value="4">Turn on clicked step and toggle other steps</option>
+                                </optgroup>
+                                <option value="5">Do nothing</option>
+                            </select>
                         </fieldset>
+                        <!-- end of primary mouse button section -->
+
+                        <!-- secondary mouse button section -->
                         <fieldset>
-                            <label>Secondary mouse button</label>
-                            <label>Single click</label>
-                            <select><!-- populate these options from JS? -->
-                                <option>Toggles step on/off</option>
-                                <option>Always turns step on</option>
-                                <option>Always turns step off</option>
-                                <option>Does nothing</option>
+                            <label class="setting-section">Secondary mouse button</label>
+                            <label>
+                                Single click:
+                            </label>
+                            <select id="secondary-button-single-click">
+                                <option value="1">Toggle step on/off</option>
+                                <option value="2">Always turn step on</option>
+                                <option value="3" selected>Always turn step off</option>
+                                <option value="4">Do nothing</option>
                             </select>
-                            <label>Click-drag</label>
-                            <select><!-- populate these options from JS? -->
-                                <option>Toggles steps on/off</option>
-                                <option>Always turns steps on</option>
-                                <option>Always turns steps off</option>
-                                <option>Does nothing</option>
+                            <label>
+                                Click-drag from an active step:
+                            </label>
+                            <select id="secondary-button-active-drag">
+                                <option value="1">Turn off clicked step only</option>
+                                <option value="2" title='aka "right-drag to erase"' selected>Turn off clicked step and any other active steps</option>
+                                <optgroup label="These might feel unusual!">
+                                    <option value="3">Turn off clicked step and turn on any inactive steps</option>
+                                    <option value="4">Turn off clicked step and toggle other steps</option>
+                                </optgroup>
+                                <option value="5">Do nothing</option>
                             </select>
-                            <input type="checkbox">Secondary click-drag works across tracks
+                            <label>
+                                Click-drag from an inactive step:
+                            </label>
+                            <select id="secondary-button-inactive-drag">
+                                <option value="1">Turn on clicked step only</option>
+                                <option value="2">Turn on clicked step and any other inactive steps</option>
+                                <optgroup label="These might feel unusual!">
+                                    <option value="3">Turn on clicked step and turn off any active steps</option>
+                                    <option value="4">Turn on clicked step and toggle other steps</option>
+                                </optgroup>
+                                <option value="5" selected>Do nothing</option>
+                            </select>
                         </fieldset>
+                        <!-- end of secondary mouse button section -->
+
+                        <fieldset>
+                            <input type="button" value="reset" title="This should hopefully feel.. fairly normal?">
+                            <input type="button" value="primary-only" title="Toggle, paint and erase with the primary button only">
+                            <!-- todo: maybe add a button or two here to load a "totally weird" preset? :) -->
+                        </fieldset>
+
                     </form>
+                    <!-- end of sequencer settings form -->
+
                     <div id="sequencer">
 
                         <form id="sequencer-controls">
+                            <!--
                             <button type="button" id="play-button">Play/stop</button>
                             <label>
                                 Volume:
-                                <input type="range" id="volume" min="0" max="0.5" step="0.01" value="0.1"><!-- safe max vol of 0.5 for now... -->
+                                <input type="range" id="volume" min="0" max="0.5" step="0.01" value="0.1">
                             </label>
                             <label>
                                 Time sig: [locked at 4/4 for now]
-                                <!--
-                                <select id="time-sig-numerator">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4" selected>4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                </select>/
-                                <select id="time-sig-denominator">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4" selected>4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                </select>
-                                -->
                             </label>
                             <label>
                                 Tempo in BPM:
@@ -284,6 +340,7 @@
                                     <option value="0.03125">1/32</option>
                                 </select>
                             </label>
+                            -->
                             <label>
                                 Number of tracks:
                                 <input id="number-of-tracks" type="number" min="1" max="8" value="4" step="1">
@@ -297,64 +354,25 @@
                         <div id="stepgrid"></div>
 
                     </div>
-                    <!--
-                    <label><input id="squarify" type="checkbox" value="foo">Squarify</label>
-                    <ul class="gallery" id="gallery-square">
-                        <li>
-                            <img src="images/week01.png">
-                            <span>Week 01: Functions</span>
-                        </li>
-                        <li>
-                            <img src="images/week02.png">
-                            <span>Week 02: Number functions</span>
-                        </li>
-                        <li>
-                            <img src="images/week03.png">
-                            <span>Week 03: DOM Manipulation</span>
-                        </li>
-                        <li>
-                            <img src="images/week04.png">
-                            <span>Week 04: Arrays and array methods</span>
-                        </li>
-                        <li>
-                            <img src="images/1.jpg">
-                            <span>Dreamland</span>
-                        </li>
-                        <li>
-                            <img src="images/2.jpg">
-                            <span>Sunset</span>
-                        </li>
-                        <li>
-                            <img src="images/3.jpg">
-                            <span>Caution</span>
-                        </li>
-                        <li>
-                            <img src="images/4.jpg">
-                            <span>Harbour</span>
-                        </li>
-                        <li>
-                            <img src="images/5.jpg">
-                            <span>Coastline</span>
-                        </li>
-                        <li>
-                            <img src="images/6.jpg">
-                            <span>Crescent</span>
-                        </li>
-                        <li>
-                            <img src="images/7.jpg">
-                            <span>Cat</span>
-                        </li>
-                    </ul>
-                -->
+
                 </section>
 
             </main>
 
             <footer>
-                <p>This is some text that will go in the footer.</p>
                 <p>Footnotes</p>
-                <p>Footnote about sequencer not making sound: I implemented some basic noise-making functionality, based on these examples. While I understood the concepts and most of the code I was writing, I don't think that I've properly understood an example unless I can change it/rewrite it/write it from scratch to do whatever I want. In this case, with the time constraints I gave myself, I couldn't, so I didn't think it was fair to call the noise-making code "code I've written", as per the FAC spec for the application website.</p>
-                <p>Return to where you came from link(s)</p>
+                <hr>
+                <p id="footnote-1-text">
+                    I implemented some basic noise-making functionality, based on <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Advanced_techniques">these</a> <a href="https://www.html5rocks.com/en/tutorials/audio/scheduling/">examples</a>.
+                </p>
+                <p>
+                    While I understood the concepts and most of the code I was writing, I don't think that I've properly understood an example unless I can change it/rewrite it/write it from scratch to do "whatever I want".
+                </p>
+                <p>
+                    In this case, with the time constraints I gave myself, I couldn't, so I didn't think it was fair to call the noise-making code "code I've written", as per the FAC spec for the application website.
+                </p>
+                <p>[return to where you came from link?]</p>
+                <hr>
             </footer>
 
         </div>
