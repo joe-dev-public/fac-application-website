@@ -78,6 +78,7 @@
                 <section id="about-me">
                     <h2>About me</h2>
                     <h3>In summary</h3>
+                    <p></p>
                     <div id="about-me-timeline">
                         <!-- 21 columns, ~10+ rows? -->
                         <div>00</div>
@@ -118,8 +119,8 @@
                 <section id="why-am-i-applying">
                     <h2>Why am I applying for this programme?</h2>
                     <ul>
-                        <li>To learn things alongside peers in a supportive environment.</li>
-                        <li>To meet likeminded people and build things in a collaborative environment.</li>
+                        <li>To learn things alongside peers in a mutually supportive environment.</li>
+                        <li>To meet likeminded people and build things collaboratively.</li>
                         <li>To restart my career as a developer.</li>
                         <li>Because F&C seem like they care about things which are important to me.</li>
                         <li>Because I enjoy the opportunity to help others learn, and appreciate how this can improve my understanding of things.</li>
@@ -130,8 +131,7 @@
                     <h2>Hyperlinks to other sites on the world wide web</h2>
                     <ul>
                         <li>The <a href="https://github.com/joe-dev-public/fac-application-website">Microsoft GitHub repository</a> that contains the code for this site</li>
-                        <li><a href="https://www.freecodecamp.org/joe-dev-public">My <em>public</em> freeCodeCamp profile</a></li>
-                        <li>The <a href="about:blank">many external libraries</a> used to produce this site</li>
+                        <li><a href="https://www.freecodecamp.org/joe-dev-public">My freeCodeCamp profile</a></li>
                     </ul>
                 </section>
 
@@ -193,10 +193,12 @@
                 <section id="week-09-feature">
                     <h2>Week 09: Build a feature</h2>
                     <p>The design below represents a simple step sequencer, like you might find in a (software) drum machine, etc.</p>
-                    <p>It won't make any sound ??(unless you click the button to load <em>evil, derivative code</em>)??, but is intended as an experiment in UI design.</p>
-                    <p>There are a number of options for ways to interact with it, which are based on mouse input.</p>
+                    <p>It won't make any sound<a>[footnote link]</a>, but is intended as a simple exploration of UI design.</p>
+                    <p>There are some options for ways to interact with it, which are based on mouse input.</p>
                     <p>The purpose of this is to let you work out what combination of mouse inputs feels most fluid and natural for you.</p>
-                    <p>Some of the controls present won't do anything, but it's important to have a bit of extra chrome thrown in so that the UI feels more like a real-world example.</p>
+                    <p>It won't work with a touchscreen device yet, as that's outside the scope of this feature for now.</p>
+                    <p>Try clicking a step to toggle it on or off.</p>
+                    <!-- <p>Some of the controls present won't do anything, but it's important to have a bit of extra chrome thrown in so that the UI feels more like a real-world example.</p> -->
                     <form id="sequencer-settings">
                         <fieldset>
                             <label>Primary mouse button</label>
@@ -350,6 +352,9 @@
 
             <footer>
                 <p>This is some text that will go in the footer.</p>
+                <p>Footnotes</p>
+                <p>Footnote about sequencer not making sound: I implemented some basic noise-making functionality, based on these examples. While I understood the concepts and most of the code I was writing, I don't think that I've properly understood an example unless I can change it/rewrite it/write it from scratch to do whatever I want. In this case, with the time constraints I gave myself, I couldn't, so I didn't think it was fair to call the noise-making code "code I've written", as per the FAC spec for the application website.</p>
+                <p>Return to where you came from link(s)</p>
             </footer>
 
         </div>
