@@ -520,18 +520,18 @@ function dragOverSteps(event) {
             switch (settingsValues['secondary-button-inactive-drag']) {
 
                 case '1':
-                    deactivateStep(event.target.clickedStepElement);
+                    activateStep(event.target.clickedStepElement);
                     break;
                 case '2':
-                    deactivateStep(event.target.clickedStepElement);
-                    deactivateStep(event.target);
-                    break;
-                case '3':
-                    deactivateStep(event.target.clickedStepElement);
+                    activateStep(event.target.clickedStepElement);
                     activateStep(event.target);
                     break;
+                case '3':
+                    activateStep(event.target.clickedStepElement);
+                    deactivateStep(event.target);
+                    break;
                 case '4':
-                    deactivateStep(event.target.clickedStepElement);
+                    activateStep(event.target.clickedStepElement);
                     toggleStep(event.target);
                 case '5':
                     // Do nothing

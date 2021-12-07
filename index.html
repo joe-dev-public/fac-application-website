@@ -9,8 +9,15 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
         <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
+
+        <!-- Testing silly handwriting styles for the header: -->
+        <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+
 
         <link href="style.css" rel="stylesheet">
         <script src="index.js"></script>
@@ -48,10 +55,11 @@
 
             <header>
                 <h2><em>Will</em> the "world wide web" be a big deal?</h2>
-                <h1><strong>Joe</strong> is applying to <strong>Founders and Coders</strong> to find out</h1>
+                <h1><strong>Joe</strong> is applying to <strong><s>Fl</s>Founders and Coders</strong> to find out.</h1>
                 <p>A short piece of text explaining what this website is and who made it.</p>
             </header>
 
+            <div id="middle">
 
             <nav>
                 <a id="main-nav-menu-button" href="#">Menu</a> <!-- Is it best to use <a> for this, or something else? <h2> is one idea. -->
@@ -71,6 +79,7 @@
                     </li>
                     <li><a href="#week-09-feature">Week 09: Build a feature</a></li>
                 </ol>
+                <a id="return-to-top" href="#everything">&uparrow; Return to top</a>
             </nav>
 
 
@@ -78,32 +87,32 @@
 
                 <section id="about-me">
                     <h2>About me</h2>
-                    <h3>In summary</h3>
+                    <h3>The last 21 years:</h3>
                     <p></p>
                     <div id="about-me-timeline">
                         <!-- 21 columns, ~10+ rows? -->
-                        <div>00</div>
-                        <div>01</div>
-                        <div>02</div>
-                        <div>03</div>
-                        <div>04</div>
-                        <div>05</div>
-                        <div>06</div>
-                        <div>07</div>
-                        <div>08</div>
-                        <div>09</div>
-                        <div>10</div>
-                        <div>11</div>
-                        <div>12</div>
-                        <div>13</div>
-                        <div>14</div>
-                        <div>15</div>
-                        <div>16</div>
-                        <div>17</div>
-                        <div>18</div>
-                        <div>19</div>
-                        <div>20</div>
-                        <div>21</div>
+                        <div class="year">2000</div>
+                        <div class="year">2001</div>
+                        <div class="year">2002</div>
+                        <div class="year">2003</div>
+                        <div class="year">2004</div>
+                        <div class="year">2005</div>
+                        <div class="year">2006</div>
+                        <div class="year">2007</div>
+                        <div class="year">2008</div>
+                        <div class="year">2009</div>
+                        <div class="year">2010</div>
+                        <div class="year">2011</div>
+                        <div class="year">2012</div>
+                        <div class="year">2013</div>
+                        <div class="year">2014</div>
+                        <div class="year">2015</div>
+                        <div class="year">2016</div>
+                        <div class="year">2017</div>
+                        <div class="year">2018</div>
+                        <div class="year">2019</div>
+                        <div class="year">2020</div>
+                        <div class="year">2021</div>
                         <div class="row-1">personal</div>
                         <div class="row-2">school</div>
                         <div class="row-3">European</div>
@@ -123,8 +132,8 @@
                         <li>To learn things alongside peers in a mutually supportive environment.</li>
                         <li>To meet likeminded people and build things collaboratively.</li>
                         <li>To restart my career as a developer.</li>
-                        <li>Because F&C seem like they care about things which are important to me.</li>
-                        <li>Because I enjoy the opportunity to help others learn, and appreciate how this can improve my understanding of things.</li>
+                        <li>F&C seem like they care about things which are important to me.</li>
+                        <li>I enjoy helping others learn, and appreciate how this can improve my own understanding of a topic.</li>
                     </ul>
                 </section>
 
@@ -216,10 +225,11 @@
                     <h2>Week 09: Build a feature</h2>
 
                     <p>The design below represents a simple step sequencer, like you might find in a (software) drum machine, etc.</p>
-                    <p>It won't make any sound<a href="#footnote-1-text" id="footnote-1" class="footnote"><sup><strong>&loz;</strong></sup></a>, but is intended as a simple exploration of UI design.</p>
+                    <p>It won't make any sound<a href="#footnote-1-text" id="footnote-1" class="footnote"><sup><strong>[why?]</strong></sup></a>, but is intended as a simple exploration of UI design.</p>
                     <p>There are some options for ways to interact with it, which are based on mouse input.</p>
                     <p>The purpose of this is to let you work out what combination of mouse inputs feels most fluid and natural for you.</p>
                     <p>The default options selected below are what the author likes, but you might like something else! :)</p>
+                    <p>You might find that some combinations of actions conflict with one another, or just feel very strange and unintuitive!</p>
                     <p>It won't work with a touchscreen device yet, as that's outside the scope of this feature for now.</p>
                     <p>Try clicking a step to toggle it on or off. Steps toggled on are considered "active", and off are considered "inactive".</p>
                     <!-- <p>Some of the controls present won't do anything, but it's important to have a bit of extra chrome thrown in so that the UI feels more like a real-world example.</p> -->
@@ -306,6 +316,7 @@
                         <!-- end of secondary mouse button section -->
 
                         <fieldset>
+                            <label class="setting-section">Try some presets</label>
                             <input type="button" value="reset" title="This should hopefully feel.. fairly normal?">
                             <input type="button" value="primary-only" title="Toggle, paint and erase with the primary button only">
                             <!-- todo: maybe add a button or two here to load a "totally weird" preset? :) -->
@@ -359,6 +370,8 @@
 
             </main>
 
+            </div>
+
             <footer>
                 <p>Footnotes</p>
                 <hr>
@@ -371,7 +384,7 @@
                 <p>
                     In this case, with the time constraints I gave myself, I couldn't, so I didn't think it was fair to call the noise-making code "code I've written", as per the FAC spec for the application website.
                 </p>
-                <p>[return to where you came from link?]</p>
+                <p><a href="#footnote-1">Return</a></p>
                 <hr>
             </footer>
 
