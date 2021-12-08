@@ -9,6 +9,9 @@
 
         - Maybe add a checkbox to "load/unload code that 'was written by me', but was derived from example code written by someone else", with a note about how it affects functionality?
 
+        - When a menu link is clicked in narrow view, close the menu after clicking?
+            - I think we could do this by using JS to see if the CSS @media query has kicked in  (e.g. check if main nav menu button is visible?), then adding event listeners to the nav links.
+
         - Step seq:
             - Should we allow different numbers of steps per track? (But that all play back at an even rate of one step length = total time/number of steps? Polyrhythm fun.)
             - Careful with scrolling when changing number of tracks.

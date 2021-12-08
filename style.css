@@ -2,15 +2,14 @@
 
     Todo:
     =====
-        - MOBILE! Step seq won't work in current form. Completely change layout on mobile, or just hide it?
-        - Stop the step sequencer width from growing too wide.
-        - Improve views on narrow screens (mobile). Bit too spaced out atm.
+        - Fix display of step seq controls on mobile? They won't have any effect, maybe just hide them...
+        - Improve mobile/narrow layout. Overall width is getting truncated for some reason.
         - Tweak little things to improve spacing, etc. slightly.
             - e.g. give <h2> top margin so that the gap matches the sticky nav. (You'll need to adjust other margins if you do this, ofc.)
 
         Low priority:
         -------------
-            - Improve highlight of every 4th seq step?
+
 
 
     Notes/what I learned:
@@ -494,10 +493,10 @@ a.footnote:hover strong {
     margin: 0.75rem 0 0 0;
 }
 
-#sequencer-settings label select {
-    /* display: block; */
-    /* margin: 0 0 0.5rem 0; */
-}
+/* #sequencer-settings label select {
+    display: block;
+    margin: 0 0 0.5rem 0;
+} */
 
 #sequencer {
     /* background-color: hsl(25, 46%, 21%); */
@@ -696,9 +695,13 @@ a.footnote:hover strong {
 /*  narrow displays, i.e. mobiles in portrait. (1024 is kinda arbitrary.) */
 @media screen and (max-width: 1024px) {
 
-/*     #everything {
+    body {
+        margin: 0;
+    }
+
+    #everything {
         width: 90vw;
-    } */
+    }
 
     #middle {
         display: block;
@@ -708,7 +711,7 @@ a.footnote:hover strong {
         background-color: var(--body-bg-col);
         border-bottom: 1px solid hsl(0, 0%, 90%);
         margin-bottom: 2rem;
-        padding-bottom: 3rem;
+        padding: 0;
         top: 0;
     }
 
@@ -723,6 +726,10 @@ a.footnote:hover strong {
     #main-nav-menu-button.show {
         display: inline-block;
     }
+
+/*     main {
+
+    } */
 
     .demo-io-container {
         gap: 0.5rem;
