@@ -11,7 +11,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
         <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet"> 
 
         <!-- Testing silly handwriting styles for the header: -->
         <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet"> 
@@ -36,10 +38,12 @@
 
 
         Todo:
-            - Seeing as week 08 won't work at all without JS, maybe use JS to generate the HTML based on the functions that are there? That could be a "feature".
-            - Feature idea: basic step sequencer? With sound?
+        =====
+            - Fix nav so the links and titles are actually correct!
 
-            Low priority:
+            Low priority/another time:
+            --------------------------
+                - Seeing as week 08 won't work at all without JS, maybe use JS to generate the HTML based on the functions that are there? That could be a "feature".
                 - Try Material icons if you want? <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> e.g.:
                     - <span class="material-icons-outlined">menu</span>
                     - <span class="material-icons-outlined">expand_more</span>
@@ -54,373 +58,368 @@
         <div id="everything">
 
             <header>
-                <h2><span>&nbsp;&raquo; Will the <em>"world wide web (www)"</em> take off? &laquo;&nbsp;</span></h2>
-                <h1><strong>Joe</strong> is applying to <strong><s>Fl</s>Founders and Coders</strong> to find out.</h1>
-                <p>A short piece of text explaining what this website is and who made it.</p>
+                <!-- For better or worse, Against his better judgement --->
+                <!-- <h2 id="salty-tag">Believe it or not...</h2> -->
+                <h1><strong>Joe</strong> is applying to <strong>Founders and Coder<span class="blink">s</span></strong></h1>
             </header>
 
             <div id="middle">
 
-            <nav>
-                <a id="main-nav-menu-button" href="#">Menu</a> <!-- Is it best to use <a> for this, or something else? <h2> is one idea. -->
-                <ol id="main-nav-menu">
-                    <li><a href="#about-me">About me</a></li>
-                    <li><a href="#why-am-i-applying">Why am I applying?</a></li>
-                    <li><a href="#links">Hyperlinks of note</a></li>
-                    <li><a href="#the-weekly-prompts">The weekly prompts</a></li>
-                    <li>
-                        <a href="#week-08-objects">Week 08: Objects</a>
+                <nav>
+                    <a id="main-nav-menu-button" href="#">Menu</a> <!-- Is it best to use <a> for this, or something else? <h2> is one idea. -->
+                    <ol id="main-nav-menu">
+                        <li><a href="#about-me">About me</a></li>
+                        <li><a href="#why-am-i-applying">Why am I applying?</a></li>
+                        <li><a href="#coding-progress">Coding progress</a></li>
+                        <li>
+                            <a href="#week-08-objects">Week 08: Objects</a>
+                            <ul>
+                                <li><a href="#week-08-capitalise-keys">Capitalise keys</a></li>
+                                <li><a href="#week-08-string-to-object">String to object</a></li>
+                                <li><a href="#week-08-going-shopping">Going shopping</a></li>
+                                <li><a href="#week-08-map-object">Map Object</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#week-09-feature">Week 09: Build a feature</a></li>
+                    </ol>
+                    <a id="return-to-top" href="#everything">&uparrow; Return to top</a>
+                </nav>
+
+
+                <main>
+
+                    <section id="about-me">
+                        <h2>About me</h2>
+                        <p>Summary paragraph.</p>
+                        <h3>The last 21 years:</h3>
+                        <p></p>
+                        <div id="about-me-timeline-container"><!-- todo: probably remove this awful hack to get visible gridlines :) -->
+                            <div id="about-me-timeline">
+                                <!-- 21 columns -->
+                                <div class="year">'00</div>
+                                <div class="year">'01</div>
+                                <div class="year">'02</div>
+                                <div class="year">'03</div>
+                                <div class="year">'04</div>
+                                <div class="year">'05</div>
+                                <div class="year">'06</div>
+                                <div class="year">'07</div>
+                                <div class="year">'08</div>
+                                <div class="year">'09</div>
+                                <div class="year">'10</div>
+                                <div class="year">'11</div>
+                                <div class="year">'12</div>
+                                <div class="year">'13</div>
+                                <div class="year">'14</div>
+                                <div class="year">'15</div>
+                                <div class="year">'16</div>
+                                <div class="year">'17</div>
+                                <div class="year">'18</div>
+                                <div class="year">'19</div>
+                                <div class="year">'20</div>
+                                <div class="year">'21</div>
+                                <div class="about-me-timeline-item row-1">personal websites</div>
+                                <div class="about-me-timeline-item row-2">school website</div>
+                                <div class="about-me-timeline-item row-3">corporate website</div>
+                                <div class="about-me-timeline-item row-4">film studies dipHE</div>
+                                <div class="about-me-timeline-item row-5">music work in my spare time</div>
+                                <div class="about-me-timeline-item about-me-timeline-item-manual-part-1">manual work</div>
+                                <div class="about-me-timeline-item about-me-timeline-item-manual-part-2">manual work</div>
+                                <div class="about-me-timeline-item about-me-timeline-item-perm">IT, ops, admin + web dev job</div>
+                                <div class="about-me-timeline-item about-me-timeline-item-contracts">web dev contracts</div>
+                                <div class="about-me-timeline-item row-7">music full-time</div>
+                                <div class="about-me-timeline-item row-7-part-2">music full-time</div>
+                                <div class="about-me-timeline-item row-8">study maths & physics</div>
+                                <div class="about-me-timeline-item row-9">pandemic!</div>
+                            </div>
+                        </div>
+                        <div class="lightbulb">💡 <em>in which I learn that there is <a href="https://css-tricks.com/minding-the-gap/#styling-the-gap-in-flex-and-grid">not yet a convenient way</a> to style CSS grid gaps</em> 😌<!-- 🤦🤦🏻‍♂️😒 --></div>
+                    </section>
+
+                    <section id="why-am-i-applying">
+                        <h2>Why web dev?</h2>
+                        <p></p>
                         <ul>
-                            <li><a href="#week-08-capitalise-keys">Capitalise keys</a></li>
-                            <li><a href="#week-08-string-to-object">String to object</a></li>
-                            <li><a href="#week-08-going-shopping">Going shopping</a></li>
-                            <li><a href="#week-08-map-object">Map Object</a></li>
+                            <li></li>
                         </ul>
-                    </li>
-                    <li><a href="#week-09-feature">Week 09: Build a feature</a></li>
-                </ol>
-                <a id="return-to-top" href="#everything">&uparrow; Return to top</a>
-            </nav>
+                        <p>Summary paragraph?</p>
+                        <h2>Why FAC?</h2>
+                        <p>Summary paragraph?</p>
+                        <ul>
+                            <li>To learn things alongside peers in a mutually supportive environment.</li>
+                            <li>To meet likeminded people and build things collaboratively.</li>
+                            <li>To restart my career as a developer.</li>
+                            <li>FAC seem like they care about things which are important to me.</li>
+                            <li>I enjoy helping others learn, and appreciate how this can improve my own understanding of a topic.</li>
+                        </ul>
+                    </section>
 
 
-            <main>
+                    <section id="coding-progress">
+                        <h2>Coding progress</h2>
+                        <h3>The weekly prompts</h3>
+                        <!-- todo: use a grid for this? cols: link, week, title, tools, source, notes? the funny thing is what I *actually* want is a _table_.. heh. -->
+                        <!-- todo: add images? -->
+                        <!--
+                            <li>
+                                <img src="images/week01.png">
+                                <span>Week 01: Functions</span>
+                            </li>
+                            <li>
+                                <img src="images/week02.png">
+                                <span>Week 02: Number functions</span>
+                            </li>
+                            <li>
+                                <img src="images/week03.png">
+                                <span>Week 03: DOM Manipulation</span>
+                            </li>
+                            <li>
+                                <img src="images/week04.png">
+                                <span>Week 04: Arrays and array methods</span>
+                            </li>
+                        -->
+                        <ul>
+                            <li><a href="https://replit.com/@joedevpublic/FandC-Prompts-Week-01-Functions"><strong>Week 01:</strong> Functions</a> (replit)</li>
+                            <li><a href="https://replit.com/@joedevpublic/FandC-Prompts-Week-02-Number-functions"><strong>Week 02:</strong> Number functions</a> (replit)</li>
+                            <li><a href="https://joe-dev-public.github.io/fac-prompts-week03-dom-manipulation/"><strong>Week 03:</strong> DOM Manipulation</a> (<a class="source-link" href="https://github.com/joe-dev-public/fac-prompts-week03-dom-manipulation">source</a> on Microsoft GitHub)</li>
+                            <li><a href="https://joe-dev-public.github.io/fac-prompts-week04-arrays-and-array-methods/"><strong>Week 04:</strong> Arrays and array methods</a> (<a class="source-link" href="https://github.com/joe-dev-public/fac-prompts-week04-arrays-and-array-methods">source</a> on Microsoft GitHub)</li>
+                            <li><a href="https://joe-dev-public.github.io/fac-prompts-week05-git-and-github/"><strong>Week 05:</strong> git and GitHub</a> (<a class="source-link" href="https://github.com/joe-dev-public/fac-prompts-week05-git-and-github">source</a> on Microsoft GitHub)</li>
+                            <li><a href="https://joe-dev-public.github.io/fac-prompts-week06-flexbox/"><strong>Week 06:</strong> Flexbox</a> (<a class="source-link" href="https://github.com/joe-dev-public/fac-prompts-week06-flexbox">source</a> on Microsoft GitHub)</li>
+                            <li><strong>Weeks 07-10:</strong> that's this page! :) (<a href="https://github.com/joe-dev-public/fac-application-website">source</a> on <span title="OK, we get the point, Microsoft bought GitHub. It was years ago.">Microsoft</span> GitHub)</li>
+                        </ul>
+                        <h3>Other links</h3>
+                        <ul id="links">
+                            <li>
+                                <a href="https://github.com/joe-dev-public">
+                                    <img src="images/GitHub-Mark-120px-plus.png">
+                                    My Microsoft GitHub profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.freecodecamp.org/joe-dev-public" style="display: flex; align-items: center;">
+                                    <div>
+                                        <img src="images/fcc_secondary_large.png" style="width: 15rem;">
+                                        My freeCodeCamp profile
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
 
-                <section id="about-me">
-                    <h2>About me</h2>
-                    <p>Summary paragraph.</p>
-                    <h3>The last 21 years:</h3>
-                    <p></p>
-                    <div id="about-me-timeline-container"><!-- todo: probably remove this awful hack to get visible gridlines :) -->
-                        <div id="about-me-timeline">
-                            <!-- 21 columns -->
-                            <div class="year">'00</div>
-                            <div class="year">'01</div>
-                            <div class="year">'02</div>
-                            <div class="year">'03</div>
-                            <div class="year">'04</div>
-                            <div class="year">'05</div>
-                            <div class="year">'06</div>
-                            <div class="year">'07</div>
-                            <div class="year">'08</div>
-                            <div class="year">'09</div>
-                            <div class="year">'10</div>
-                            <div class="year">'11</div>
-                            <div class="year">'12</div>
-                            <div class="year">'13</div>
-                            <div class="year">'14</div>
-                            <div class="year">'15</div>
-                            <div class="year">'16</div>
-                            <div class="year">'17</div>
-                            <div class="year">'18</div>
-                            <div class="year">'19</div>
-                            <div class="year">'20</div>
-                            <div class="year">'21</div>
-                            <div class="about-me-timeline-item row-1">personal websites</div>
-                            <div class="about-me-timeline-item row-2">school website</div>
-                            <div class="about-me-timeline-item row-3">corporate website</div>
-                            <div class="about-me-timeline-item row-4">film studies dipHE</div>
-                            <div class="about-me-timeline-item row-5">music work in my spare time</div>
-                            <div class="about-me-timeline-item about-me-timeline-item-manual-part-1">manual work</div>
-                            <div class="about-me-timeline-item about-me-timeline-item-manual-part-2">manual work</div>
-                            <div class="about-me-timeline-item about-me-timeline-item-perm">IT, ops, admin + web dev job</div>
-                            <div class="about-me-timeline-item about-me-timeline-item-contracts">web dev contracts</div>
-                            <div class="about-me-timeline-item row-7">music full-time</div>
-                            <div class="about-me-timeline-item row-7-part-2">music full-time</div>
-                            <div class="about-me-timeline-item row-8">study maths & physics</div>
-                            <div class="about-me-timeline-item row-9">pandemic!</div>
+                    <section id="week-08-objects">
+                        <h2>Week 08: Objects</h2>
+                        <p>A response to <a href="https://learn.foundersandcoders.com/course/application/objects/">this prompt</a>.</p>
+                        <div class="demo-container">
+                            <h3 id="week-08-capitalise-keys">Capitalise keys</h3>
+                            <p>Enter text that represents a JavaScript object.<br>You can enter multiple objects by putting each one on a new line.</p>
+                            <div class="demo-io-container">
+                                <form class="demo-input">
+                                    <textarea required spellcheck="false" placeholder="e.g. { key1: value1, key2: value2 } etc.">{ a: 1, 'b': 2, c: "3", hello: 'hi', "Foo": 'bar' }</textarea>
+                                    <button type="submit" value="capitaliseKeys">Go</button><!-- todo: better to have JS populate this than maintain it separately! -->
+                                </form>
+                                <div class="demo-output">(output will appear here)</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="lightbulb">💡 <em>in which I learn that there is <a href="https://css-tricks.com/minding-the-gap/#styling-the-gap-in-flex-and-grid">not yet a convenient way</a> to style CSS grid gaps</em> 😌<!-- 🤦🤦🏻‍♂️😒 --></div>
-                </section>
-
-                <section id="why-am-i-applying">
-                    <h2>Why web dev?</h2>
-                    <p></p>
-                    <ul>
-                        <li></li>
-                    </ul>
-                    <p>Summary paragraph?</p>
-                    <h2>Why FAC?</h2>
-                    <p>Summary paragraph?</p>
-                    <ul>
-                        <li>To learn things alongside peers in a mutually supportive environment.</li>
-                        <li>To meet likeminded people and build things collaboratively.</li>
-                        <li>To restart my career as a developer.</li>
-                        <li>FAC seem like they care about things which are important to me.</li>
-                        <li>I enjoy helping others learn, and appreciate how this can improve my own understanding of a topic.</li>
-                    </ul>
-                </section>
-
-                <section id="links">
-                    <ul>
-                        <li>
-                            <a href="https://github.com/joe-dev-public">
-                                <img src="images/GitHub-Mark-120px-plus.png">
-                                My Microsoft GitHub profile
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.freecodecamp.org/joe-dev-public" style="display: flex; align-items: center;">
-                                <div>
-                                    <img src="images/fcc_secondary_large.png" style="width: 15rem;">
-                                    My freeCodeCamp profile
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </section>
-
-                <section id="the-weekly-prompts">
-                    <h2>The weekly prompts</h2>
-                    <!-- todo: use a grid for this? cols: link, week, title, tools, source, notes? the funny thing is what I *actually* want is a _table_.. heh. -->
-                    <!-- todo: add images? -->
-                    <!--
-                        <li>
-                            <img src="images/week01.png">
-                            <span>Week 01: Functions</span>
-                        </li>
-                        <li>
-                            <img src="images/week02.png">
-                            <span>Week 02: Number functions</span>
-                        </li>
-                        <li>
-                            <img src="images/week03.png">
-                            <span>Week 03: DOM Manipulation</span>
-                        </li>
-                        <li>
-                            <img src="images/week04.png">
-                            <span>Week 04: Arrays and array methods</span>
-                        </li>
-                    -->
-                    <ul>
-                        <li><a href="https://replit.com/@joedevpublic/FandC-Prompts-Week-01-Functions"><strong>Week 01:</strong> Functions</a> (replit)</li>
-                        <li><a href="https://replit.com/@joedevpublic/FandC-Prompts-Week-02-Number-functions"><strong>Week 02:</strong> Number functions</a> (replit)</li>
-                        <li><a href="https://joe-dev-public.github.io/fac-prompts-week03-dom-manipulation/"><strong>Week 03:</strong> DOM Manipulation</a> (<a href="https://github.com/joe-dev-public/fac-prompts-week03-dom-manipulation">source</a> on Microsoft GitHub)</li>
-                        <li><a href="https://joe-dev-public.github.io/fac-prompts-week04-arrays-and-array-methods/"><strong>Week 04:</strong> Arrays and array methods</a> (<a href="https://github.com/joe-dev-public/fac-prompts-week04-arrays-and-array-methods">source</a> on Microsoft GitHub)</li>
-                        <li><a href="https://joe-dev-public.github.io/fac-prompts-week05-git-and-github/"><strong>Week 05:</strong> git and GitHub</a> (<a href="https://github.com/joe-dev-public/fac-prompts-week05-git-and-github">source</a> on Microsoft GitHub)</li>
-                        <li><a href="https://joe-dev-public.github.io/fac-prompts-week06-flexbox/"><strong>Week 06:</strong> Flexbox</a> (<a href="https://github.com/joe-dev-public/fac-prompts-week06-flexbox">source</a> on Microsoft GitHub)</li>
-                        <li><strong>Weeks 07-10:</strong> that's this page! :) (<a href="https://github.com/joe-dev-public/fac-application-website">source</a> on <span title="OK, we get the point, Microsoft bought GitHub. It was years ago.">Microsoft</span> GitHub)</li>
-                    </ul>
-                </section>
-
-                <section id="week-08-objects">
-                    <h2>Week 08: Objects</h2>
-                    <p>A response to <a href="https://learn.foundersandcoders.com/course/application/objects/">this prompt</a>.</p>
-                    <div class="demo-container">
-                        <h3 id="week-08-capitalise-keys">Capitalise keys</h3>
-                        <p>Enter text that represents a JavaScript object.<br>You can enter multiple objects by putting each one on a new line.</p>
-                        <div class="demo-io-container">
-                            <form class="demo-input">
-                                <textarea required spellcheck="false" placeholder="e.g. { key1: value1, key2: value2 } etc.">{ a: 1, 'b': 2, c: "3", hello: 'hi', "Foo": 'bar' }</textarea>
-                                <button type="submit" value="capitaliseKeys">Go</button><!-- todo: better to have JS populate this than maintain it separately! -->
-                            </form>
-                            <div class="demo-output">(output will appear here)</div>
+                        <div class="demo-container">
+                            <h3 id="week-08-string-to-object">String to object</h3>
+                            <p>Enter text in a specific format to be converted into an object.<br>You can enter multiple strings by putting each one on a new line.</p>
+                            <div class="demo-io-container">
+                                <form class="demo-input">
+                                    <textarea required spellcheck="false" placeholder="e.g. key1:value1,key2:value2,key3:value3 etc.">key1:value1,foo:bar,baz:42,key4:value4</textarea>
+                                    <button type="submit" value="stringToObject">Go</button>
+                                </form>
+                                <div class="demo-output">(output will appear here)</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="demo-container">
-                        <h3 id="week-08-string-to-object">String to object</h3>
-                        <p>Enter text in a specific format to be converted into an object.<br>You can enter multiple strings by putting each one on a new line.</p>
-                        <div class="demo-io-container">
-                            <form class="demo-input">
-                                <textarea required spellcheck="false" placeholder="e.g. key1:value1,key2:value2,key3:value3 etc.">key1:value1,foo:bar,baz:42,key4:value4</textarea>
-                                <button type="submit" value="stringToObject">Go</button>
-                            </form>
-                            <div class="demo-output">(output will appear here)</div>
+                        <div class="demo-container">
+                            <h3 id="week-08-going-shopping">Going shopping</h3>
+                            <p>Enter a shopping list in this specific format: number item, number, item, etc.</p>
+                            <div class="demo-io-container">
+                                <form class="demo-input">
+                                    <textarea required spellcheck="false" placeholder="e.g. 4 tomatoes, 3 pears, 1 onion, 12 carrots, 7 tangerines">4 tomatoes, 3 pears, 1 onion, 12 carrots, 7 tangerines</textarea>
+                                    <button type="submit" value="shoppingList">Go</button>
+                                </form>
+                                <div class="demo-output">(output will appear here)</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="demo-container">
-                        <h3 id="week-08-going-shopping">Going shopping</h3>
-                        <p>Enter a shopping list in this specific format: number item, number, item, etc.</p>
-                        <div class="demo-io-container">
-                            <form class="demo-input">
-                                <textarea required spellcheck="false" placeholder="e.g. 4 tomatoes, 3 pears, 1 onion, 12 carrots, 7 tangerines">4 tomatoes, 3 pears, 1 onion, 12 carrots, 7 tangerines</textarea>
-                                <button type="submit" value="shoppingList">Go</button>
-                            </form>
-                            <div class="demo-output">(output will appear here)</div>
+                        <div class="demo-container">
+                            <h3 id="week-08-map-object">Map Object</h3>
+                            <p>Enter an object and a function ...</p>
+                            <div class="demo-io-container">
+                                <form class="demo-input">
+                                    <textarea required spellcheck="false" placeholder="e.g. { ... }, (value) => value.method()">{ a: 42, b: 99 }, (n) => n / 2
+    { iShout: 'hey u good?', youYell: 'yeah just grand thanks' }, (s) => s.toUpperCase()</textarea>
+                                    <button type="submit" value="mapObject">Go</button>
+                                </form>
+                                <div class="demo-output">(output will appear here)</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="demo-container">
-                        <h3 id="week-08-map-object">Map Object</h3>
-                        <p>Enter an object and a function ...</p>
-                        <div class="demo-io-container">
-                            <form class="demo-input">
-                                <textarea required spellcheck="false" placeholder="e.g. { ... }, (value) => value.method()">{ a: 42, b: 99 }, (n) => n / 2
-{ iShout: 'hey u good?', youYell: 'yeah just grand thanks' }, (s) => s.toUpperCase()</textarea>
-                                <button type="submit" value="mapObject">Go</button>
-                            </form>
-                            <div class="demo-output">(output will appear here)</div>
-                        </div>
-                    </div>
-                </section>
+                    </section>
 
 
-                <section id="week-09-feature">
+                    <section id="week-09-feature">
 
-                    <h2>Week 09: Build a feature</h2>
+                        <h2>Week 09: Build a feature</h2>
 
-                    <p>The design below represents a simple step sequencer, like you might find in a (software) drum machine, etc.</p>
-                    <p>It won't make any sound<a href="#footnote-1-text" id="footnote-1" class="footnote"><sup><strong>[why?]</strong></sup></a>, but is intended as a simple exploration of UI design.</p>
-                    <p>There are some options for ways to interact with it, which are based on mouse input.</p>
-                    <p>The purpose of this is to let you work out what combination of mouse inputs feels most fluid and natural for you.</p>
-                    <p>The default options selected below are what the author likes, but you might like something else! :)</p>
-                    <p>You might find that some combinations of actions conflict with one another, or just feel very strange and unintuitive!</p>
-                    <p>It won't work with a touchscreen device yet, as that's outside the scope of this feature for now.</p>
-                    <p>Try clicking a step to toggle it on or off. Steps toggled on are considered "active", and off are considered "inactive".</p>
-                    <!-- <p>Some of the controls present won't do anything, but it's important to have a bit of extra chrome thrown in so that the UI feels more like a real-world example.</p> -->
+                        <p>The design below represents a simple step sequencer, like you might find in a software drum machine, etc.</p>
+                        <p><strong>It won't make any sound</strong> (see below for <a href="#footnote-1-text" id="footnote-1">why</a>), and is just intended as a simple UI demonstration and exploration.</p>
+                        <p>There are some options for ways to interact with it, which are based on mouse input.</p>
+                        <p>The purpose of this is to let you work out what combination of mouse inputs feels most fluid and natural for you.</p>
+                        <p>The default options selected below are what the author likes, but you might like something else! :)</p>
+                        <p>You might find that some combinations of actions conflict with one another, or just feel very strange and unintuitive!</p>
+                        <p>It won't work with a touchscreen device yet, as that's outside the scope of this feature for now.</p>
+                        <p>Try clicking a step to toggle it on or off. Steps toggled on are considered "active", and off are considered "inactive".</p>
+                        <!-- <p>Some of the controls present won't do anything, but it's important to have a bit of extra chrome thrown in so that the UI feels more like a real-world example.</p> -->
 
-                    <form id="sequencer-settings">
+                        <form id="sequencer-settings">
 
-                        <!-- primary mouse button section -->
-                        <fieldset>
-                            <label class="setting-section">Primary mouse button</label>
-                            <label>
-                                Single click:
-                            </label>
-                            <select id="primary-button-single-click"><!-- todo? populate these options from JS? -->
-                                <option value="1" selected>Toggle step on/off</option>
-                                <option value="2">Always turn step on</option>
-                                <option value="3">Always turn step off</option>
-                                <option value="4">Do nothing</option>
-                            </select>
-                            <label>
-                                Click-drag from an active step:
-                            </label>
-                            <select id="primary-button-active-drag">
-                                <!-- todo: we're theoretically missing options here, but they're really bad! e.g. "ignore clicked step and do ... to dragged steps" -->
-                                <option value="1" selected>Turn off clicked step only</option><!-- Remove this?! See JS for comments -->
-                                <option value="2">Turn off clicked step and any other active steps</option>
-                                <optgroup label="These might feel unusual!">
-                                    <option value="3">Turn off clicked step and turn on any inactive steps</option>
-                                    <option value="4">Turn off clicked step and toggle other steps</option>
-                                </optgroup>
-                                <option value="5">Do nothing</option>
-                            </select>
-                            <label>
-                                Click-drag from an inactive step:
-                            </label>
-                            <select id="primary-button-inactive-drag">
-                                <option value="1">Turn on clicked step only</option>
-                                <option value="2" title='aka "left-drag to paint"' selected>Turn on clicked step and any other inactive steps</option>
-                                <optgroup label="These might feel unusual!">
-                                    <option value="3">Turn on clicked step and turn off any active steps</option>
-                                    <option value="4">Turn on clicked step and toggle other steps</option>
-                                </optgroup>
-                                <option value="5">Do nothing</option>
-                            </select>
-                        </fieldset>
-                        <!-- end of primary mouse button section -->
-
-                        <!-- secondary mouse button section -->
-                        <fieldset>
-                            <label class="setting-section">Secondary mouse button</label>
-                            <label>
-                                Single click:
-                            </label>
-                            <select id="secondary-button-single-click">
-                                <option value="1">Toggle step on/off</option>
-                                <option value="2">Always turn step on</option>
-                                <option value="3" selected>Always turn step off</option>
-                                <option value="4">Do nothing</option>
-                            </select>
-                            <label>
-                                Click-drag from an active step:
-                            </label>
-                            <select id="secondary-button-active-drag">
-                                <option value="1">Turn off clicked step only</option>
-                                <option value="2" title='aka "right-drag to erase"' selected>Turn off clicked step and any other active steps</option>
-                                <optgroup label="These might feel unusual!">
-                                    <option value="3">Turn off clicked step and turn on any inactive steps</option>
-                                    <option value="4">Turn off clicked step and toggle other steps</option>
-                                </optgroup>
-                                <option value="5">Do nothing</option>
-                            </select>
-                            <label>
-                                Click-drag from an inactive step:
-                            </label>
-                            <select id="secondary-button-inactive-drag">
-                                <option value="1">Turn on clicked step only</option>
-                                <option value="2">Turn on clicked step and any other inactive steps</option>
-                                <optgroup label="These might feel unusual!">
-                                    <option value="3">Turn on clicked step and turn off any active steps</option>
-                                    <option value="4">Turn on clicked step and toggle other steps</option>
-                                </optgroup>
-                                <option value="5" selected>Do nothing</option>
-                            </select>
-                        </fieldset>
-                        <!-- end of secondary mouse button section -->
-
-                        <fieldset>
-                            <label class="setting-section">Try some presets</label>
-                            <input type="button" value="reset" title="This should hopefully feel.. fairly normal?">
-                            <input type="button" value="primary-only" title="Toggle, paint and erase with the primary button only">
-                            <!-- todo: maybe add a button or two here to load a "totally weird" preset? :) -->
-                        </fieldset>
-
-                    </form>
-                    <!-- end of sequencer settings form -->
-
-                    <div id="sequencer">
-
-                        <form id="sequencer-controls">
-                            <!--
-                            <button type="button" id="play-button">Play/stop</button>
-                            <label>
-                                Volume:
-                                <input type="range" id="volume" min="0" max="0.5" step="0.01" value="0.1">
-                            </label>
-                            <label>
-                                Time sig: [locked at 4/4 for now]
-                            </label>
-                            <label>
-                                Tempo in BPM:
-                                <input type="range" id="bpm" min="30" max="250" step="1">
-                                <span id="tempo-readout"></span>
-                            </label>
-                            <label>
-                                Step length:
-                                <select id="step-length">
-                                    <option value="0.25">1/4</option>
-                                    <option value="0.125">1/8</option>
-                                    <option value="0.0625" selected>1/16</option>
-                                    <option value="0.03125">1/32</option>
+                            <!-- primary mouse button section -->
+                            <fieldset id="sequencer-settings-primary-button">
+                                <label class="setting-section">Primary mouse button</label>
+                                <label>
+                                    Single click:
+                                </label>
+                                <select id="primary-button-single-click"><!-- todo? populate these options from JS? -->
+                                    <option value="1" selected>Toggle step on/off</option>
+                                    <option value="2">Always turn step on</option>
+                                    <option value="3">Always turn step off</option>
+                                    <option value="4">Do nothing</option>
                                 </select>
-                            </label>
-                            -->
-                            <label>
-                                Number of tracks:
-                                <input id="number-of-tracks" type="number" min="1" max="8" value="4" step="1">
-                            </label>
-                            <label>
-                                Number of steps:
-                                <input id="number-of-steps" type="number" min="1" max="32" value="16" step="1">
-                            </label>
+                                <label>
+                                    Click-drag from an active step:
+                                </label>
+                                <select id="primary-button-active-drag">
+                                    <!-- todo: we're theoretically missing options here, but they're really bad! e.g. "ignore clicked step and do ... to dragged steps" -->
+                                    <option value="1" selected>Turn off clicked step only</option><!-- Remove this?! See JS for comments -->
+                                    <option value="2">Turn off clicked step and any other active steps</option>
+                                    <optgroup label="These might feel unusual!">
+                                        <option value="3">Turn off clicked step and turn on any inactive steps</option>
+                                        <option value="4">Turn off clicked step and toggle other steps</option>
+                                    </optgroup>
+                                    <option value="5">Do nothing</option>
+                                </select>
+                                <label>
+                                    Click-drag from an inactive step:
+                                </label>
+                                <select id="primary-button-inactive-drag">
+                                    <option value="1">Turn on clicked step only</option>
+                                    <option value="2" title='aka "left-drag to paint"' selected>Turn on clicked step and any other inactive steps</option>
+                                    <optgroup label="These might feel unusual!">
+                                        <option value="3">Turn on clicked step and turn off any active steps</option>
+                                        <option value="4">Turn on clicked step and toggle other steps</option>
+                                    </optgroup>
+                                    <option value="5">Do nothing</option>
+                                </select>
+                            </fieldset>
+                            <!-- end of primary mouse button section -->
+
+                            <!-- secondary mouse button section -->
+                            <fieldset id="sequencer-settings-secondary-button">
+                                <label class="setting-section">Secondary mouse button</label>
+                                <label>
+                                    Single click:
+                                </label>
+                                <select id="secondary-button-single-click">
+                                    <option value="1">Toggle step on/off</option>
+                                    <option value="2">Always turn step on</option>
+                                    <option value="3" selected>Always turn step off</option>
+                                    <option value="4">Do nothing</option>
+                                </select>
+                                <label>
+                                    Click-drag from an active step:
+                                </label>
+                                <select id="secondary-button-active-drag">
+                                    <option value="1">Turn off clicked step only</option>
+                                    <option value="2" title='aka "right-drag to erase"' selected>Turn off clicked step and any other active steps</option>
+                                    <optgroup label="These might feel unusual!">
+                                        <option value="3">Turn off clicked step and turn on any inactive steps</option>
+                                        <option value="4">Turn off clicked step and toggle other steps</option>
+                                    </optgroup>
+                                    <option value="5">Do nothing</option>
+                                </select>
+                                <label>
+                                    Click-drag from an inactive step:
+                                </label>
+                                <select id="secondary-button-inactive-drag">
+                                    <option value="1">Turn on clicked step only</option>
+                                    <option value="2">Turn on clicked step and any other inactive steps</option>
+                                    <optgroup label="These might feel unusual!">
+                                        <option value="3">Turn on clicked step and turn off any active steps</option>
+                                        <option value="4">Turn on clicked step and toggle other steps</option>
+                                    </optgroup>
+                                    <option value="5" selected>Do nothing</option>
+                                </select>
+                            </fieldset>
+                            <!-- end of secondary mouse button section -->
+
+                            <fieldset id="sequencer-settings-presets">
+                                <label class="setting-section">Try some presets</label>
+                                <input type="button" value="reset" title="This should hopefully feel.. fairly normal?">
+                                <input type="button" value="primary-only" title="Toggle, paint and erase with the primary button only">
+                                <!-- todo: maybe add a button or two here to load a "totally weird" preset? :) -->
+                            </fieldset>
+
                         </form>
+                        <!-- end of sequencer settings form -->
 
-                        <div id="stepgrid"></div>
+                        <div id="sequencer">
 
-                    </div>
+                            <form id="sequencer-controls">
+                                <!--
+                                <button type="button" id="play-button">Play/stop</button>
+                                <label>
+                                    Volume:
+                                    <input type="range" id="volume" min="0" max="0.5" step="0.01" value="0.1">
+                                </label>
+                                <label>
+                                    Time sig: [locked at 4/4 for now]
+                                </label>
+                                <label>
+                                    Tempo in BPM:
+                                    <input type="range" id="bpm" min="30" max="250" step="1">
+                                    <span id="tempo-readout"></span>
+                                </label>
+                                <label>
+                                    Step length:
+                                    <select id="step-length">
+                                        <option value="0.25">1/4</option>
+                                        <option value="0.125">1/8</option>
+                                        <option value="0.0625" selected>1/16</option>
+                                        <option value="0.03125">1/32</option>
+                                    </select>
+                                </label>
+                                -->
+                                <label>
+                                    Number of tracks:
+                                    <input id="number-of-tracks" type="number" min="1" max="8" value="4" step="1">
+                                </label>
+                                <label>
+                                    Number of steps:
+                                    <input id="number-of-steps" type="number" min="1" max="32" value="16" step="1">
+                                </label>
+                            </form>
 
-                </section>
+                            <div id="stepgrid"></div>
 
-            </main>
+                        </div>
 
-            </div>
+                        <h3>Why doesn't the sequencer make noise?</h3>
+                        <p id="footnote-1-text">
+                            I implemented some basic noise-making functionality, based on <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Advanced_techniques">these</a> <a href="https://www.html5rocks.com/en/tutorials/audio/scheduling/">examples</a>.
+                        </p>
+                        <p>
+                            While I understood the concepts and most of the code I was writing, I don't think that I've properly understood an example unless I can change it/rewrite it/write it from scratch to do "whatever I want".
+                        </p>
+                        <p>
+                            In this case, with the time constraints I gave myself, I couldn't, so I didn't think it was fair to call the noise-making code "code I've written", as per the FAC spec for the application website.
+                        </p>
+                        <p><a href="#footnote-1">Return</a></p>
 
-            <footer>
-                <p>Footnotes</p>
-                <hr>
-                <p id="footnote-1-text">
-                    I implemented some basic noise-making functionality, based on <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Advanced_techniques">these</a> <a href="https://www.html5rocks.com/en/tutorials/audio/scheduling/">examples</a>.
-                </p>
-                <p>
-                    While I understood the concepts and most of the code I was writing, I don't think that I've properly understood an example unless I can change it/rewrite it/write it from scratch to do "whatever I want".
-                </p>
-                <p>
-                    In this case, with the time constraints I gave myself, I couldn't, so I didn't think it was fair to call the noise-making code "code I've written", as per the FAC spec for the application website.
-                </p>
-                <p><a href="#footnote-1">Return</a></p>
-                <hr>
-            </footer>
+                    </section>
+
+                </main>
+
+            </div><!-- end of div middle -->
 
         </div>
 

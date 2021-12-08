@@ -60,10 +60,14 @@ body {
     display: flex;
 }
 
-nav, main, footer {
-    font-family: sans-serif;
+header, nav, main, footer {
+    font-family: 'Open Sans', sans-serif;
     font-size: 1.25rem;
 }
+
+/* footer {
+    background: repeating-linear-gradient(90deg, white, white 10px, grey 10px, grey 11px);
+} */
 
 /* Testing bits just to check layout quickly: */
 /* #everything {
@@ -86,21 +90,99 @@ footer {
 } */
 /* End of testing bits */
 
-h1, h2 {
-    font-family: 'Zilla Slab', sans-serif;
-}
 
-h1 {
-    font-size: 3.5rem;
-    font-weight: 500;
-    margin: 0;
-}
+/* h1, h2 {
+    font-family: 'Zilla Slab', sans-serif;
+} */
 
 h2 {
     font-size: 2.25rem;
-    font-weight: 400;
+    font-weight: 700;
     margin-top: 0;
 }
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+
+p, li {
+    max-width: 45rem;
+}
+
+
+/* a.source-link {
+    font-family: 'Space Mono', monospace;
+} */
+
+.blink {
+    border: 1px solid;
+    animation-name: foobar;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes foobar {
+    0% {
+        display: inline;
+    }
+    100% {
+        display: none;
+    }
+}
+
+
+.lightbulb {
+    background-color: hsl(0, 0%, 97%);
+    border: 2px dotted hsl(0, 0%, 70%);
+    border-radius: 0.25rem;
+    /* color:hsl(0, 0%, 35%); */
+    display: inline-block;
+    margin: 0.5rem 0 0 0;
+    opacity: 40%;
+    padding: 0.25rem 0.5rem;
+}
+
+.lightbulb:hover {
+    opacity: 100%;
+}
+
+.lightbulb em {
+    font-family: serif;
+    /* font-size: 1.25rem; */
+    font-style: italic;
+}
+
+
+/*
+    ----------------------------------------------------------------
+    Semantic structure stuff
+    ----------------------------------------------------------------
+*/
+
+main {
+    /* Not necessarily the best approach: */
+    overflow: hidden;
+    width: 100%;
+}
+
+section {
+    border-bottom: 5px dotted hsl(0, 0%, 95%);
+    margin-bottom: 5rem;
+    padding-bottom: 5rem;
+}
+
+/*
+    ----------------------------------------------------------------
+    End of semantic structure stuff
+    ----------------------------------------------------------------
+*/
+
 
 
 /*
@@ -109,48 +191,42 @@ h2 {
     ----------------------------------------------------------------
 */
 
-header, footer {
-    /* background-color: hsl(0, 0%, 100%); */
-    padding: 2rem;
+h1 {
+    /* font-size: 3.5rem; */
+    /* font-weight: 800; */
+    margin: 0;
 }
 
-header p, footer p {
-    margin: 0;
+h1 strong {
+    background-color: hsl(238, 32%, 23%);
+    /* border-bottom: 5px dotted darkgrey; */
+    border-bottom: 0.25rem solid hsl(238, 32%, 23%);
+    border-top: 0.25rem solid hsl(238, 32%, 23%);
+    color: rgb(216, 255, 179);
+    font-family: 'Space Mono', monospace;
+    font-weight: 400;
+    padding: 0 0.5rem 0 0.5rem;
+    text-transform: lowercase;
 }
 
 header {
-    /* border-bottom: 1px solid hsl(0, 0%, 90%); */
     margin-bottom: 2rem;
+    padding: 2rem;
 }
 
-header h1 strong {
-    background-color: whitesmoke;
-    border-bottom: 5px dotted darkgrey;
-    color: darkred;
-    /* font-family: cursive; */
-    /* font-family: 'Architects Daughter', cursive; */
-    text-transform: uppercase;
-    /* font-family: 'Permanent Marker', cursive; */
-    font-family: 'Indie Flower', cursive;
-    padding: 0 0.5rem 0 0.5rem;
-}
-
-header h2 {
-    margin: 0;
-}
-
-header h2 span {
-    background-color: hsl(60, 100%, 70%);
-}
-
-header p {
-    display: none;
-}
-
+/* #salty-tag {
+} */
 
 /*
     ----------------------------------------------------------------
     End of header stuff
+    ----------------------------------------------------------------
+*/
+
+
+/*
+    ----------------------------------------------------------------
+    Nav stuff
     ----------------------------------------------------------------
 */
 
@@ -205,67 +281,12 @@ nav li {
     color:hsl(0, 0%, 30%);
 }
 
-a {
-    text-decoration: none;
-}
+/*
+    ----------------------------------------------------------------
+    End of nav stuff
+    ----------------------------------------------------------------
+*/
 
-a:hover {
-    text-decoration: underline;
-}
-
-main {
-    /* Not necessarily the best approach: */
-    overflow: hidden;
-    width: 100%;
-}
-
-p, li {
-    max-width: 45rem;
-}
-
-section {
-    margin-bottom: 4rem;
-}
-
-footer {
-    border-top: 1px solid hsl(0, 0%, 80%);
-}
-
-/* a.footnote strong {
-    font-size: 1rem;
-    font-weight: 900;
-}
-
-a.footnote:hover {
-    color: red;
-    text-decoration: none;
-}
-
-a.footnote:hover strong {
-    content: "\29EB";
-} */
-
-
-.lightbulb {
-    background-color: hsl(0, 0%, 97%);
-    border: 2px dotted hsl(0, 0%, 70%);
-    border-radius: 0.25rem;
-    /* color:hsl(0, 0%, 35%); */
-    display: inline-block;
-    margin: 0.5rem 0 0 0;
-    opacity: 40%;
-    padding: 0.25rem 0.5rem;
-}
-
-.lightbulb:hover {
-    opacity: 100%;
-}
-
-.lightbulb em {
-    font-family: serif;
-    /* font-size: 1.25rem; */
-    font-style: italic;
-}
 
 
 /*
@@ -413,7 +434,7 @@ a.footnote:hover strong {
     grid-row-end: 13;
 }
 
-#links ul {
+#links {
     list-style-type: none;
     display: flex;
     padding: 0;
@@ -827,6 +848,10 @@ a.footnote:hover strong {
     .demo-input, .demo-output {
         width: 100%;
     }
+
+     #sequencer-settings-secondary-button, #sequencer-settings-presets {
+        display: none !important;
+     }
 
 }
 
