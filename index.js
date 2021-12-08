@@ -71,6 +71,12 @@
 function doNothing(event) { event.preventDefault(); }
 
 
+/*
+    -------------------------------------------------------
+    Layout stuff
+    -------------------------------------------------------
+*/
+
 function makeMainNavCollapsible() {
 
     const mainNavMenuElement = document.getElementById('main-nav-menu');
@@ -122,6 +128,36 @@ function makeMainNavCollapsible() {
     mainNavMenuButtonElement.addEventListener('click', toggleMainNavMenuVisible);
 
 }
+
+/*
+    -------------------------------------------------------
+    End of layout stuff
+    -------------------------------------------------------
+*/
+
+
+/*
+    -------------------------------------------------------
+    About me stuff
+    -------------------------------------------------------
+*/
+
+// todo: erm, maybe don't bother with this.
+
+function initAboutMeTimeline() {
+
+    const aboutMeTimelineElements = document.getElementsByClassName('about-me-timeline-item');
+
+    console.log(aboutMeTimelineElements);
+
+}
+
+/*
+    -------------------------------------------------------
+    End of about me stuff
+    -------------------------------------------------------
+*/
+
 
 
 /*
@@ -283,7 +319,7 @@ function handleDemoInput(event) {
         }
 
         // Don't add two line breaks if we're at the last line of input. (Could be neater with CSS, but I learned about forEach index this way!)
-        if (index < lines.length - 1){ html += '<br><br>'; }
+        if (index < lines.length - 1){ html += '<br>-----<br><br>'; }
 
     });
 
@@ -1063,6 +1099,8 @@ function initStepSeq() {
 function windowLoaded() {
 
     makeMainNavCollapsible();
+
+    initAboutMeTimeline();
 
     initWeek08();
 

@@ -54,7 +54,7 @@
         <div id="everything">
 
             <header>
-                <h2><em>Will</em> the "world wide web" be a big deal?</h2>
+                <h2><span>&nbsp;&raquo; Will the <em>"world wide web (www)"</em> take off? &laquo;&nbsp;</span></h2>
                 <h1><strong>Joe</strong> is applying to <strong><s>Fl</s>Founders and Coders</strong> to find out.</h1>
                 <p>A short piece of text explaining what this website is and who made it.</p>
             </header>
@@ -90,59 +90,83 @@
                     <p>Summary paragraph.</p>
                     <h3>The last 21 years:</h3>
                     <p></p>
-                    <div id="about-me-timeline">
-                        <!-- 21 columns, ~10+ rows? -->
-                        <div class="year">2000</div>
-                        <div class="year">2001</div>
-                        <div class="year">2002</div>
-                        <div class="year">2003</div>
-                        <div class="year">2004</div>
-                        <div class="year">2005</div>
-                        <div class="year">2006</div>
-                        <div class="year">2007</div>
-                        <div class="year">2008</div>
-                        <div class="year">2009</div>
-                        <div class="year">2010</div>
-                        <div class="year">2011</div>
-                        <div class="year">2012</div>
-                        <div class="year">2013</div>
-                        <div class="year">2014</div>
-                        <div class="year">2015</div>
-                        <div class="year">2016</div>
-                        <div class="year">2017</div>
-                        <div class="year">2018</div>
-                        <div class="year">2019</div>
-                        <div class="year">2020</div>
-                        <div class="year">2021</div>
-                        <div class="row-1">personal</div>
-                        <div class="row-2">school</div>
-                        <div class="row-3">European</div>
-                        <div class="row-4">dipHE</div>
-                        <div class="row-5">music spare time</div>
-                        <div class="row-6">web + IT job</div>
-                        <div class="row-7">music</div>
-                        <div class="row-7-part-2">music</div>
-                        <div class="row-8">study maths</div>
-                        <div class="row-9">pandemic</div>
+                    <div id="about-me-timeline-container"><!-- todo: probably remove this awful hack to get visible gridlines :) -->
+                        <div id="about-me-timeline">
+                            <!-- 21 columns -->
+                            <div class="year">'00</div>
+                            <div class="year">'01</div>
+                            <div class="year">'02</div>
+                            <div class="year">'03</div>
+                            <div class="year">'04</div>
+                            <div class="year">'05</div>
+                            <div class="year">'06</div>
+                            <div class="year">'07</div>
+                            <div class="year">'08</div>
+                            <div class="year">'09</div>
+                            <div class="year">'10</div>
+                            <div class="year">'11</div>
+                            <div class="year">'12</div>
+                            <div class="year">'13</div>
+                            <div class="year">'14</div>
+                            <div class="year">'15</div>
+                            <div class="year">'16</div>
+                            <div class="year">'17</div>
+                            <div class="year">'18</div>
+                            <div class="year">'19</div>
+                            <div class="year">'20</div>
+                            <div class="year">'21</div>
+                            <div class="about-me-timeline-item row-1">personal websites</div>
+                            <div class="about-me-timeline-item row-2">school website</div>
+                            <div class="about-me-timeline-item row-3">corporate website</div>
+                            <div class="about-me-timeline-item row-4">film studies dipHE</div>
+                            <div class="about-me-timeline-item row-5">music work in my spare time</div>
+                            <div class="about-me-timeline-item about-me-timeline-item-manual-part-1">manual work</div>
+                            <div class="about-me-timeline-item about-me-timeline-item-manual-part-2">manual work</div>
+                            <div class="about-me-timeline-item about-me-timeline-item-perm">IT, ops, admin + web dev job</div>
+                            <div class="about-me-timeline-item about-me-timeline-item-contracts">web dev contracts</div>
+                            <div class="about-me-timeline-item row-7">music full-time</div>
+                            <div class="about-me-timeline-item row-7-part-2">music full-time</div>
+                            <div class="about-me-timeline-item row-8">study maths & physics</div>
+                            <div class="about-me-timeline-item row-9">pandemic!</div>
+                        </div>
                     </div>
+                    <div class="lightbulb">💡 <em>in which I learn that there is <a href="https://css-tricks.com/minding-the-gap/#styling-the-gap-in-flex-and-grid">not yet a convenient way</a> to style CSS grid gaps</em> 😌<!-- 🤦🤦🏻‍♂️😒 --></div>
                 </section>
 
                 <section id="why-am-i-applying">
-                    <h2>Why am I applying for this programme?</h2>
+                    <h2>Why web dev?</h2>
+                    <p></p>
+                    <ul>
+                        <li></li>
+                    </ul>
+                    <p>Summary paragraph?</p>
+                    <h2>Why FAC?</h2>
+                    <p>Summary paragraph?</p>
                     <ul>
                         <li>To learn things alongside peers in a mutually supportive environment.</li>
                         <li>To meet likeminded people and build things collaboratively.</li>
                         <li>To restart my career as a developer.</li>
-                        <li>F&C seem like they care about things which are important to me.</li>
+                        <li>FAC seem like they care about things which are important to me.</li>
                         <li>I enjoy helping others learn, and appreciate how this can improve my own understanding of a topic.</li>
                     </ul>
                 </section>
 
                 <section id="links">
-                    <h2>Hyperlinks to other sites on the world wide web</h2>
                     <ul>
-                        <li>The <a href="https://github.com/joe-dev-public/fac-application-website">Microsoft GitHub repository</a> that contains the code for this site</li>
-                        <li><a href="https://www.freecodecamp.org/joe-dev-public">My freeCodeCamp profile</a></li>
+                        <li>
+                            <a href="https://github.com/joe-dev-public">
+                                <img src="images/GitHub-Mark-120px-plus.png">
+                                My Microsoft GitHub profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.freecodecamp.org/joe-dev-public" style="display: flex; align-items: center;">
+                                <div>
+                                    <img src="images/fcc_secondary_large.png" style="width: 15rem;">
+                                    My freeCodeCamp profile
+                                </div>
+                            </a>
+                        </li>
                     </ul>
                 </section>
 
@@ -175,7 +199,7 @@
                         <li><a href="https://joe-dev-public.github.io/fac-prompts-week04-arrays-and-array-methods/"><strong>Week 04:</strong> Arrays and array methods</a> (<a href="https://github.com/joe-dev-public/fac-prompts-week04-arrays-and-array-methods">source</a> on Microsoft GitHub)</li>
                         <li><a href="https://joe-dev-public.github.io/fac-prompts-week05-git-and-github/"><strong>Week 05:</strong> git and GitHub</a> (<a href="https://github.com/joe-dev-public/fac-prompts-week05-git-and-github">source</a> on Microsoft GitHub)</li>
                         <li><a href="https://joe-dev-public.github.io/fac-prompts-week06-flexbox/"><strong>Week 06:</strong> Flexbox</a> (<a href="https://github.com/joe-dev-public/fac-prompts-week06-flexbox">source</a> on Microsoft GitHub)</li>
-                        <li><strong>Week 07-10:</strong> that's this page! :)</li>
+                        <li><strong>Weeks 07-10:</strong> that's this page! :) (<a href="https://github.com/joe-dev-public/fac-application-website">source</a> on <span title="OK, we get the point, Microsoft bought GitHub. It was years ago.">Microsoft</span> GitHub)</li>
                     </ul>
                 </section>
 

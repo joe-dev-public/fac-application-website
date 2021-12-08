@@ -28,6 +28,7 @@
     --body-bg-col: white;
     --main-nav-link-colour: blue;
     --main-nav-link-hover-colour: red;
+    --about-me-border-col: hsl(0, 0%, 88%);
 }
 
 * {
@@ -95,10 +96,37 @@ h1 {
     margin: 0;
 }
 
-h1 strong {
+h2 {
+    font-size: 2.25rem;
+    font-weight: 400;
+    margin-top: 0;
+}
+
+
+/*
+    ----------------------------------------------------------------
+    Header stuff
+    ----------------------------------------------------------------
+*/
+
+header, footer {
+    /* background-color: hsl(0, 0%, 100%); */
+    padding: 2rem;
+}
+
+header p, footer p {
+    margin: 0;
+}
+
+header {
+    /* border-bottom: 1px solid hsl(0, 0%, 90%); */
+    margin-bottom: 2rem;
+}
+
+header h1 strong {
     background-color: whitesmoke;
     border-bottom: 5px dotted darkgrey;
-    color: darkblue;
+    color: darkred;
     /* font-family: cursive; */
     /* font-family: 'Architects Daughter', cursive; */
     text-transform: uppercase;
@@ -107,11 +135,24 @@ h1 strong {
     padding: 0 0.5rem 0 0.5rem;
 }
 
-h2 {
-    font-size: 2.25rem;
-    font-weight: 400;
-    margin-top: 0;
+header h2 {
+    margin: 0;
 }
+
+header h2 span {
+    background-color: hsl(60, 100%, 70%);
+}
+
+header p {
+    display: none;
+}
+
+
+/*
+    ----------------------------------------------------------------
+    End of header stuff
+    ----------------------------------------------------------------
+*/
 
 #main-nav-menu-button span {
     font-family: 'Zilla Slab', sans-serif;
@@ -164,26 +205,6 @@ nav li {
     color:hsl(0, 0%, 30%);
 }
 
-header, footer {
-    /* background-color: hsl(0, 0%, 100%); */
-/*     grid-column-start: 1;
-    grid-column-end: 3; */
-    padding: 2rem;
-}
-
-header p, footer p {
-    margin: 0;
-}
-
-header {
-    /* border-bottom: 1px solid hsl(0, 0%, 90%); */
-    margin-bottom: 2rem;
-}
-
-header p {
-    display: none;
-}
-
 a {
     text-decoration: none;
 }
@@ -193,6 +214,7 @@ a:hover {
 }
 
 main {
+    /* Not necessarily the best approach: */
     overflow: hidden;
     width: 100%;
 }
@@ -224,6 +246,27 @@ a.footnote:hover strong {
 } */
 
 
+.lightbulb {
+    background-color: hsl(0, 0%, 97%);
+    border: 2px dotted hsl(0, 0%, 70%);
+    border-radius: 0.25rem;
+    /* color:hsl(0, 0%, 35%); */
+    display: inline-block;
+    margin: 0.5rem 0 0 0;
+    opacity: 40%;
+    padding: 0.25rem 0.5rem;
+}
+
+.lightbulb:hover {
+    opacity: 100%;
+}
+
+.lightbulb em {
+    font-family: serif;
+    /* font-size: 1.25rem; */
+    font-style: italic;
+}
+
 
 /*
     ----------------------------------------------------------------
@@ -231,30 +274,39 @@ a.footnote:hover strong {
     ----------------------------------------------------------------
 */
 
-#about-me {
-    /* display: none; */
-    overflow-x: auto;
-}
+/* #about-me-timeline-container {
+    background-color: red;
+    width: max-content;
+} */
 
 #about-me-timeline {
-    border: 1px solid grey;
+    border: 1px solid var(--about-me-border-col);
     display: grid;
     font-size: 0.75rem;
     gap: 0.2rem;
-    grid-template-columns: repeat(22, 3rem);
+    grid-template-columns: repeat(22, 2rem);
+    /* Don't put this on #about-me. (For one, the border for #about-me-timeline gets messed up if overflow scrolling happens!) */
+    overflow-x: auto;
+    /* Using width: max-content seems to break overflow-x: auto, but below seems fine: */
+    max-width: max-content;
+    column-rule: 1px solid red;
 }
 
 #about-me-timeline div {
-    overflow: hidden;
+    /* todo: not working? bad design decision? */
+    /* overflow: hidden; */
     padding: 0.25rem;
 }
 
 #about-me-timeline .year {
-    background-color: lightgrey;
+    background-color: var(--about-me-border-col);
 }
 
+
+/* todo: improve colours here :) */
+
 #about-me-timeline .row-1 {
-    background-color: lightblue;
+    background-color: hsl(30, 100%, 86%);
     grid-column-start: 1;
     grid-column-end: 6;
     grid-row-start: 2;
@@ -262,7 +314,7 @@ a.footnote:hover strong {
 }
 
 #about-me-timeline .row-2 {
-    background-color: lightcoral;
+    background-color: 	hsl(195, 100%, 86%); /* lightskyblue */
     grid-column-start: 4;
     grid-column-end: 6;
     grid-row-start: 3;
@@ -270,7 +322,8 @@ a.footnote:hover strong {
 }
 
 #about-me-timeline .row-3 {
-    background-color: lightcyan;
+    background-color: hsl(0, 0%, 25%);
+    color: white;
     grid-column-start: 5;
     grid-column-end: 7;
     grid-row-start: 4;
@@ -278,7 +331,8 @@ a.footnote:hover strong {
 }
 
 #about-me-timeline .row-4 {
-    background-color: lightgoldenrodyellow;
+    background-color: hsl(210, 100%, 86%); /* dodgerblue */
+    /* color: white; */
     grid-column-start: 6;
     grid-column-end: 9;
     grid-row-start: 5;
@@ -286,51 +340,107 @@ a.footnote:hover strong {
 }
 
 #about-me-timeline .row-5 {
-    background-color: lightgreen;
+    background-color: hsl(0, 100%, 86%); /* lightsalmon; */
     grid-column-start: 7;
     grid-column-end: 14;
     grid-row-start: 6;
     grid-row-end: 7;
 }
 
-#about-me-timeline .row-6 {
-    background-color: lightgrey;
-    grid-column-start: 11;
-    grid-column-end: 15;
+.about-me-timeline-item-manual-part-1, .about-me-timeline-item-manual-part-2 {
+    background-color: hsl(45, 100%, 86%);
     grid-row-start: 7;
     grid-row-end: 8;
+}
+
+.about-me-timeline-item-manual-part-1 {
+    grid-column-start: 9;
+    grid-column-end: 11;
+}
+
+
+.about-me-timeline-item-manual-part-2 {
+    grid-column-start: 21;
+    grid-column-end: 23;
+}
+
+.about-me-timeline-item-contracts {
+    background-color: hsl(285, 100%, 86%);
+    grid-column-start: 10;
+    grid-column-end: 12;
+    grid-row-start: 8;
+    grid-row-end: 9;
+}
+
+.about-me-timeline-item-perm {
+    background-color: hsl(180, 100%, 86%);
+    grid-column-start: 12;
+    grid-column-end: 15;
+    grid-row-start: 9;
+    grid-row-end: 10;
 }
 
 #about-me-timeline .row-7 {
     background-color: lightpink;
     grid-column-start: 14;
     grid-column-end: 16;
-    grid-row-start: 8;
-    grid-row-end: 9;
+    grid-row-start: 10;
+    grid-row-end: 11;
 }
 
 #about-me-timeline .row-7-part-2 {
-    background-color: lightpink;
+    background-color: hsl(351, 100%, 86%); /* lightpink */
     grid-column-start: 18;
     grid-column-end: 22;
-    grid-row-start: 8;
-    grid-row-end: 9;
+    grid-row-start: 10;
+    grid-row-end: 11;
 }
 
 #about-me-timeline .row-8 {
-    background-color: lightsalmon;
+    background-color: hsl(270, 100%, 86%); /* or purple.. */
+    /* color: white; */
     grid-column-start: 15;
     grid-column-end: 18;
-    grid-row-start: 9;
-    grid-row-end: 10;
+    grid-row-start: 11;
+    grid-row-end: 12;
 }
 
 #about-me-timeline .row-9 {
-    background-color: lightseagreen;
+    background-color: hsl(90, 100%, 86%);
     grid-column-start: 21;
     grid-column-end: 23;
-    grid-row-start: 10;
-    grid-row-end: 11;
+    grid-row-start: 12;
+    grid-row-end: 13;
+}
+
+#links ul {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    
+}
+
+#links li {
+
+    /* justify-self: start; */
+    margin: 0 1rem 1rem 0;
+}
+
+#links a {
+    background-color: hsl(0, 0%, 95%);
+    display: block;
+    height: 100%;
+    padding: 1rem;
+    width: 100%;
+}
+
+#links a:hover {
+    background-color: hsl(0, 0%, 90%);
+}
+
+#links img {
+    display: block;
+    margin: 0 auto 1rem auto;
 }
 
 /*
@@ -338,35 +448,6 @@ a.footnote:hover strong {
     End of About me stuff
     ----------------------------------------------------------------
 */
-
-
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 0 3rem 0;
-    padding: 0;
-}
-
-.gallery li {
-    background-color: white;
-    /* border: 2px solid white; */
-    display: flex;
-    /* flex-direction: column; */
-    list-style-type: none;
-    margin: 0 2px 2px 0;
-    justify-content: space-around;
-    /* text-align: center; */
-}
-
-.gallery img {
-    align-self: center;
-    width: 200px;
-}
-
-.gallery li span {
-    display: none;
-    padding: 0.25em;
-}
 
 
 
@@ -388,8 +469,10 @@ a.footnote:hover strong {
 .demo-container {
     background-color: hsl(0, 0%, 98%);
     border: 1px solid hsl(0, 0%, 88%);
+    filter: drop-shadow(0.25rem 0.25rem 0.25rem hsl(0, 0%, 90%));
     margin: 2.25rem 0 0 0;
     padding: 1rem;
+    width: 95%;
 }
 
 .demo-container p {
