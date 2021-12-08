@@ -237,6 +237,7 @@ a.footnote:hover strong {
 }
 
 #about-me-timeline {
+    border: 1px solid grey;
     display: grid;
     font-size: 0.75rem;
     gap: 0.2rem;
@@ -421,6 +422,7 @@ a.footnote:hover strong {
     background-color: linen;
     border: 1px solid wheat;
     display: flex;
+    gap: 0.25rem;
     justify-content: space-between;
     /* margin-right: 0.25rem; */
 }
@@ -435,20 +437,20 @@ a.footnote:hover strong {
     /* min-height: 8rem; */
 }
 
-.demo-input button {
-    align-self: center;
-    /* display: inline-block; */
-    width: 8%;
-}
-
 .demo-input textarea {
     height: 6rem;
     min-height: 2rem;
     resize: vertical;
-    width: 90%;
+    width: 100%; /* todo: isn't there a stretch thing I can use here instead? */
 
     /* Apparently non-standard? */
     /* wrap: off; */
+}
+
+.demo-input button {
+    align-self: center;
+    /* display: inline-block; */
+    /* width: 8%; */
 }
 
 /*
@@ -701,6 +703,10 @@ a.footnote:hover strong {
 
     #everything {
         width: 90vw;
+    }
+
+    header {
+        padding: 1rem 0;
     }
 
     #middle {
