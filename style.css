@@ -18,6 +18,9 @@
         - Don't forget the % symbols with hsl colour triplets :)
         - position: sticky. How things have changed!
 
+        - overflow-x rather than just overflow
+        - overflow: auto rather than scroll
+
         - Keep in mind stuff you rarely/never used a decade+ ago: variables, calc, flex, grid, etc.
 
 */
@@ -62,22 +65,24 @@ nav, main, footer {
 }
 
 /* Testing bits just to check layout quickly: */
-/* header {
+/* #everything {
     background-color: lightgrey;
 }
-
+header {
+    background-color: lightyellow;
+}
+#middle {
+    background-color: lightsalmon;
+}
 nav {
     background-color: lightpink;
 }
-
 main {
     background-color: lightblue;
 }
-
 footer {
     background-color: lightgreen;
-}
- */
+} */
 /* End of testing bits */
 
 h1, h2 {
@@ -179,6 +184,7 @@ nav li {
 }
 
 #main-nav-menu {
+    margin-top: 0;
     padding-right: 1.25rem;
 }
 
@@ -233,7 +239,7 @@ header p, footer p {
 }
 
 header {
-    border-bottom: 1px solid hsl(0, 0%, 90%);
+    /* border-bottom: 1px solid hsl(0, 0%, 90%); */
     margin-bottom: 2rem;
 }
 
@@ -250,12 +256,12 @@ a:hover {
 }
 
 main {
-    /* overflow: hidden; */
+    overflow: hidden;
     width: 100%;
 }
 
 p, li {
-    max-width: 50rem;
+    max-width: 45rem;
 }
 
 section {
@@ -276,6 +282,20 @@ a.footnote:hover strong {
     content: "\29EB";
 } */
 
+
+
+/*
+
+    ----------------------------------------------------------------
+    About me stuff
+    ----------------------------------------------------------------
+
+*/
+
+#about-me {
+    /* display: none; */
+    overflow-x: auto;
+}
 
 #about-me-timeline {
     display: grid;
@@ -373,6 +393,13 @@ a.footnote:hover strong {
     grid-row-end: 11;
 }
 
+/*
+
+    ----------------------------------------------------------------
+    End of About me stuff
+    ----------------------------------------------------------------
+
+*/
 
 
 .gallery {
@@ -403,14 +430,30 @@ a.footnote:hover strong {
     padding: 0.25em;
 }
 
+
+
+/*
+
+    ----------------------------------------------------------------
+    Week 08: Objects stuff
+    ----------------------------------------------------------------
+
+*/
+
 #week-08-objects h3 {
-    margin: 2.5rem 0 1rem 0;
+    /* margin: 2.5rem 0 1rem 0; */
+    margin: 0 0 1rem 0;
 }
 
-/* todo: if mobile, get rid of the grid here */
+.demo-container, .demo-input, .demo-output {
+    border-radius: 0.25rem;
+}
+
 .demo-container {
-/*     display: grid;
-    grid-template-columns: 50% 50%; */
+    background-color: hsl(0, 0%, 98%);
+    border: 1px solid hsl(0, 0%, 88%);
+    margin: 2.25rem 0 0 0;
+    padding: 1rem;
 }
 
 .demo-container p {
@@ -419,11 +462,19 @@ a.footnote:hover strong {
     margin-top: 0;
 }
 
+.demo-io-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* gap: 0.5rem; */
+    justify-content: space-between;
+}
+
+/* todo: I want these boxes to take up 50% of the width each, but be no narrower than x rem, and when the page is narrow enough, output goes beneath input */
 .demo-input, .demo-output {
-    border-radius: 4px;
     font-size: 1rem;
+    /* min-width: 33rem; */
     padding: 0.5rem;
-    width: 35rem;
+    width: 49.5%;
 }
 
 .demo-input textarea, .demo-output {
@@ -434,11 +485,19 @@ a.footnote:hover strong {
     align-self: flex-start;
     background-color: linen;
     border: 1px solid wheat;
-    display: inline-flex;
-/*     grid-column-start: 1;
-    grid-column-end: 2; */
+    display: flex;
     justify-content: space-between;
-    margin-right: 0.25rem;
+    /* margin-right: 0.25rem; */
+}
+
+.demo-output {
+    align-self: flex-start;
+    background-color: hsl(238, 32%, 23%);
+    border: 1px solid black;
+    color: rgb(216, 255, 179);
+    /* display: inline-block; */
+    /* margin-left: 0.25rem; */
+    /* min-height: 8rem; */
 }
 
 .demo-input button {
@@ -448,7 +507,8 @@ a.footnote:hover strong {
 }
 
 .demo-input textarea {
-    height: 8rem;
+    height: 6rem;
+    min-height: 2rem;
     resize: vertical;
     width: 90%;
 
@@ -456,17 +516,14 @@ a.footnote:hover strong {
     /* wrap: off; */
 }
 
-.demo-output {
-    align-self: flex-start;
-    background-color: hsl(238, 32%, 23%);
-    border: 1px inset white;
-    color: rgb(216, 255, 179);
-    display: inline-block;
-/*     grid-column-start: 2;
-    grid-column-end: 3; */
-    margin-left: 0.25rem;
-    min-height: 8rem;
-}
+/*
+
+    ----------------------------------------------------------------
+    End of Week 08: Objects stuff
+    ----------------------------------------------------------------
+
+*/
+
 
 
 /*
@@ -518,7 +575,7 @@ a.footnote:hover strong {
     border-radius: 1rem;
     /* color: whitesmoke; */
     font-size: 1rem;
-    overflow: scroll;
+    overflow-x: auto;
     padding: 1rem;
 }
 

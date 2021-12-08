@@ -181,41 +181,50 @@
                 <section id="week-08-objects">
                     <h2>Week 08: Objects</h2>
                     <p>A response to <a href="https://learn.foundersandcoders.com/course/application/objects/">this prompt</a>.</p>
-                    <h3 id="week-08-capitalise-keys">Capitalise keys</h3>
                     <div class="demo-container">
-                        <p>Enter text that represents a JavaScript object. You can enter multiple objects by putting each one on a new line.</p>
-                        <form class="demo-input">
-                            <textarea required spellcheck="false" placeholder="e.g. { key1: value1, key2: value2 } etc."></textarea>
-                            <button type="submit" value="capitaliseKeys">Go</button><!-- todo: better to have JS populate this than maintain it separately! -->
-                        </form>
-                        <div class="demo-output">(output will appear here)</div>
+                        <h3 id="week-08-capitalise-keys">Capitalise keys</h3>
+                        <p>Enter text that represents a JavaScript object.<br>You can enter multiple objects by putting each one on a new line.</p>
+                        <div class="demo-io-container">
+                            <form class="demo-input">
+                                <textarea required spellcheck="false" placeholder="e.g. { key1: value1, key2: value2 } etc.">{ a: 1, 'b': 2, c: "3", hello: 'hi', "Foo": 'bar' }</textarea>
+                                <button type="submit" value="capitaliseKeys">Go</button><!-- todo: better to have JS populate this than maintain it separately! -->
+                            </form>
+                            <div class="demo-output">(output will appear here)</div>
+                        </div>
                     </div>
-                    <h3 id="week-08-string-to-object">String to object</h3>
                     <div class="demo-container">
-                        <p>Enter text in a specific format to be converted into an object. You can enter multiple strings by putting each one on a new line.</p>
-                        <form class="demo-input">
-                            <textarea required spellcheck="false" placeholder="e.g. key1:value1,key2:value2,key3:value3 etc."></textarea>
-                            <button type="submit" value="stringToObject">Go</button>
-                        </form>
-                        <div class="demo-output">(output will appear here)</div>
+                        <h3 id="week-08-string-to-object">String to object</h3>
+                        <p>Enter text in a specific format to be converted into an object.<br>You can enter multiple strings by putting each one on a new line.</p>
+                        <div class="demo-io-container">
+                            <form class="demo-input">
+                                <textarea required spellcheck="false" placeholder="e.g. key1:value1,key2:value2,key3:value3 etc.">key1:value1,foo:bar,baz:42,key4:value4</textarea>
+                                <button type="submit" value="stringToObject">Go</button>
+                            </form>
+                            <div class="demo-output">(output will appear here)</div>
+                        </div>
                     </div>
-                    <h3 id="week-08-going-shopping">Going shopping</h3>
                     <div class="demo-container">
-                        <p>Enter a shopping list following this specific format: number item, number item, number item. See what breaks!</p>
-                        <form class="demo-input">
-                            <textarea required spellcheck="false" placeholder="e.g. 4 tomatoes, 3 pears, 1 onion, 12 carrots, 7 tangerines"></textarea>
-                            <button type="submit" value="shoppingList">Go</button>
-                        </form>
-                        <div class="demo-output">(output will appear here)</div>
+                        <h3 id="week-08-going-shopping">Going shopping</h3>
+                        <p>Enter a shopping list in this specific format: number item, number, item, etc.</p>
+                        <div class="demo-io-container">
+                            <form class="demo-input">
+                                <textarea required spellcheck="false" placeholder="e.g. 4 tomatoes, 3 pears, 1 onion, 12 carrots, 7 tangerines">4 tomatoes, 3 pears, 1 onion, 12 carrots, 7 tangerines</textarea>
+                                <button type="submit" value="shoppingList">Go</button>
+                            </form>
+                            <div class="demo-output">(output will appear here)</div>
+                        </div>
                     </div>
-                    <h3 id="week-08-map-object">Map Object</h3>
                     <div class="demo-container">
+                        <h3 id="week-08-map-object">Map Object</h3>
                         <p>Enter an object and a function ...</p>
-                        <form class="demo-input">
-                            <textarea required spellcheck="false" placeholder="e.g. { ... }, (value) => value.method()"></textarea>
-                            <button type="submit" value="mapObject">Go</button>
-                        </form>
-                        <div class="demo-output">(output will appear here)</div>
+                        <div class="demo-io-container">
+                            <form class="demo-input">
+                                <textarea required spellcheck="false" placeholder="e.g. { ... }, (value) => value.method()">{ a: 42, b: 99 }, (n) => n / 2
+{ shout: 'hey u good?', yell: 'yeah just grand thanks' }, (s) => s.toUpperCase()</textarea>
+                                <button type="submit" value="mapObject">Go</button>
+                            </form>
+                            <div class="demo-output">(output will appear here)</div>
+                        </div>
                     </div>
                 </section>
 
