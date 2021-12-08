@@ -120,21 +120,45 @@ p, li {
     font-family: 'Space Mono', monospace;
 } */
 
-.blink {
-    border: 1px solid;
-    animation-name: foobar;
-    animation-duration: 1s;
+.blink-box, .blink-contents {
+    animation-duration: 0.5s;
     animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: steps(1);
 }
 
-@keyframes foobar {
+.blink-box {
+    animation-name: borderblink;
+}
+
+.blink-contents {
+    animation-name: colorblink;
+}
+
+/*  Not exactly intuitive, but if you use steps(1), you need to set the second keyframe to 50%.
+    https://stackoverflow.com/questions/40817918/css-animation-with-two-steps-and-no-transition
+*/
+
+@keyframes borderblink {
     0% {
-        display: inline;
+        border: 1px solid transparent;
     }
-    100% {
-        display: none;
+    50% {
+        border: 1px solid;
     }
 }
+
+@keyframes colorblink {
+    0% {
+        color: transparent;
+    }
+    50% {
+        color: rgb(216, 255, 179);
+        /* color: hsl(0, 0%, 60%); */
+    }
+}
+
+
 
 
 .lightbulb {
