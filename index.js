@@ -223,7 +223,7 @@ function handleDemoInput(event) {
 
     let html = '';
 
-    lines.forEach( element => {
+    lines.forEach( (element, index) => {
 
         if (functionToCall === 'capitaliseKeys'){
 
@@ -279,7 +279,8 @@ function handleDemoInput(event) {
             html += `${key}: ${value}<br>`;
         }
 
-        html += '<br><br>';
+        // Don't add two line breaks if we're at the last line of input. (Could be neater with CSS, but I learned about forEach index this way!)
+        if (index < lines.length - 1){ html += '<br><br>'; }
 
     });
 

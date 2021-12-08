@@ -26,6 +26,7 @@
 */
 
 :root {
+    --body-bg-col: white;
     --main-nav-link-colour: blue;
     --main-nav-link-hover-colour: red;
 }
@@ -43,7 +44,7 @@
 body {
     /* background-color: whitesmoke; */
     /* background-color: hsl(0, 0%, 90%); */
-    background-color: white;
+    background-color: var(--body-bg-col);
     /* background: linear-gradient(0deg, hsl(0, 0%, 90%) 0%, white 100%); */
     margin: 0 1rem;
 }
@@ -119,15 +120,6 @@ h2 {
     padding-left: 1rem;
 }
 
-/* 1680 is a somewhat arbitrary choice for now. */
-@media screen and (max-width: 1680px) {
-
-    #everything {
-        width: 95vw;
-    }
-
-}
-
 #main-nav-menu-button {
     background-color: rgb(0, 102, 204);
     color: whitesmoke;
@@ -156,28 +148,9 @@ nav {
     /* https://stackoverflow.com/questions/44446671/my-position-sticky-element-isnt-sticky-when-using-flexbox */
     height: 100%;
     padding: 1rem;
+    position: sticky;
     min-width: max-content;
 }
-
-
-/* media query for "wide-enough" displays, i.e. not your typical mobile in portrait */
-@media screen and (min-width: 1025px) {
-
-    nav {
-        /* You could apply sticky positioning to <nav>, but it's fine here for now. */
-        margin: 0 4rem 0 0;
-        position: sticky;
-        top: 2rem;
-    }
-
-    #return-to-top {
-        display: block;
-        margin-top: 8rem;
-    }
-
-}
-/* End of media query */
-
 
 nav li {
     margin-bottom: 0.5rem;
@@ -191,41 +164,6 @@ nav li {
 #main-nav-menu li::marker {
     color:hsl(0, 0%, 30%);
 }
-
-/*  media query for narrow displays, i.e. mobiles in portrait.
-    (1024 is kinda arbitrary.)
-*/
-@media screen and (max-width: 1024px) {
-
-    #everything {
-        width: 90vw;
-    }
-
-    #middle {
-        display: block;
-    }
-
-    nav {
-        border-bottom: 1px solid hsl(0, 0%, 90%);
-        margin-bottom: 2rem;
-        padding-bottom: 3rem;
-    }
-
-    #main-nav-menu {
-        margin-top: 1rem;
-    }
-
-    #main-nav-menu.hide {
-        display: none;
-    }
-
-    #main-nav-menu-button.show {
-        display: inline-block;
-    }
-
-}
-/* End of media query */
-
 
 header, footer {
     /* background-color: hsl(0, 0%, 100%); */
@@ -268,6 +206,10 @@ section {
     margin-bottom: 4rem;
 }
 
+footer {
+    border-top: 1px solid hsl(0, 0%, 80%);
+}
+
 /* a.footnote strong {
     font-size: 1rem;
     font-weight: 900;
@@ -285,11 +227,9 @@ a.footnote:hover strong {
 
 
 /*
-
     ----------------------------------------------------------------
     About me stuff
     ----------------------------------------------------------------
-
 */
 
 #about-me {
@@ -394,11 +334,9 @@ a.footnote:hover strong {
 }
 
 /*
-
     ----------------------------------------------------------------
     End of About me stuff
     ----------------------------------------------------------------
-
 */
 
 
@@ -433,11 +371,9 @@ a.footnote:hover strong {
 
 
 /*
-
     ----------------------------------------------------------------
     Week 08: Objects stuff
     ----------------------------------------------------------------
-
 */
 
 #week-08-objects h3 {
@@ -517,21 +453,17 @@ a.footnote:hover strong {
 }
 
 /*
-
     ----------------------------------------------------------------
     End of Week 08: Objects stuff
     ----------------------------------------------------------------
-
 */
 
 
 
 /*
-
     ----------------------------------------------------------------
     Sequencer stuff
     ----------------------------------------------------------------
-
 */
 
 #sequencer-settings {
@@ -720,15 +652,90 @@ a.footnote:hover strong {
 }
 
 /*
-
     ----------------------------------------------------------------
     End of sequencer stuff
     ----------------------------------------------------------------
-
 */
 
 
-footer {
-    border-top: 1px solid hsl(0, 0%, 80%);
+
+/*
+    ----------------------------------------------------------------
+    @media queries
+    ----------------------------------------------------------------
+*/
+
+
+/* "wide-enough" displays, i.e. *not* a typical mobile in portrait */
+@media screen and (min-width: 1025px) {
+
+    nav {
+        /* You could apply sticky positioning to <nav>, but it's fine here for now. */
+        margin: 0 4rem 0 0;
+        top: 2rem;
+    }
+
+    #return-to-top {
+        display: block;
+        margin-top: 8rem;
+    }
+
 }
 
+
+/* 1680 is a somewhat arbitrary choice for now. */
+@media screen and (max-width: 1680px) {
+
+    #everything {
+        width: 95vw;
+    }
+
+}
+
+
+/*  narrow displays, i.e. mobiles in portrait. (1024 is kinda arbitrary.) */
+@media screen and (max-width: 1024px) {
+
+/*     #everything {
+        width: 90vw;
+    } */
+
+    #middle {
+        display: block;
+    }
+
+    nav {
+        background-color: var(--body-bg-col);
+        border-bottom: 1px solid hsl(0, 0%, 90%);
+        margin-bottom: 2rem;
+        padding-bottom: 3rem;
+        top: 0;
+    }
+
+    #main-nav-menu {
+        margin-top: 1rem;
+    }
+
+    #main-nav-menu.hide {
+        display: none;
+    }
+
+    #main-nav-menu-button.show {
+        display: inline-block;
+    }
+
+    .demo-io-container {
+        gap: 0.5rem;
+    }
+
+    .demo-input, .demo-output {
+        width: 100%;
+    }
+
+}
+
+/*
+    ----------------------------------------------------------------
+    End of @media queries
+    ----------------------------------------------------------------
+*/
