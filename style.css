@@ -3,6 +3,7 @@
     Todo:
     =====
         - Make h1 smaller on mobile
+        - Make about me timeline less tall -- if you drag on it on mobile, you can't drag the page! Risky!
         - Hide more step seq controls on mobile?
         - Improve mobile/narrow layout. Overall width is getting truncated for some reason.
         - Fix gitgub/fcc link boxes on mobile (should wrap?)
@@ -375,7 +376,7 @@ nav li {
 #about-me-timeline div {
     /* todo: not working? bad design decision? */
     /* overflow: hidden; */
-    padding: 0.25rem;
+    padding: 0rem 0.25rem;
 }
 
 #about-me-timeline .year {
