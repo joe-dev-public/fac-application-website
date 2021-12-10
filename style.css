@@ -2,8 +2,9 @@
 
     Todo:
     =====
-        - Fix display of step seq controls on mobile? They won't have any effect, maybe just hide them...
+        - Hide more step seq controls on mobile?
         - Improve mobile/narrow layout. Overall width is getting truncated for some reason.
+        - Fix gitgub/fcc link boxes on mobile (should wrap?)
         - Tweak little things to improve spacing, etc. slightly.
             - e.g. give <h2> top margin so that the gap matches the sticky nav. (You'll need to adjust other margins if you do this, ofc.)
 
@@ -34,7 +35,7 @@
 * {
     box-sizing: border-box;
 /*     font-family: sans-serif; */
-    line-height: 1.5;
+    line-height: 1.75;
 }
 
 .hidden {
@@ -101,6 +102,13 @@ h2 {
     margin-top: 0;
 }
 
+h3.subtle {
+    color: hsl(0, 0%, 60%);
+    font-style: italic;
+    /* font-weight: 600; */
+    margin-bottom: 0.5rem;
+}
+
 a {
     text-decoration: none;
 }
@@ -109,16 +117,21 @@ a:hover {
     text-decoration: underline;
 }
 
-
-
 p, li {
     max-width: 45rem;
 }
 
+li {
+    margin-bottom: 0.5rem;;
+}
 
 /* a.source-link {
     font-family: 'Space Mono', monospace;
 } */
+
+span.highlight {
+    background-color: yellow;
+}
 
 .blink-box, .blink-contents {
     animation-duration: 0.5s;
@@ -319,10 +332,11 @@ nav li {
     ----------------------------------------------------------------
 */
 
-/* #about-me-timeline-container {
-    background-color: red;
-    width: max-content;
-} */
+#about-me-timeline-container {
+/*     background-color: red;
+    width: max-content; */
+    margin-bottom: 2rem;
+}
 
 #about-me-timeline {
     border: 1px solid var(--about-me-border-col);
