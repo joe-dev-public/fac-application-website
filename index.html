@@ -69,7 +69,13 @@
                     <a id="main-nav-menu-button" href="#">Menu</a> <!-- Is it best to use <a> for this, or something else? <h2> is one idea. -->
                     <ol id="main-nav-menu">
                         <li><a href="#about-me">About me</a></li>
-                        <li><a href="#why-am-i-applying">Why am I applying?</a></li>
+                        <li>
+                            Why am I applying?
+                            <ul>
+                                <li><a href="#why-dev">Why a developer?</a></li>
+                                <li><a href="#why-fac">Why FAC?</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#coding-progress">Coding progress</a></li>
                         <li>
                             <a href="#week-08-objects">Week 08: Objects</a>
@@ -96,12 +102,13 @@
                         <p>Hi, I'm Joe 👋🏻 (he/him, or they/them).</p>
 
                         <ul>
-                            <li>I love making things – mostly on computers ⌨️, occasionally not 🪚.</li>
+                            <li>I love making things – mostly on computers ⌨️ but not always 🪚.</li>
                             <li>My working life has revolved around music 🎹 and IT 🖥️.</li>
                             <li>I've done some web development 🔗 before, but not for the last nine years<!-- 📆👀 -->.</li>
                             <li>I was really lucky to have some success in music, but the pandemic means I can't earn a living doing that now.</li>
+                            <li>I've always known that path might not last forever, and I've long hoped I could establish a STE(A)My career when music went away.</li>
                             <li>I spend time away from screens, when I can. 🌳</li>
-                            <li>Some non-screen things I like doing are: walking <!-- 👟 --> and cycling <!-- 🚲 --> around cities, hiking <!-- 🥾 --> outside of them, dancing <!-- 🔊 --> in small dark loud rooms, cooking <!-- 🍝 -->, and critter-spotting. 🐶🐱🐦🦊🐀</li>
+                            <li>Some non-screen things I like doing are: walking <!-- 👟 --> and cycling <!-- 🚲 --> around cities, hiking <!-- 🥾 --> outside of them, dancing <!-- 🔊 --> in small dark loud rooms, cooking<!-- 🍝 -->, and critter-spotting. 🐶🐱🐦🦊🐀</li>
                         </ul>
 
                         <h3 class="subtle">The last 21 years:</h3>
@@ -155,55 +162,68 @@
 
                     <section id="why-am-i-applying">
 
-                        <h2>Why a developer?</h2>
+                        <h2 id="why-dev">Why a developer?</h2>
 
                         <ol>
-                            <li>I like to make things 🔧</li>
-                            <li>Making things with code particularly suits me 💻</li>
-                            <li>I care about how technology exists in the world (particularly an accessible, widely-used tech like the web) ⚖️</li>
+                            <li class="why-1">I like to make things 🔧</li>
+                            <li class="why-2">Making things with code particularly suits me 💻</li>
+                            <li class="why-3">I care about how technology exists in the world, especially widely-used tech like the web ⚖️</li>
                         </ol>
 
-                        <ol>
-                            <li>
-                                <h3>Why do I like to make things?</h3>
-                                <ul>
-                                    <li>One</li>
-                                    <li>Two</li>
-                                    <li>Three</li>
-                                    <li>Four</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h3>Why does making things with code suit me?</h3>
-                                <ul>
-                                    <li>One</li>
-                                    <li>Two</li>
-                                    <li>Three</li>
-                                    <li>Four</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h3>Why do I care about tech?</h3>
-                                <ul>
-                                    <li>One</li>
-                                    <li>Two</li>
-                                    <li>Three</li>
-                                    <li>Four</li>
-                                </ul>
-                            </li>
-                        </ol>
+                        <div class="why-1">
+                            <h3>1. Why do I like to make things?</h3>
+                            <ul>
+                                <li>I enjoy solving problems, and making usually involves this!</li>
+                                <li>I love to understand how things work, and making is a great way to deepen that understanding.</li>
+                                <li>I like to be able to create or alter things to meet specific needs.</li>
+                                <li>I get to learn, express myself creatively, discover a tool or process, and feel a sense of accomplishment.</li>
+                                <li>I want to connect with other people: collaborators and audiences/users. All of the above can be more exciting and satisfying when shared.</li>
+                                <li>I want to have a positive impact on people and think building things is the best way I can do that.</li>
+                            </ul>
+                        </div>
+
+                        <div class="why-2">
+                            <h3>2. Why does making things with code suit me?</h3>
+
+                            <h4>I like computers!</h4>
+                            <p>Since primary school, I've been fascinated with computers. For a while, I mostly wanted to make "cool" stuff. And while that still matters, I'm now more interested in making stuff that's genuinely useful.</p>
+
+                            <h4>It fits my skills</h4>
+                            <p>I'm analytical and enjoy the challenge of solving logical problems. Studying mathematics and physics as a mature student really boosted my skills in this area.</p>
+
+                            <h4>It suits my temperament and values</h4>
+                            <p>Compared to things like handcrafting a piece of furniture or growing vegetables, coding seems relatively accessible, fast, affordable, and portable.</p>
+                            <p>I like that the barriers to entry are relatively low, meaning it's potentially a more inclusive path than other ways of building things. And I know from experience that spending hours of a day writing code is something I can do!</p>
+
+                            <h4>I want to make a positive difference to the world, and I think coding gives me the best chance at doing this</h4>
+                            <p>Computers are everywhere, so code can be part of tackling problems in many different fields. Being a developer potentially allows me to tackle the broadest set of problems that could help people.</p>
+                        </div>
+
+                        <div class="why-3">
+                            <h3>3. Why do I care about tech?</h3>
+                            <p>If you build things online, they can potentially reach a lot of people. Such broad reach means that what you make can have a social impact.</p>
+                            <p>I believe that technology can truly help people. But I understand that it doesn't exist in a vacuum; it's not "apolitical".</p>
+                            <p>For the web to do (at least!) <em>significantly more good than harm</em>, the people who build it should have the best understanding they can of the real-world, social contexts in which their technology lives.</p>
+                            <p>I feel like my understanding is perpetually in its infancy, but I am glad to be on a journey of listening and learning. Building things in this mindset is how I hope I can be part of a more ethical, fair and humane world.</p>
+<!--
+                            <p></p>
+                            <p></p>
+-->
+                        </div>
 
 
-                        <h2>Why FAC?</h2>
-
-                        <p>Summary paragraph?</p>
+                        <h2 id="why-fac">Why FAC?</h2>
 
                         <ul>
-                            <li>To learn things alongside peers in a mutually supportive environment.</li>
-                            <li>To meet likeminded people and build things collaboratively.</li>
-                            <li>To restart my career as a developer.</li>
-                            <li>FAC seem like they care about things which are important to me.</li>
-                            <li>I enjoy helping others learn, and appreciate how this can improve my own understanding of a topic.</li>
+                            <li>FAC seem to <a href="https://www.foundersandcoders.com/apply/#what-kind-of-people-are-we-looking-for">care</a> <a href="https://www.foundersandcoders.com/code-of-conduct/">about</a> <a href="https://learn.foundersandcoders.com/course/handbook/course-rules/">things</a> which are important to me.</li>
+                            <li>I'd like my work to align with my values as much as possible, and I'm not sure that any other path into a career as a developer could facilitate this more than FAC.</li>
+                            <li>It would be exciting to meet like-minded people and build things collaboratively.</li>
+                            <li>To learn things alongside peers in a mutually supportive environment. I enjoy helping others learn, and appreciate how this can improve my own understanding of a topic.</li>
+<!--
+                            <li></li>
+                            <li></li>
+                            <li></li>
+-->
                         </ul>
 
                     </section>
