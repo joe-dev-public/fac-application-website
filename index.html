@@ -39,7 +39,6 @@
 
         Todo:
         =====
-            - Fix nav so the links and titles are actually correct!
 
             Low priority/another time:
             --------------------------
@@ -337,7 +336,7 @@
                         <p>The purpose of this is to let you work out what combination of mouse inputs feels most fluid and natural for you.</p>
                         <p>The default options selected below are what the author likes, but you might like something else! :)</p>
                         <p>You might find that some combinations of actions conflict with one another, or just feel very strange and unintuitive.</p>
-                        <p>It won't work properly with a touchscreen device yet, as that's outside the scope of this feature for now.</p>
+                        <p>It won't work properly with a touchscreen device yet, as that's outside the scope of this feature for now (but some limited functionality is available).</p>
                         <p>Try clicking a step to toggle it on or off. Steps toggled on are considered "active", and off are considered "inactive".</p>
                         <!-- <p>Some of the controls present won't do anything, but it's important to have a bit of extra chrome thrown in so that the UI feels more like a real-world example.</p> -->
 
@@ -354,7 +353,7 @@
                                     <option value="2">Always turn step on</option>
                                     <option value="3">Always turn step off</option>
                                     <option value="4">Do nothing</option>
-                                </select>
+                                </select id="primary-button-active-drag-label">
                                 <label>
                                     Click-drag from an active step:
                                 </label>
@@ -368,7 +367,7 @@
                                     </optgroup>
                                     <option value="5">Do nothing</option>
                                 </select>
-                                <label>
+                                <label id="primary-button-inactive-drag-label">
                                     Click-drag from an inactive step:
                                 </label>
                                 <select id="primary-button-inactive-drag">

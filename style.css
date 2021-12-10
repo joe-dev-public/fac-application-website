@@ -2,9 +2,6 @@
 
     Todo:
     =====
-        - Make h1 smaller on mobile
-        - Make about me timeline less tall -- if you drag on it on mobile, you can't drag the page! Risky!
-        - Hide more step seq controls on mobile?
         - Improve mobile/narrow layout. Overall width is getting truncated for some reason.
         - Fix gitgub/fcc link boxes on mobile (should wrap?)
         - Tweak little things to improve spacing, etc. slightly.
@@ -12,6 +9,7 @@
 
         Low priority:
         -------------
+            - Make h1 smaller on mobile?
 
 
 
@@ -519,7 +517,7 @@ nav li {
     list-style-type: none;
     display: flex;
     padding: 0;
-    
+    flex-wrap: wrap;
 }
 
 #links li {
@@ -930,9 +928,13 @@ nav li {
         width: 100%;
     }
 
-     #sequencer-settings-secondary-button, #sequencer-settings-presets {
+    #sequencer-settings-secondary-button, #sequencer-settings-presets {
         display: none !important;
      }
+
+    #primary-button-active-drag-label, #primary-button-active-drag, #primary-button-inactive-drag-label, #primary-button-inactive-drag {
+        display: none !important;
+    }
 
 }
 
