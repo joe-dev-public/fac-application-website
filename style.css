@@ -2,6 +2,7 @@
 
     Todo:
     =====
+        - Make h1 smaller on mobile
         - Hide more step seq controls on mobile?
         - Improve mobile/narrow layout. Overall width is getting truncated for some reason.
         - Fix gitgub/fcc link boxes on mobile (should wrap?)
@@ -229,7 +230,7 @@ section {
 */
 
 h1 {
-    /* font-size: 3.5rem; */
+    font-size: 3rem;
     /* font-weight: 800; */
     margin: 0;
 }
