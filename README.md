@@ -1,9 +1,10 @@
 # Founders and Coders application website
 
-Published on [GitHub Pages](https://joe-dev-public.github.io/fac-application-website/).
+## What is this?
 
+A small website built as part of an application to the Founders and Coders Jan 2022 cohort.
 
-Built as a response to:
+The following pages (as accessed during November and December 2021) were used to guide the spec/scope/content for the site:
 
 - https://www.foundersandcoders.com/requirements/website
 - https://learn.foundersandcoders.com/course/application/building-a-site/
@@ -11,16 +12,21 @@ Built as a response to:
 - https://learn.foundersandcoders.com/course/application/feature/
 - https://learn.foundersandcoders.com/course/application/debugging/
 
-(as accessed during November and December 2021) as part of an application to Founders and Coders Jan 2022 cohort.
+
+## Is the website currently published anywhere?
+
+Yes, it's viewable on [GitHub Pages](https://joe-dev-public.github.io/fac-application-website/).
 
 
-Written using Visual Studio Code.
+## How was it tested?
+
+Mostly in Firefox and a bit in Chrome on Windows 10. Also a bit in Chrome and Firefox on Android 12.
 
 
-Tested mostly in Firefox and a bit in Chrome on Windows 10. Also tested a bit in Chrome and Firefox on Android.
+## Is it completely finished?
 
+That depends!
 
-A bunch of the code could do with cleaning up. There's various bits that weren't finished or polished properly. See comments in the code for some (incomplete!) todos.
+As of first creating this README, the code for the site hasn't been modified since it was committed for the application deadline.
 
-
-As of first creating this README, the code for the site itself hasn't been modified since it was committed for the application deadline.
+It could do with cleaning up. Various bits weren't finished or polished properly. Comments in the code contain some (incomplete!) todos.
